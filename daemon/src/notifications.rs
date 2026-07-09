@@ -12,7 +12,6 @@ use tokio::time::{interval, Duration, MissedTickBehavior};
 use tracing::{debug, warn};
 
 use crate::adhan;
-use crate::debug_log;
 use crate::registry::ServiceRegistry;
 
 pub fn spawn_notification_loop(registry: Arc<ServiceRegistry>) {
@@ -32,19 +31,7 @@ pub fn spawn_notification_loop(registry: Arc<ServiceRegistry>) {
             }
 
             let mut min_poll = poll_secs;
-            let session_uids = active_session_uids();
-            // #region agent log
-            if session_uids.is_empty() {
-                debug_log::agent_log(
-                    "H5",
-                    "notifications.rs:spawn_notification_loop",
-                    "no active session uids",
-                    serde_json::json!({ "poll_secs": poll_secs }),
-                    "pre-fix",
-                );
-            }
-            // #endregion
-            for uid in session_uids {
+            for uid in active_session_uids() {
                 let Ok(service) = registry.get(uid).await else {
                     continue;
                 };
@@ -120,15 +107,6 @@ fn check_adhan(uid: u32, service: &BolootService, sent: &mut HashSet<String>, po
     }
 
     let Ok(schedule) = service.prayer_today() else {
-        // #region agent log
-        debug_log::agent_log(
-            "H2",
-            "notifications.rs:check_adhan",
-            "prayer_today failed",
-            serde_json::json!({ "uid": uid }),
-            "pre-fix",
-        );
-        // #endregion
         return;
     };
 
@@ -136,28 +114,10 @@ fn check_adhan(uid: u32, service: &BolootService, sent: &mut HashSet<String>, po
     let path = match resolve_adhan_path(config) {
         Ok(p) => p,
         Err(e) => {
-            // #region agent log
-            debug_log::agent_log(
-                "H3",
-                "notifications.rs:check_adhan",
-                "adhan path resolution failed",
-                serde_json::json!({ "uid": uid, "error": e.to_string() }),
-                "pre-fix",
-            );
-            // #endregion
             warn!("adhan path resolution failed: {e}");
             return;
         }
     };
-
-    let min_delta = schedule
-        .times
-        .entries
-        .iter()
-        .filter(|e| is_adhan_enabled_for(e.name, config))
-        .filter_map(|e| schedule.times.seconds_until_entry(e))
-        .filter(|&s| s >= -5)
-        .min();
 
     for entry in &schedule.times.entries {
         if !is_adhan_enabled_for(entry.name, config) {
@@ -166,52 +126,19 @@ fn check_adhan(uid: u32, service: &BolootService, sent: &mut HashSet<String>, po
         let Some(delta) = schedule.times.seconds_until_entry(entry) else {
             continue;
         };
-        let should_trigger = should_trigger_adhan(delta, poll_interval_secs);
-        // #region agent log
-        if delta <= 180 && delta >= -5 {
-            debug_log::agent_log(
-                "H1",
-                "notifications.rs:check_adhan",
-                "adhan prayer delta evaluated",
-                serde_json::json!({
-                    "uid": uid,
-                    "prayer": format!("{:?}", entry.name),
-                    "delta": delta,
-                    "poll_interval_secs": poll_interval_secs,
-                    "should_trigger": should_trigger,
-                    "already_sent": sent.contains(&format!("adhan:{:?}:{day}", entry.name)),
-                    "min_delta": min_delta,
-                }),
-                "pre-fix",
-            );
-        }
-        // #endregion
-        if !should_trigger {
+        if !should_trigger_adhan(delta, poll_interval_secs) {
             continue;
         }
 
         let key = format!("adhan:{:?}:{day}", entry.name);
-        if !sent.insert(key) {
+        if sent.contains(&key) {
             continue;
         }
 
-        // #region agent log
-        debug_log::agent_log(
-            "H1",
-            "notifications.rs:check_adhan",
-            "adhan trigger firing",
-            serde_json::json!({
-                "uid": uid,
-                "prayer": format!("{:?}", entry.name),
-                "delta": delta,
-                "path": path.display().to_string(),
-                "volume": config.prayer.adhan_volume,
-            }),
-            "pre-fix",
-        );
-        // #endregion
-
-        adhan::play_adhan_for_uid(uid, &path, config.prayer.adhan_volume);
+        if !adhan::play_adhan_for_uid(uid, &path, config.prayer.adhan_volume) {
+            continue;
+        }
+        sent.insert(key);
 
         if config.prayer.adhan_show_notification {
             let ui = UiStrings::for_language(config.calendar.language);

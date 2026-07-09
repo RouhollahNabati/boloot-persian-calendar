@@ -1,6 +1,8 @@
 /target/
 .venv-i18n/
-.cursor/debug-*.log
+.cursor/
+__pycache__/
+*.pyc
 /Cargo.lock
 debian/.debhelper/
 debian/files
