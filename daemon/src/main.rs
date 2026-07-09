@@ -1,5 +1,6 @@
 mod adhan;
 mod dbus_iface;
+mod debug_log;
 mod notifications;
 mod registry;
 
