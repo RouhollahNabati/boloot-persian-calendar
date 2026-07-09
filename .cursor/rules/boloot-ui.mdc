@@ -1,0 +1,38 @@
+---
+description: UI/UX standards for GNOME Shell extension and settings app
+globs: "gnome-shell/**,settings/**"
+alwaysApply: false
+---
+
+# UI Design Standards — BOLOOT Persian Calendar (boloot.ir)
+
+## GNOME HIG + libadwaita (settings)
+- Use `Adw.PreferencesWindow`, `Adw.PreferencesPage`, `Adw.ActionRow`, `Adw.SwitchRow`, `Adw.ComboRow`.
+- Prefer `Adw.ColorRow` over raw hex `Gtk.Entry` for colors.
+- Show live preview after save; use `Adw.Toast` for confirmation.
+- Default `use_system_theme: true`; custom colors only when user opts out.
+
+## Semantic colors (map to libadwaita when themed)
+- `holiday_color` → `@destructive_color`
+- `today_color` → `@accent_color`
+- `prayer_color` → `@success_color`
+- `text_color` → `@window_fg_color`
+
+## GNOME Shell extension
+- Use `PanelMenu.Button` + `PopupMenu` on click (calendar, holidays, prayer).
+- Sync settings via D-Bus `GetSettings` / `SettingsChanged`; do not duplicate config state.
+- Refresh: 60s for date; 1s only when countdown prayer mode is active.
+- Provide accessible names; support `prefers-reduced-motion`.
+
+## RTL & Persian
+- Settings: `set_default_direction(RTL)` for fa/fa_AF locales.
+- Use logical CSS properties (`margin-start`, not `margin-left`).
+- i18n via gettext (`fa`, `fa_AF`, `ps`, `tg`); display strings from `core` only.
+
+## Accessibility
+- WCAG AA contrast (4.5:1 text, 3:1 large text).
+- Keyboard navigation in settings; touch targets ≥ 44px in popup.
+
+## Top bar UX
+- Compact format in panel; full detail in popup only.
+- Truncate with ellipsis when space is limited; separator ` · ` between date and prayer.

@@ -1,0 +1,22 @@
+[Unit]
+Description=BOLOOT Persian Calendar D-Bus service (boloot.ir)
+Documentation=https://boloot.ir
+After=dbus.service local-fs.target
+Before=display-manager.service graphical.target
+Wants=dbus.service
+
+[Service]
+Type=dbus
+BusName=org.boloot.Calendar
+ExecStart=@PREFIX@/bin/boloot-calendard
+Environment=BOLOOT_DATA_DIR=@PREFIX@/share/boloot-calendar/data
+Environment=BOLOOT_SYSTEM_CONFIG=@PREFIX@/etc/boloot-calendar/config.toml
+Restart=always
+RestartSec=5
+PrivateTmp=true
+ProtectSystem=strict
+NoNewPrivileges=true
+ReadWritePaths=@PREFIX@/etc/boloot-calendar
+
+[Install]
+WantedBy=multi-user.target

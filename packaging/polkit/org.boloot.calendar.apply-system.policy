@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+  <vendor>BOLOOT</vendor>
+  <vendor_url>https://boloot.ir</vendor_url>
+  <icon_name>preferences-system-time</icon_name>
+
+  <action id="org.boloot.calendar.apply-system">
+    <description>Apply BOLOOT Persian Calendar system locale</description>
+    <message>Authentication is required to install the system-wide locale hook for BOLOOT Persian Calendar.</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">@PREFIX@/libexec/boloot-calendar-apply-system</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>

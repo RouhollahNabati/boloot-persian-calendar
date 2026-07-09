@@ -1,0 +1,30 @@
+---
+description: Linux desktop integration (D-Bus, systemd, Freedesktop)
+globs: "daemon/**,dbus/**,systemd/**,packaging/**,locale/**"
+alwaysApply: false
+---
+
+# Linux Integration Standards
+
+## D-Bus
+- Service: `org.boloot.Calendar`, path: `/org/boloot/Calendar` on the **system bus**.
+- Per-caller UID config: `~/.config/boloot-calendar/config.toml`, fallback `/etc/boloot-calendar/config.toml`.
+- Ship introspection XML; map errors to `zbus::fdo::Error::Failed`.
+- Emit `SettingsChanged` signal after config updates.
+- Validate `BolootConfig` in `set_settings` before save.
+
+## systemd
+- System service (`/lib/systemd/system/boloot-calendard.service`); starts before display-manager.
+- `Type=dbus` with `BusName=org.boloot.Calendar`; `Restart=always`.
+- Auto-enable on package install (deb/rpm postinst).
+- Apply hardening: `PrivateTmp`, `ProtectSystem=strict`, `NoNewPrivileges`.
+
+## Freedesktop
+- XDG config dir via `dirs::config_dir()` → `boloot-calendar/`; system defaults in `/etc/boloot-calendar/config.toml`.
+- Ship `data/system-config/config.toml` as installed example + `/etc` default.
+- Notifications: follow Desktop Notifications spec; respect DND.
+- Locale hook: `LC_TIME="…@calendar=persian"` in `/etc/profile.d` — require Polkit, not raw root CLI.
+
+## Packaging
+- Support deb, Flatpak, RPM, and Arch (PKGBUILD); data files under `/usr/share/boloot-calendar/data`.
+- Native packages call `make install-only`; Flatpak uses host-setup for GNOME extension.

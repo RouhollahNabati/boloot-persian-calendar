@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.boloot.Calendar
+Exec=@PREFIX@/bin/boloot-calendard
+User=root

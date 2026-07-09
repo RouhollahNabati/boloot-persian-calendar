@@ -1,0 +1,7 @@
+# BOLOOT Persian Calendar — enable extension on the GDM login screen.
+# Ubuntu/Debian: compiled into /var/lib/gdm3/greeter-dconf-defaults via
+# /usr/share/gdm/generate-config (profile file-db, not system-db:gdm).
+
+[org/gnome/shell]
+enabled-extensions=['boloot-calendar@boloot.ir']
+disable-user-extensions=false

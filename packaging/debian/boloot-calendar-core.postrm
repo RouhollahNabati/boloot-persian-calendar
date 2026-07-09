@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    purge)
+        if command -v deb-systemd-helper >/dev/null 2>&1; then
+            deb-systemd-helper unmask boloot-calendard.service >/dev/null 2>&1 || true
+            deb-systemd-helper purge boloot-calendard.service >/dev/null 2>&1 || true
+        fi
+        rm -f /etc/dconf/db/gdm.d/00-boloot-calendar
+        if command -v dconf >/dev/null 2>&1; then
+            dconf update || true
+        fi
+        ;;
+    remove|upgrade|failed-upgrade|disappear)
+        ;;
+    *)
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

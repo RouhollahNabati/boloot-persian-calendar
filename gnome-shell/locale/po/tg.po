@@ -1,0 +1,23 @@
+# BOLOOT Persian Calendar GNOME Shell extension — Tajik
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: tg\n"
+
+msgid "ماه قبل"
+msgstr "Моҳи қаблӣ"
+
+msgid "ماه بعد"
+msgstr "Моҳи баъдӣ"
+
+msgid "سال قبل"
+msgstr "Соли қаблӣ"
+
+msgid "سال بعد"
+msgstr "Соли баъдӣ"
+
+msgid "برو به امروز"
+msgstr "Ба имрӯз"
+
+msgid "تنظیمات BOLOOT"
+msgstr "Тanzimoti BOLOOT"

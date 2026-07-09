@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    remove|purge)
+        if command -v deb-systemd-helper >/dev/null 2>&1; then
+            deb-systemd-helper disable boloot-calendard.service >/dev/null 2>&1 || true
+            deb-systemd-helper mask boloot-calendard.service >/dev/null 2>&1 || true
+        elif command -v systemctl >/dev/null 2>&1; then
+            systemctl disable boloot-calendard.service || true
+            systemctl stop boloot-calendard.service || true
+        fi
+        ;;
+    upgrade|failed-upgrade)
+        ;;
+    *)
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

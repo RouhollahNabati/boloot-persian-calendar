@@ -1,0 +1,60 @@
+# BOLOOT Persian Calendar — system-wide defaults (boloot.ir)
+#
+# Installed to: /etc/boloot-calendar/config.toml
+# Used by:
+#   - GDM login screen (before any user signs in)
+#   - Users who do not yet have ~/.config/boloot-calendar/config.toml
+#
+# Copy to edit system defaults:
+#   sudo cp /usr/share/boloot-calendar/config.toml.example /etc/boloot-calendar/config.toml
+#   sudo systemctl reload boloot-calendard.service
+#
+# Per-user settings override this file and are stored at:
+#   ~/.config/boloot-calendar/config.toml
+
+[calendar]
+country = "iran"
+language = "persian"
+calendar_type = "jalali"
+week_start = "saturday"
+timezone = "Asia/Tehran"
+numerals = "persian"
+date_style = "long_named"
+show_holidays = true
+holiday_notifications = false
+follow_system_locale = false
+
+[appearance]
+font_family = "Vazirmatn"
+font_size_pt = 14
+use_system_theme = true
+show_in_top_bar = true
+show_clock = true
+show_in_popup = true
+text_color = "#1e1e1e"
+background_color = "#ffffff"
+holiday_color = "#a61e2e"
+today_color = "#1c71d8"
+prayer_color = "#2ec27e"
+
+[prayer]
+enabled = true
+city = "tehran"
+method = "tehran"
+madhab = "jafari"
+display_mode = "next_prayer"
+show_in_top_bar = true
+show_in_popup = true
+notification_minutes = [10]
+adhan_enabled = false
+adhan_preset = "mansouri"
+adhan_volume = 80
+adhan_show_notification = true
+
+[prayer.adhan_prayers]
+fajr = true
+sunrise = false
+dhuhr = true
+asr = true
+maghrib = true
+isha = true

@@ -1,0 +1,10 @@
+/target/
+/Cargo.lock
+debian/.debhelper/
+debian/files
+debian/*.debhelper
+debian/*.substvars
+debian/boloot-calendar*/
+*.deb
+*.buildinfo
+*.changes

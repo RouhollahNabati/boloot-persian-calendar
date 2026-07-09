@@ -1,0 +1,360 @@
+/* BOLOOT Persian Calendar — dateMenu popup integration (GNOME HIG) */
+/* St theme CSS: use px/pt only — no %, em lengths, auto, or none for size props */
+
+.boloot-popup-container,
+.boloot-section,
+.boloot-panel-indicator {
+    font-family: Vazirmatn, sans-serif;
+}
+
+.boloot-datemenu-popup .datemenu-calendar {
+    /* GNOME calendar hidden while Boloot popup is active (see extension.js). */
+}
+
+.boloot-popup-footer {
+    padding: 8px 12px 10px;
+    spacing: 8px;
+    border-top: 1px solid alpha(currentColor, 0.12);
+}
+
+.boloot-popup-header {
+    padding: 6px 12px 0;
+    spacing: 8px;
+}
+
+.boloot-header-row {
+    spacing: 8px;
+    margin-bottom: 2px;
+}
+
+.boloot-section {
+    padding: 12px 16px;
+    spacing: 10px;
+}
+
+.boloot-nav-settings {
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 18px;
+    padding: 0 6px;
+}
+
+.boloot-nav-settings:hover {
+    background-color: alpha(currentColor, 0.08);
+}
+
+.boloot-nav-settings St.Icon {
+    icon-size: 16px;
+    color: inherit;
+}
+
+.boloot-nav-row {
+    spacing: 8px;
+}
+
+.boloot-year-nav {
+    spacing: 6px;
+}
+
+.boloot-year-title {
+    font-weight: 600;
+    font-size: 11pt;
+    padding: 2px 0;
+    text-align: center;
+}
+
+.boloot-month-nav {
+    spacing: 8px;
+}
+
+.boloot-nav-year {
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 18px;
+    padding: 0 6px;
+}
+
+.boloot-title {
+    font-weight: 600;
+    padding: 4px 0;
+    text-align: center;
+}
+
+.boloot-weekdays {
+    spacing: 2px;
+}
+
+.boloot-weekday {
+    text-align: center;
+    font-size: 10pt;
+    font-weight: 500;
+    opacity: 0.72;
+    padding-bottom: 4px;
+}
+
+.boloot-grid {
+    spacing: 4px;
+}
+
+.boloot-grid-row {
+    spacing: 4px;
+}
+
+.boloot-day-cell {
+    text-align: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 4px;
+    border-radius: 22px;
+}
+
+.boloot-day-cell:hover:not(.boloot-day-selected):not(:selected) {
+    background-color: transparent;
+}
+
+.boloot-day-inner {
+    padding: 4px 8px;
+    border-radius: 16px;
+    min-width: 28px;
+}
+
+/* Selection fill lives on the outer cell; keep the inner pad clear. */
+.boloot-day-inner-selected {
+    background-color: transparent;
+}
+
+/* Strong accent fill so the clicked day is unmistakable (St alpha over theme). */
+.boloot-day-cell.boloot-day-selected,
+.boloot-day-cell:selected {
+    background-color: alpha(-st-accent-color, 0.68);
+}
+
+.boloot-day-cell.boloot-day-selected:hover,
+.boloot-day-cell:selected:hover {
+    background-color: alpha(-st-accent-color, 0.78);
+}
+
+.boloot-day-cell.boloot-today.boloot-day-selected,
+.boloot-day-cell.boloot-today:selected {
+    background-color: alpha(-st-accent-color, 0.78);
+}
+
+.boloot-day-cell.boloot-today.boloot-day-selected:hover,
+.boloot-day-cell.boloot-today:selected:hover {
+    background-color: alpha(-st-accent-color, 0.88);
+}
+
+.boloot-day-cell.boloot-day-outside.boloot-day-selected,
+.boloot-day-cell.boloot-day-outside:selected {
+    background-color: alpha(-st-accent-color, 0.48);
+    opacity: 0.82;
+}
+
+.boloot-day-cell.boloot-day-selected .boloot-day-primary,
+.boloot-day-cell:selected .boloot-day-primary {
+    font-weight: 600;
+}
+
+.boloot-day-primary {
+    text-align: center;
+    font-weight: 400;
+}
+
+.boloot-day-secondary {
+    font-size: 9pt;
+    opacity: 0.65;
+    text-align: center;
+}
+
+.boloot-weekday-weekend {
+    color: -st-error-color;
+    opacity: 0.92;
+}
+
+.boloot-day-outside {
+    opacity: 0.38;
+}
+
+.boloot-weekend .boloot-day-primary {
+    color: #a61e2e;
+    color: -st-error-color;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.boloot-weekend .boloot-day-secondary {
+    opacity: 0.75;
+}
+
+.boloot-today:not(.boloot-day-selected):not(:selected) {
+    background-color: transparent;
+    font-weight: 600;
+}
+
+.boloot-today .boloot-day-primary {
+    color: -st-accent-color;
+}
+
+.boloot-holiday .boloot-day-primary {
+    color: #a61e2e;
+    color: -st-error-color;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.boloot-holiday.boloot-weekend .boloot-day-primary {
+    color: #a61e2e;
+    color: -st-error-color;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.boloot-holiday.boloot-day-outside .boloot-day-primary {
+    opacity: 1;
+}
+
+.boloot-day-holiday-text {
+    font-weight: 500;
+}
+
+.boloot-divider {
+    background-color: alpha(currentColor, 0.12);
+    height: 1px;
+    margin: 4px 0;
+}
+
+.boloot-section-title {
+    font-weight: 600;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.boloot-prayer {
+    spacing: 4px;
+}
+
+.boloot-prayer-table {
+    spacing: 2px;
+}
+
+.boloot-prayer-table-row {
+    spacing: 4px;
+}
+
+.boloot-prayer-cell {
+    spacing: 4px;
+    padding: 2px 4px;
+    min-width: 0;
+}
+
+.boloot-prayer-name {
+    font-size: 10pt;
+    opacity: 0.88;
+    min-width: 0;
+}
+
+.boloot-prayer-time {
+    font-size: 10pt;
+    font-weight: 500;
+    font-feature-settings: "tnum";
+}
+
+.boloot-prayer-cell-next .boloot-prayer-name,
+.boloot-prayer-cell-next .boloot-prayer-time {
+    color: -st-success-color;
+    font-weight: 600;
+    opacity: 1;
+}
+
+.boloot-prayer-next {
+    color: -st-success-color;
+    font-weight: 600;
+    font-size: 10pt;
+    margin-top: 2px;
+}
+
+.boloot-holidays {
+    font-size: 11pt;
+    opacity: 0.88;
+    text-align: center;
+    padding: 4px 8px;
+}
+
+.boloot-extras-scroll {
+    padding: 0;
+    max-height: 128px;
+}
+
+.boloot-extras {
+    spacing: 0;
+}
+
+.boloot-holidays-bar {
+    padding: 0 16px;
+    spacing: 4px;
+}
+
+.boloot-prayer-bar {
+    padding: 0 16px 8px;
+    spacing: 4px;
+}
+
+.boloot-nav {
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 22px;
+    padding: 0 8px;
+}
+
+.boloot-nav:hover {
+    background-color: alpha(currentColor, 0.08);
+}
+
+.boloot-nav St.Icon {
+    icon-size: 18px;
+    color: inherit;
+}
+
+.boloot-nav-text {
+    min-height: 36px;
+    border-radius: 18px;
+    padding: 0 10px;
+}
+
+.boloot-nav-year.boloot-nav-text {
+    min-height: 32px;
+    padding: 0 8px;
+}
+
+.boloot-nav-label {
+    font-size: 11pt;
+    font-weight: 500;
+}
+
+.boloot-nav-year .boloot-nav-label {
+    font-size: 10pt;
+}
+
+.boloot-today-btn {
+    min-height: 36px;
+    border-radius: 18px;
+    padding: 0 16px;
+    background-color: alpha(-st-accent-color, 0.12);
+}
+
+.boloot-today-btn:hover {
+    background-color: alpha(-st-accent-color, 0.2);
+}
+
+.boloot-brand {
+    font-size: 9pt;
+    opacity: 0.55;
+    text-align: center;
+    padding-top: 2px;
+}
+
+.boloot-clock-holiday,
+.boloot-clock-weekend {
+    color: -st-error-color;
+    font-weight: 500;
+}

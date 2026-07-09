@@ -1,0 +1,131 @@
+/* BOLOOT Persian Calendar — settings preview (libadwaita semantic classes) */
+
+.boloot-settings {
+    font-family: Vazirmatn, sans-serif;
+}
+
+.boloot-settings label {
+    font-family: Vazirmatn, sans-serif;
+}
+
+.boloot-preview-topbar {
+    padding: 16px 20px;
+    margin: 4px 0;
+}
+
+.boloot-preview-calendar {
+    padding: 12px 8px 16px;
+}
+
+.boloot-preview-nav {
+    margin-bottom: 12px;
+}
+
+.boloot-preview-nav-btn {
+    font-weight: 500;
+}
+
+.boloot-preview-weekday {
+    min-width: 44px;
+    min-height: 28px;
+    opacity: 0.72;
+    font-weight: 500;
+}
+
+.boloot-preview-day {
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 22px;
+    padding: 4px;
+}
+
+.boloot-preview-day:hover {
+    background-color: alpha(currentColor, 0.08);
+}
+
+.boloot-preview-day-selected {
+    box-shadow: inset 0 0 0 2px @accent_color;
+}
+
+.boloot-preview-day-outside {
+    opacity: 0.38;
+}
+
+.boloot-preview-day-today {
+    background-color: alpha(@accent_color, 0.18);
+}
+
+.boloot-preview-day-today label {
+    color: @accent_color;
+    font-weight: 600;
+}
+
+.boloot-preview-weekday-weekend {
+    color: @destructive_color;
+    opacity: 0.92;
+}
+
+.boloot-preview-day-weekend label.title {
+    color: @destructive_color;
+    font-weight: 500;
+}
+
+.boloot-preview-day-holiday label.title {
+    color: @destructive_color;
+    font-weight: 500;
+}
+
+.boloot-preview-topbar-holiday,
+.boloot-preview-topbar-weekend {
+    color: @destructive_color;
+    font-weight: 500;
+}
+
+.boloot-preview-day-custom-today label.title {
+    font-weight: 600;
+}
+
+.boloot-preview-day-custom-holiday label.title {
+    font-weight: 500;
+}
+
+.boloot-preview-day-secondary {
+    font-size: 0.68em;
+    opacity: 0.65;
+}
+
+@media (max-width: 720px) {
+    .boloot-preview-topbar {
+        padding: 12px 14px;
+    }
+
+    .boloot-preview-calendar {
+        padding: 8px 4px 12px;
+    }
+
+    .boloot-preview-day,
+    .boloot-preview-weekday {
+        min-width: 38px;
+        min-height: 38px;
+    }
+}
+
+.boloot-donate-card {
+    padding: 8px;
+}
+
+.boloot-donate-qr {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.boloot-donate-address {
+    font-family: monospace;
+    font-size: 0.85em;
+    opacity: 0.9;
+}
+
+.boloot-donate-warn {
+    font-size: 0.9em;
+}

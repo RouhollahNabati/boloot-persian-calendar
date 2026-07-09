@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=BOLOOT Persian Calendar
+Name[fa]=تقویم فارسی بولوت
+Comment=Persian calendar, prayer times, and holidays — boloot.ir
+Comment[fa]=تقویم فارسی، اوقات شرعی و تعطیلات — boloot.ir
+Exec=boloot-calendar-settings
+Icon=preferences-system-time
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Settings;Calendar;
+Keywords=calendar;persian;jalali;prayer;boloot;
+StartupNotify=true

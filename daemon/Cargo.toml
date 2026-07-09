@@ -1,0 +1,22 @@
+[package]
+name = "boloot-calendard"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "BOLOOT Persian Calendar D-Bus daemon"
+
+[[bin]]
+name = "boloot-calendard"
+path = "src/main.rs"
+
+[dependencies]
+boloot-cal-core = { workspace = true }
+zbus = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+anyhow = { workspace = true }

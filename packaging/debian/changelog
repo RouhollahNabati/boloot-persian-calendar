@@ -1,0 +1,5 @@
+boloot-calendar (1.0.0) unstable; urgency=medium
+
+  * Initial Debian package split (core + GNOME extension).
+
+ -- BOLOOT <info@boloot.ir>  Wed, 08 Jul 2026 12:00:00 +0000

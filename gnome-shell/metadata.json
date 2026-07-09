@@ -1,0 +1,11 @@
+{
+  "uuid": "boloot-calendar@boloot.ir",
+  "name": "BOLOOT Persian Calendar",
+  "description": "Persian calendar, prayer times, and holidays by boloot.ir",
+  "shell-version": ["45", "46", "47", "48", "49"],
+  "session-modes": ["user", "unlock-dialog", "gdm"],
+  "version": 26,
+  "gettext-domain": "boloot-calendar",
+  "stylesheet": "stylesheet.css",
+  "url": "https://boloot.ir"
+}

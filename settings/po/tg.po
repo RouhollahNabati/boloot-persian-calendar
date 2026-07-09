@@ -1,0 +1,38 @@
+# BOLOOT Persian Calendar settings — Tajik
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: tg\n"
+
+msgid "تنظیمات {name}"
+msgstr "Тanzimoti {name}"
+
+msgid "منطقه و زبان"
+msgstr "Минтақа ва забон"
+
+msgid "کشور، زبان و قوانین تقویم محلی"
+msgstr "Кишвар, забон ва қоидаҳои тақвими маҳаллӣ"
+
+msgid "همگام با locale سیستم"
+msgstr "Ҳамоҳанг бо locale-и система"
+
+msgid "کشور، زبان و اعداد از LANG/LC_TIME سیستم"
+msgstr "Кишвар, забон ва рақамҳо аз LANG/LC_TIME"
+
+msgid "همگام‌سازی اکنون"
+msgstr "Ҳамоҳангсозӣ ҳозир"
+
+msgid "کشور"
+msgstr "Кишвар"
+
+msgid "زبان"
+msgstr "Забон"
+
+msgid "همگام‌سازی locale ناموفق بود"
+msgstr "Ҳамоҳангсозии locale нokом шуд"
+
+msgid "تنظیمات ذخیره شد"
+msgstr "Тanzimot сabt шud"
+
+msgid "ذخیره تنظیمات ناموفق بود"
+msgstr "Сabti tanzimot nokom шud"

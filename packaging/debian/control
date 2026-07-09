@@ -1,0 +1,50 @@
+Source: boloot-calendar
+Section: utils
+Priority: optional
+Maintainer: BOLOOT <info@boloot.ir>
+Build-Depends: debhelper (>= 13),
+               cargo,
+               rustc,
+               libicu-dev,
+               pkg-config,
+               python3
+Standards-Version: 4.6.2
+Homepage: https://boloot.ir
+Rules-Requires-Root: no
+
+Package: boloot-calendar
+Architecture: all
+Depends: ${misc:Depends},
+         boloot-calendar-core,
+         boloot-calendar-gnome
+Description: Persian calendar system for Linux
+ BOLOOT Persian Calendar integrates Jalali calendar, prayer times,
+ and official holidays for Iran, Afghanistan, and Tajikistan.
+
+Package: boloot-calendar-core
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         libicu74 | libicu72 | libicu70 | libicu-dev,
+         python3,
+         python3-gi,
+         gir1.2-gtk-4.0,
+         gir1.2-adw-1,
+         libnotify-bin,
+         dbus-user-session,
+         policykit-1,
+         util-linux,
+         dconf-gsettings-backend | dconf-cli
+Recommends: boloot-calendar-gnome
+Description: BOLOOT Persian Calendar core daemon and data
+ Core D-Bus service, CLI tool, GTK4 settings app, locale data,
+ holiday database, KDE plasmoid, and XFCE helper.
+
+Package: boloot-calendar-gnome
+Architecture: all
+Depends: ${misc:Depends},
+         boloot-calendar-core,
+         gnome-shell (>= 45),
+         fonts-vazirmatn | fonts-vazir
+Description: GNOME Shell extension for BOLOOT Persian Calendar
+ Displays Persian date and prayer times in the GNOME top bar.

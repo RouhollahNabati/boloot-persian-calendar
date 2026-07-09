@@ -1,0 +1,21 @@
+{
+  "country": "iran",
+  "holidays": [
+    { "name": "نوروز", "month": 1, "day": 1, "kind": "national" },
+    { "name": "نوروز", "month": 1, "day": 2, "kind": "national" },
+    { "name": "نوروز", "month": 1, "day": 3, "kind": "national" },
+    { "name": "نوروز", "month": 1, "day": 4, "kind": "national" },
+    { "name": "روز جمهوری اسلامی", "month": 1, "day": 12, "kind": "national" },
+    { "name": "روز طبیعت (سیزده‌به‌در)", "month": 1, "day": 13, "kind": "national" },
+    { "name": "رحلت امام خمینی", "month": 3, "day": 14, "kind": "national" },
+    { "name": "قیام ۱۵ خرداد", "month": 3, "day": 15, "kind": "national" },
+    { "name": "شهادت امام علی (ع)", "month": 12, "day": 21, "lunar": true, "kind": "religious" },
+    { "name": "عید فطر", "month": 1, "day": 1, "lunar": true, "kind": "religious" },
+    { "name": "تاسوعای حسینی", "month": 2, "day": 9, "lunar": true, "kind": "religious" },
+    { "name": "عاشورای حسینی", "month": 2, "day": 10, "lunar": true, "kind": "religious" },
+    { "name": "اربعین حسینی", "month": 2, "day": 20, "lunar": true, "kind": "religious" },
+    { "name": "رحلت پیامبر (ص) و شهادت امام حسن (ع)", "month": 2, "day": 28, "lunar": true, "kind": "religious" },
+    { "name": "شهادت امام رضا (ع)", "month": 2, "day": 30, "lunar": true, "kind": "religious" },
+    { "name": "میلاد پیامبر (ص) و امام صادق (ع)", "month": 3, "day": 17, "lunar": true, "kind": "religious" }
+  ]
+}

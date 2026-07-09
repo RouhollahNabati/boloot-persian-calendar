@@ -1,0 +1,13 @@
+{
+  "country": "afghanistan",
+  "holidays": [
+    { "name": "نوروز", "month": 1, "day": 1, "kind": "national" },
+    { "name": "روز کارگر", "month": 2, "day": 11, "kind": "national" },
+    { "name": "روز پیروزی مجاهدین", "month": 2, "day": 28, "kind": "national" },
+    { "name": "روز استقلال", "month": 5, "day": 28, "kind": "national" },
+    { "name": "عید فطر", "month": 1, "day": 1, "lunar": true, "kind": "religious" },
+    { "name": "عید قربان", "month": 3, "day": 10, "lunar": true, "kind": "religious" },
+    { "name": "عاشورا", "month": 2, "day": 10, "lunar": true, "kind": "religious" },
+    { "name": "میلاد پیامبر (ص)", "month": 3, "day": 17, "lunar": true, "kind": "religious" }
+  ]
+}

@@ -1,0 +1,35 @@
+[workspace]
+resolver = "2"
+members = [
+    "core",
+    "daemon",
+    "cli",
+]
+default-members = ["cli", "daemon"]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+authors = ["BOLOOT <info@boloot.ir>"]
+repository = "https://boloot.ir"
+description = "BOLOOT Persian Calendar — Linux Jalali calendar integration"
+
+[workspace.dependencies]
+boloot-cal-core = { path = "core" }
+chrono = { version = "0.4", features = ["serde"] }
+chrono-tz = "0.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+salah = "0.7"
+parsidate = { version = "1.7", default-features = false, features = ["serde", "timezone"] }
+hijri_date = "0.5"
+zbus = { version = "5", features = ["tokio"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync", "signal"] }
+clap = { version = "4", features = ["derive"] }
+dirs = "6"
+anyhow = "1"

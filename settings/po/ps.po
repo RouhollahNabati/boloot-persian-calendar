@@ -1,0 +1,38 @@
+# BOLOOT Persian Calendar settings — Pashto
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ps\n"
+
+msgid "تنظیمات {name}"
+msgstr "د {name} تنظیمات"
+
+msgid "منطقه و زبان"
+msgstr "سیمه او ژبه"
+
+msgid "کشور، زبان و قوانین تقویم محلی"
+msgstr "هیواد، ژبه او د ځایي جنتری قوانین"
+
+msgid "همگام با locale سیستم"
+msgstr "د سیستم locale سره همغږي"
+
+msgid "کشور، زبان و اعداد از LANG/LC_TIME سیستم"
+msgstr "هیواد، ژبه او شمېرې د LANG/LC_TIME څخه"
+
+msgid "همگام‌سازی اکنون"
+msgstr "اوس همغږي"
+
+msgid "کشور"
+msgstr "هیواد"
+
+msgid "زبان"
+msgstr "ژبه"
+
+msgid "همگام‌سازی locale ناموفق بود"
+msgstr "د locale همغږي ناکامه شوه"
+
+msgid "تنظیمات ذخیره شد"
+msgstr "تنظیمات خوندي شول"
+
+msgid "ذخیره تنظیمات ناموفق بود"
+msgstr "د تنظیماتو خوندي کول ناکام شول"

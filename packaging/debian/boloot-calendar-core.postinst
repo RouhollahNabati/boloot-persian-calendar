@@ -1,0 +1,35 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    configure)
+        if command -v systemctl >/dev/null 2>&1; then
+            systemctl reload dbus.service >/dev/null 2>&1 || true
+        fi
+
+        if command -v deb-systemd-helper >/dev/null 2>&1; then
+            deb-systemd-helper enable boloot-calendard.service >/dev/null 2>&1 || true
+            deb-systemd-helper start boloot-calendard.service >/dev/null 2>&1 || true
+        elif command -v systemctl >/dev/null 2>&1; then
+            systemctl daemon-reload || true
+            systemctl enable boloot-calendard.service || true
+            systemctl start boloot-calendard.service || true
+        fi
+
+        if [ -x /usr/share/boloot-calendar/scripts/enable-gdm-extension.sh ]; then
+            /usr/share/boloot-calendar/scripts/enable-gdm-extension.sh || true
+        fi
+
+        if command -v dconf >/dev/null 2>&1; then
+            dconf update || true
+        fi
+        ;;
+    abort-upgrade|abort-remove|abort-deconfigure)
+        ;;
+    *)
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

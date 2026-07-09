@@ -1,0 +1,18 @@
+post_install() {
+    systemctl daemon-reload >/dev/null 2>&1 || true
+    systemctl enable --now boloot-calendard.service >/dev/null 2>&1 || true
+    if [ -x /usr/share/boloot-calendar/scripts/enable-gdm-extension.sh ]; then
+        /usr/share/boloot-calendar/scripts/enable-gdm-extension.sh >/dev/null 2>&1 || true
+    fi
+    if command -v dconf >/dev/null 2>&1; then
+        dconf update >/dev/null 2>&1 || true
+    fi
+}
+
+post_upgrade() {
+    post_install
+}
+
+pre_remove() {
+    systemctl disable --now boloot-calendard.service >/dev/null 2>&1 || true
+}

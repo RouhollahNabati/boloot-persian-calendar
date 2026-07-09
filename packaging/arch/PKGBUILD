@@ -1,0 +1,38 @@
+# Maintainer: BOLOOT <info@boloot.ir>
+pkgname=boloot-calendar
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Persian calendar, prayer times, and holidays for Linux — boloot.ir"
+arch=('x86_64' 'aarch64')
+url="https://boloot.ir"
+license=('GPL-3.0-or-later')
+depends=(
+  'python'
+  'python-gobject'
+  'gtk4'
+  'libadwaita'
+  'libnotify'
+  'dbus'
+  'polkit'
+  'icu'
+)
+optdepends=(
+  'gnome-shell: GNOME top bar extension'
+  'vazirmatn-fonts: Persian typography in GNOME'
+  'plasma-framework: KDE plasmoid'
+  'dconf: GDM login-screen extension defaults'
+)
+install=boloot-calendar.install
+makedepends=('cargo' 'rustc' 'icu')
+source=("$pkgname-$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+  cd "$pkgname-$pkgver"
+  make build
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  make install-only PREFIX=/usr DESTDIR="$pkgdir"
+}

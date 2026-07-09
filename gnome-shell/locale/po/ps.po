@@ -1,0 +1,23 @@
+# BOLOOT Persian Calendar GNOME Shell extension — Pashto
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ps\n"
+
+msgid "ماه قبل"
+msgstr "تیر ماه"
+
+msgid "ماه بعد"
+msgstr "راتلونکی ماه"
+
+msgid "سال قبل"
+msgstr "تیر کال"
+
+msgid "سال بعد"
+msgstr "راتلونکی کال"
+
+msgid "برو به امروز"
+msgstr "نن ته لاړ شه"
+
+msgid "تنظیمات BOLOOT"
+msgstr "د BOLOOT تنظیمات"

@@ -1,0 +1,23 @@
+# BOLOOT Persian Calendar GNOME Shell extension — Dari
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fa_AF\n"
+
+msgid "ماه قبل"
+msgstr "ماه قبل"
+
+msgid "ماه بعد"
+msgstr "ماه بعد"
+
+msgid "سال قبل"
+msgstr "سال قبل"
+
+msgid "سال بعد"
+msgstr "سال بعد"
+
+msgid "برو به امروز"
+msgstr "برو به امروز"
+
+msgid "تنظیمات BOLOOT"
+msgstr "تنظیمات BOLOOT"

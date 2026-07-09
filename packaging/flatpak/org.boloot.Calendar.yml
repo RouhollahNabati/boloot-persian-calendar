@@ -1,0 +1,53 @@
+app-id: org.boloot.Calendar
+runtime: org.gnome.Platform
+runtime-version: '48'
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+command: boloot-calendar-settings
+finish-args:
+  - --share=ipc
+  - --socket=system-bus
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  - --filesystem=xdg-config/boloot-calendar:create
+  - --filesystem=home/.local/share/gnome-shell:create
+  - --talk-name=org.boloot.Calendar
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.Flatpak
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env:
+    CARGO_HOME: /run/build/boloot-calendar/cargo
+    BOLOOT_DATA_DIR: /run/build/boloot-calendar/data
+modules:
+  - name: boloot-calendar
+    buildsystem: simple
+    build-commands:
+      - python3 scripts/compile-i18n.py
+      - cargo build --release -p boloot-cal-core -p boloot-calendard -p boloot-calendar-ctl
+      - install -Dm755 target/release/boloot-calendard /app/bin/boloot-calendard
+      - install -Dm755 target/release/boloot-calendar-ctl /app/bin/boloot-calendar-ctl
+      - install -Dm755 scripts/boloot-calendar-settings /app/bin/boloot-calendar-settings
+      - install -Dm755 packaging/flatpak/boloot-calendar-host-setup /app/bin/boloot-calendar-host-setup
+      - install -Dm755 settings/boloot-settings.py /app/share/boloot-calendar/boloot-settings.py
+      - install -Dm644 settings/boloot-settings.css /app/share/boloot-calendar/boloot-settings.css
+      - cp -a data /app/share/boloot-calendar/data
+      - |
+        if [ -d settings/locale ]; then
+          cp -a settings/locale /app/share/boloot-calendar/locale
+        fi
+      - install -Dm644 settings/org.boloot.Calendar.desktop /app/share/applications/org.boloot.Calendar.desktop
+      - install -Dm644 packaging/flatpak/org.boloot.Calendar.metainfo.xml /app/share/metainfo/org.boloot.Calendar.metainfo.xml
+      - install -dm755 /app/share/gnome-shell/extensions/boloot-calendar@boloot.ir
+      - install -Dm644 gnome-shell/metadata.json /app/share/gnome-shell/extensions/boloot-calendar@boloot.ir/metadata.json
+      - install -Dm644 gnome-shell/extension.js /app/share/gnome-shell/extensions/boloot-calendar@boloot.ir/extension.js
+      - install -Dm644 gnome-shell/stylesheet.css /app/share/gnome-shell/extensions/boloot-calendar@boloot.ir/stylesheet.css
+      - |
+        if [ -d gnome-shell/locale ]; then
+          cp -a gnome-shell/locale /app/share/gnome-shell/extensions/boloot-calendar@boloot.ir/locale
+        fi
+    sources:
+      - type: dir
+        path: ../..

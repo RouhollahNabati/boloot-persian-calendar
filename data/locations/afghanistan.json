@@ -1,0 +1,8 @@
+{
+  "cities": [
+    { "id": "kabul", "name": "Kabul", "name_fa": "کابل", "latitude": 34.5553, "longitude": 69.2075, "timezone": "Asia/Kabul", "country": "afghanistan" },
+    { "id": "herat", "name": "Herat", "name_fa": "هرات", "latitude": 34.3529, "longitude": 62.2040, "timezone": "Asia/Kabul", "country": "afghanistan" },
+    { "id": "kandahar", "name": "Kandahar", "name_fa": "قندهار", "latitude": 31.6289, "longitude": 65.7372, "timezone": "Asia/Kabul", "country": "afghanistan" },
+    { "id": "mazar", "name": "Mazar-i-Sharif", "name_fa": "مزار شریف", "latitude": 36.7069, "longitude": 67.1113, "timezone": "Asia/Kabul", "country": "afghanistan" }
+  ]
+}

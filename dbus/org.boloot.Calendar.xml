@@ -1,0 +1,36 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+ "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="org.boloot.Calendar">
+    <method name="GetDate">
+      <arg type="s" direction="out" name="date"/>
+    </method>
+    <method name="GetCalendarView">
+      <arg type="s" direction="out" name="view"/>
+    </method>
+    <method name="GetMonthView">
+      <arg type="i" direction="in" name="year"/>
+      <arg type="i" direction="in" name="month"/>
+      <arg type="s" direction="out" name="view"/>
+    </method>
+    <method name="GetTopBarText">
+      <arg type="s" direction="out" name="text"/>
+    </method>
+    <method name="GetHolidaysToday">
+      <arg type="s" direction="out" name="holidays"/>
+    </method>
+    <method name="GetPrayerTimes">
+      <arg type="s" direction="out" name="schedule"/>
+    </method>
+    <method name="GetSettings">
+      <arg type="s" direction="out" name="config"/>
+    </method>
+    <method name="SetSettings">
+      <arg type="s" direction="in" name="config_json"/>
+    </method>
+    <method name="Reload">
+    </method>
+    <signal name="SettingsChanged">
+    </signal>
+  </interface>
+</node>

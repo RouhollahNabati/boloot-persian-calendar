@@ -1,0 +1,44 @@
+#!/usr/bin/make -f
+
+export CARGO_TARGET_DIR=$(CURDIR)/target
+export BOLOOT_DATA_DIR=$(CURDIR)/data
+export DH_VERBOSE=1
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	$(MAKE) build
+
+override_dh_auto_install:
+	rm -rf debian/staging
+	$(MAKE) install-only PREFIX=/usr DESTDIR=$(CURDIR)/debian/staging
+	# Core: everything except GNOME extension tree
+	install -d debian/boloot-calendar-core/usr
+	mv debian/staging/usr/bin debian/boloot-calendar-core/usr/
+	mv debian/staging/usr/lib debian/boloot-calendar-core/usr/
+	mv debian/staging/usr/libexec debian/boloot-calendar-core/usr/
+	mv debian/staging/usr/share/boloot-calendar debian/boloot-calendar-core/usr/share/
+	mv debian/staging/usr/share/dbus-1 debian/boloot-calendar-core/usr/share/
+	mv debian/staging/usr/share/polkit-1 debian/boloot-calendar-core/usr/share/
+	mv debian/staging/usr/share/applications debian/boloot-calendar-core/usr/share/
+	install -d debian/boloot-calendar-core/usr/share/plasma/plasmoids
+	mv debian/staging/usr/share/plasma/plasmoids/org.boloot.calendar debian/boloot-calendar-core/usr/share/plasma/plasmoids/
+	if [ -d debian/staging/etc ]; then \
+		install -d debian/boloot-calendar-core/etc; \
+		cp -a debian/staging/etc/. debian/boloot-calendar-core/etc/; \
+	fi
+	# GNOME extension package
+	install -d debian/boloot-calendar-gnome/usr/share/gnome-shell/extensions
+	mv debian/staging/usr/share/gnome-shell/extensions/boloot-calendar@boloot.ir \
+		debian/boloot-calendar-gnome/usr/share/gnome-shell/extensions/
+	# Meta / documentation
+	install -d debian/boloot-calendar/usr/share/doc/boloot-calendar
+	install -m644 README.md debian/boloot-calendar/usr/share/doc/boloot-calendar/
+	rm -rf debian/staging
+
+override_dh_auto_test:
+	$(MAKE) test
+
+override_dh_installsystemd:
+	dh_installsystemd -pboloot-calendar-core boloot-calendard.service

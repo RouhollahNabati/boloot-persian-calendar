@@ -1,0 +1,12 @@
+{
+  "country": "tajikistan",
+  "holidays": [
+    { "name": "Наврӯз", "month": 1, "day": 1, "kind": "national" },
+    { "name": "Рӯзи Пешвои Миллат", "month": 1, "day": 3, "kind": "national" },
+    { "name": "Рӯзи Победа", "month": 2, "day": 18, "kind": "national" },
+    { "name": "Рӯзи Истиқлолият", "month": 5, "day": 9, "kind": "national" },
+    { "name": "Рӯзи Конститут", "month": 6, "day": 6, "kind": "national" },
+    { "name": "Иди Фитр", "month": 1, "day": 1, "lunar": true, "kind": "religious" },
+    { "name": "Иди Қурбон", "month": 3, "day": 10, "lunar": true, "kind": "religious" }
+  ]
+}

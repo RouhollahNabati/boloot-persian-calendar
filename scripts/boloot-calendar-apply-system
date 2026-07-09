@@ -1,0 +1,16 @@
+#!/bin/sh
+# Installed to @PREFIX@/libexec/boloot-calendar-apply-system
+# Invoked via pkexec to write /etc/profile.d/boloot-calendar.sh
+
+set -eu
+
+TARGET="/etc/profile.d/boloot-calendar.sh"
+SOURCE="${1:-}"
+
+if [ -z "$SOURCE" ] || [ ! -f "$SOURCE" ]; then
+    echo "Usage: boloot-calendar-apply-system <profile-file>" >&2
+    exit 1
+fi
+
+install -m644 "$SOURCE" "$TARGET"
+echo "Installed $TARGET"

@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+
+# Installed layout: $PREFIX/bin + $PREFIX/share/boloot-calendar/
+SETTINGS="$(CDPATH= cd -- "$SCRIPT_DIR/../share/boloot-calendar" 2>/dev/null && pwd)/boloot-settings.py"
+
+# Development layout: scripts/ + settings/
+if [ ! -f "$SETTINGS" ]; then
+    SETTINGS="$(CDPATH= cd -- "$SCRIPT_DIR/../settings" && pwd)/boloot-settings.py"
+fi
+
+if [ ! -f "$SETTINGS" ]; then
+    echo "Error: boloot-settings.py not found." >&2
+    exit 1
+fi
+
+PREFIX="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
+export PATH="$PREFIX/bin:$PATH"
+
+exec python3 "$SETTINGS" "$@"

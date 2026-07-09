@@ -1,0 +1,40 @@
+#!/bin/sh
+# Install GNOME Shell extension on the host and enable the system D-Bus service.
+set -eu
+
+APP_ID=org.boloot.Calendar
+EXT_UUID=boloot-calendar@boloot.ir
+EXT_SRC=/app/share/gnome-shell/extensions/${EXT_UUID}
+EXT_DST="${HOME}/.local/share/gnome-shell/extensions/${EXT_UUID}"
+
+if [ ! -d "$EXT_SRC" ]; then
+    echo "Error: extension files not found in Flatpak sandbox." >&2
+    exit 1
+fi
+
+mkdir -p "$EXT_DST"
+cp -a "$EXT_SRC/." "$EXT_DST/"
+
+if command -v gnome-extensions >/dev/null 2>&1; then
+    gnome-extensions enable "$EXT_UUID" 2>/dev/null || true
+fi
+
+if command -v systemctl >/dev/null 2>&1; then
+    systemctl daemon-reload 2>/dev/null || true
+    systemctl enable --now boloot-calendard.service 2>/dev/null || true
+fi
+
+if [ -x /usr/share/boloot-calendar/scripts/enable-gdm-extension.sh ]; then
+    /usr/share/boloot-calendar/scripts/enable-gdm-extension.sh 2>/dev/null || true
+fi
+
+if command -v dconf >/dev/null 2>&1; then
+    dconf update 2>/dev/null || true
+fi
+
+echo "Host integration complete."
+echo "  Extension: ${EXT_DST}"
+echo "  Service:   boloot-calendard.service (system D-Bus)"
+echo ""
+echo "Restart GNOME Shell (Alt+F2 → r) if the top bar does not update."
+echo "For login-screen support, install boloot-calendar-core on the host."

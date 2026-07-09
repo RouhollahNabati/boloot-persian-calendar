@@ -1,0 +1,14 @@
+{
+    "KPlugin": {
+        "Authors": ["BOLOOT <info@boloot.ir>"],
+        "Category": "Date and Time",
+        "Description": "BOLOOT Persian Calendar — prayer times and Jalali calendar",
+        "Icon": "preferences-system-time",
+        "Id": "org.boloot.calendar",
+        "License": "GPL-3.0-or-later",
+        "Name": "BOLOOT Persian Calendar",
+        "Version": "1.0.0",
+        "Website": "https://boloot.ir"
+    },
+    "KPackageStructure": "Plasma/Applet"
+}

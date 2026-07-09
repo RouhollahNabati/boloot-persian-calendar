@@ -1,0 +1,23 @@
+# BOLOOT Persian Calendar GNOME Shell extension — English
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+msgid "ماه قبل"
+msgstr "Previous month"
+
+msgid "ماه بعد"
+msgstr "Next month"
+
+msgid "سال قبل"
+msgstr "Previous year"
+
+msgid "سال بعد"
+msgstr "Next year"
+
+msgid "برو به امروز"
+msgstr "Go to today"
+
+msgid "تنظیمات BOLOOT"
+msgstr "BOLOOT settings"
