@@ -1,4 +1,6 @@
 /target/
+.venv-i18n/
+.cursor/debug-*.log
 /Cargo.lock
 debian/.debhelper/
 debian/files
