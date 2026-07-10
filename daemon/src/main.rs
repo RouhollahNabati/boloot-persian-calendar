@@ -5,6 +5,7 @@ mod registry;
 
 use std::sync::Arc;
 
+use boloot_cal_core::install_salah_panic_hook;
 use dbus_iface::CalendarService;
 use registry::ServiceRegistry;
 use tracing::info;
@@ -15,6 +16,7 @@ const OBJECT_PATH: &str = "/org/boloot/Calendar";
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
+    install_salah_panic_hook();
     tracing_subscriber::fmt()
         .with_env_filter(
             tracing_subscriber::EnvFilter::try_from_default_env()

@@ -1,10 +1,11 @@
-use chrono::{Datelike, NaiveDate, Utc};
+use chrono::{Datelike, NaiveDate};
 use hijri_date::HijriDate;
 use parsidate::ParsiDate;
 use serde::{Deserialize, Serialize};
 
 use crate::error::{BolootError, Result};
 use crate::locale::{CountryProfile, LanguageVariant, LocaleProfile, Weekday};
+use crate::system_time::local_today;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default)]
 #[serde(rename_all = "snake_case")]
@@ -62,7 +63,7 @@ impl CalendarEngine {
     }
 
     pub fn today(&self) -> Result<CalendarDate> {
-        self.on_date(Utc::now().date_naive())
+        self.on_date(local_today())
     }
 
     pub fn on_date(&self, date: NaiveDate) -> Result<CalendarDate> {
@@ -243,8 +244,15 @@ impl CalendarEngine {
 mod tests {
     use super::*;
     #[test]
+    fn today_uses_system_local_date() {
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
+        let today = engine.today().unwrap();
+        assert_eq!(today.gregorian, crate::system_time::local_today());
+    }
+
+    #[test]
     fn jalali_gregorian_roundtrip() {
-        let engine = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let gregorian = engine.jalali_to_gregorian(1404, 1, 1).unwrap();
         let cal = engine.on_date(gregorian).unwrap();
         assert_eq!(cal.jalali_year, 1404);
@@ -254,21 +262,21 @@ mod tests {
 
     #[test]
     fn nowruz_1404_is_march_21() {
-        let engine = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let gregorian = engine.jalali_to_gregorian(1404, 1, 1).unwrap();
         assert_eq!(gregorian, NaiveDate::from_ymd_opt(2025, 3, 21).unwrap());
     }
 
     #[test]
     fn nowruz_1403_is_march_20() {
-        let engine = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let gregorian = engine.jalali_to_gregorian(1403, 1, 1).unwrap();
         assert_eq!(gregorian, NaiveDate::from_ymd_opt(2024, 3, 20).unwrap());
     }
 
     #[test]
     fn day_before_nowruz_1404_is_esfand_30() {
-        let engine = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let eve = NaiveDate::from_ymd_opt(2025, 3, 20).unwrap();
         let cal = engine.on_date(eve).unwrap();
         assert_eq!(cal.jalali_year, 1403);
@@ -278,7 +286,7 @@ mod tests {
 
     #[test]
     fn hijri_gregorian_roundtrip() {
-        let engine = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let gregorian = engine.hijri_to_gregorian(1447, 9, 15).unwrap();
         let cal = engine.on_date(gregorian).unwrap();
         assert_eq!(cal.hijri_year, 1447);

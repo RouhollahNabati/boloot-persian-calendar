@@ -5,6 +5,7 @@ use zbus::object_server::SignalEmitter;
 use zbus::message::Header;
 use zbus::Connection;
 
+use crate::adhan;
 use crate::registry::{caller_can_persist, caller_uid, ServiceRegistry};
 
 pub struct CalendarService {
@@ -178,6 +179,24 @@ impl CalendarService {
             .await
             .map_err(|e| zbus::fdo::Error::Failed(e.to_string()))?;
         Ok(())
+    }
+
+    async fn is_adhan_playing(
+        &self,
+        #[zbus(header)] hdr: Header<'_>,
+        #[zbus(connection)] conn: &Connection,
+    ) -> zbus::fdo::Result<bool> {
+        let uid = caller_uid(conn, &hdr).await?;
+        Ok(adhan::is_adhan_playing_for_uid(uid))
+    }
+
+    async fn stop_adhan(
+        &self,
+        #[zbus(header)] hdr: Header<'_>,
+        #[zbus(connection)] conn: &Connection,
+    ) -> zbus::fdo::Result<bool> {
+        let uid = caller_uid(conn, &hdr).await?;
+        Ok(adhan::stop_adhan_for_uid(uid))
     }
 
     #[zbus(signal)]

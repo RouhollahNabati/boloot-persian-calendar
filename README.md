@@ -113,7 +113,13 @@ Signal: `SettingsChanged` — emitted after `SetSettings`.
 After editing the system file:
 
 ```bash
-sudo systemctl reload boloot-calendard.service
+sudo systemctl restart boloot-calendard.service
+```
+
+To reload config without restarting the binary (D-Bus):
+
+```bash
+busctl call org.boloot.Calendar /org/boloot/Calendar org.boloot.Calendar Reload
 ```
 
 ## Project layout
@@ -131,6 +137,8 @@ packaging/      debian, flatpak, rpm, arch (PKGBUILD)
 ## Support / Donate
 
 If BOLOOT is part of your daily routine, a small gift helps keep the Persian calendar free and improving for everyone.
+
+**Other languages (in-app):** English, Persian, Dari, Pashto, Tajik, French, Spanish, Arabic, Russian, and Chinese — shown automatically from your system locale in **Settings → About → Support**.
 
 **USDT (TRC20 only)**
 

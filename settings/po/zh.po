@@ -1,0 +1,113 @@
+# BOLOOT Persian Calendar settings — Chinese (Simplified)
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: zh\n"
+
+msgid "تنظیمات {name}"
+msgstr "{name} 设置"
+
+msgid "منطقه و زبان"
+msgstr "地区与语言"
+
+msgid "کشور، زبان و قوانین تقویم محلی"
+msgstr "国家、语言及本地日历规则"
+
+msgid "همگام با locale سیستم"
+msgstr "跟随系统区域设置"
+
+msgid "کشور، زبان و اعداد از LANG/LC_TIME سیستم"
+msgstr "从系统 LANG/LC_TIME 获取国家、语言和数字"
+
+msgid "همگام‌سازی اکنون"
+msgstr "立即同步"
+
+msgid "کشور"
+msgstr "国家"
+
+msgid "زبان"
+msgstr "语言"
+
+msgid "همگام‌سازی locale ناموفق بود"
+msgstr "区域设置同步失败"
+
+msgid "تنظیمات ذخیره شد"
+msgstr "设置已保存"
+
+msgid "ذخیره تنظیمات ناموفق بود"
+msgstr "保存设置失败"
+
+msgid "درباره"
+msgstr "关于"
+
+msgid "تقویم فارسی، اوقات شرعی و تعطیلات رسمی"
+msgstr "波斯历、礼拜时间与官方节假日"
+
+msgid "درباره بولوت"
+msgstr "关于 BOLOOT"
+
+msgid "حمایت"
+msgstr "支持"
+
+msgid "اگر بولوت هر روز کنارت بود، با یک حمایت کوچک کمک کن تا تقویم فارسی رایگان بماند و برای همه بهتر شود. برای USDT فقط شبکه TRC20 را انتخاب کنید."
+msgstr "如果 BOLOOT 是您日常的一部分，一点小小的支持有助于保持波斯历免费并持续改进。USDT 请仅使用 TRC20 网络。"
+
+msgid "USDT · TRC20"
+msgstr "USDT · TRC20"
+
+msgid "Bitcoin (BTC)"
+msgstr "Bitcoin (BTC)"
+
+msgid "⚠️ برای USDT فقط TRC20 ارسال کنید؛ شبکه دیگر ممکن است باعث از دست رفتن دارایی شود."
+msgstr "⚠️ USDT 请仅通过 TRC20 发送。使用其他网络可能导致资金永久丢失。"
+
+msgid "کد QR یافت نشد"
+msgstr "未找到二维码"
+
+msgid "کپی آدرس"
+msgstr "复制地址"
+
+msgid "کپی آدرس ناموفق بود"
+msgstr "复制地址失败"
+
+msgid "آدرس کپی شد"
+msgstr "地址已复制"
+
+msgid "تقویم شمسی، اوقات شرعی و تعطیلات برای ایران، افغانستان و تاجیکستان"
+msgstr "阳历、礼拜时间与节假日（伊朗、阿富汗、塔吉克斯坦）"
+
+msgid "حمایت USDT (TRC20):"
+msgstr "支持 USDT (TRC20)："
+
+msgid "حمایت Bitcoin:"
+msgstr "支持 Bitcoin："
+
+msgid "سرویس"
+msgstr "服务"
+
+msgid "راه‌اندازی مجدد دیمون پس از به‌روزرسانی یا مشکل اتصال"
+msgstr "更新后或连接异常时重启守护进程"
+
+msgid "وضعیت سرویس"
+msgstr "服务状态"
+
+msgid "راه‌اندازی مجدد سرویس"
+msgstr "重启服务"
+
+msgid "در حال اجرا"
+msgstr "运行中"
+
+msgid "متوقف یا در دسترس نیست"
+msgstr "已停止或不可用"
+
+msgid "سرویس راه‌اندازی مجدد شد"
+msgstr "服务已重启"
+
+msgid "راه‌اندازی مجدد سرویس ناموفق بود"
+msgstr "服务重启失败"
+
+msgid "نمایش قصار امام علی (ع)"
+msgstr "显示伊玛目阿里（愿主赐他平安）的智慧箴言"
+
+msgid "با نگه‌داشتن موس روی تاریخ در نوار بالا"
+msgstr "将鼠标悬停在上栏日期上时"

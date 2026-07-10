@@ -52,17 +52,14 @@ CTL = "boloot-calendar-ctl"
 SAVE_DEBOUNCE_MS = 600
 PREVIEW_DEBOUNCE_MS = 300
 
-COUNTRY_OPTIONS = [
-    ("iran", "ایران"),
-    ("afghanistan", "افغانستان"),
-    ("tajikistan", "تاجیکستان"),
-]
+FEATURED_COUNTRIES = ("iran", "afghanistan", "tajikistan")
 
 LANGUAGE_OPTIONS = [
     ("persian", "فارسی"),
     ("dari", "دری"),
     ("pashto", "پشتو"),
     ("tajik", "تاجیکی"),
+    ("english", "English"),
 ]
 
 CALENDAR_OPTIONS = [
@@ -98,7 +95,29 @@ PRAYER_METHOD_OPTIONS = [
     ("karachi", "کراچی"),
     ("isna", "آمریکای شمالی"),
     ("egypt", "مصر"),
+    ("moonsighting_committee", "کمیته رؤیت هلال"),
+    ("umm_al_qura", "ام‌القری"),
+    ("turkey", "ترکیه (دیانت)"),
+    ("singapore", "سنگاپور"),
+    ("dubai", "دبی"),
 ]
+
+SUGGESTED_METHOD_BY_COUNTRY = {
+    "iran": "tehran",
+    "afghanistan": "karachi",
+    "tajikistan": "mwl",
+    "usa": "isna",
+    "canada": "isna",
+    "saudi_arabia": "umm_al_qura",
+    "uae": "dubai",
+    "qatar": "umm_al_qura",
+    "kuwait": "umm_al_qura",
+    "bahrain": "umm_al_qura",
+    "turkey": "turkey",
+    "malaysia": "singapore",
+    "indonesia": "singapore",
+    "pakistan": "karachi",
+}
 
 MADHAB_OPTIONS = [
     ("jafari", "شیعه"),
@@ -136,9 +155,9 @@ ADHAN_PRAYER_OPTIONS = [
 ]
 
 LANGUAGES_BY_COUNTRY = {
-    "iran": ["persian"],
-    "afghanistan": ["dari", "pashto"],
-    "tajikistan": ["tajik"],
+    "iran": ["persian", "english"],
+    "afghanistan": ["dari", "pashto", "english"],
+    "tajikistan": ["tajik", "english"],
 }
 
 
@@ -160,9 +179,17 @@ def setup_gettext():
         loc, _enc = locale_module.getlocale(locale_module.LC_MESSAGES)
         if loc:
             lang = loc.split(".")[0].replace("-", "_")
+            languages = [lang]
+            if "_" in lang:
+                base = lang.split("_", 1)[0]
+                if base not in languages:
+                    languages.append(base)
             gettext.bindtextdomain("boloot-settings", str(locale_dir))
             trans = gettext.translation(
-                "boloot-settings", localedir=str(locale_dir), languages=[lang], fallback=True
+                "boloot-settings",
+                localedir=str(locale_dir),
+                languages=languages,
+                fallback=True,
             )
             trans.install()
     except (OSError, FileNotFoundError):
@@ -196,6 +223,58 @@ def resolve_data_dir():
         if candidate.is_dir():
             return candidate
     return script_dir / "data"
+
+
+def load_countries_registry():
+    path = resolve_data_dir() / "countries.json"
+    fallback = [
+        {"id": "iran", "name_fa": "ایران", "name_en": "Iran", "languages": ["persian", "english"], "prayer_method": "tehran"},
+        {"id": "afghanistan", "name_fa": "افغانستان", "name_en": "Afghanistan", "languages": ["dari", "pashto", "english"], "prayer_method": "karachi"},
+        {"id": "tajikistan", "name_fa": "تاجیکستان", "name_en": "Tajikistan", "languages": ["tajik", "english"], "prayer_method": "mwl"},
+    ]
+    if not path.is_file():
+        return fallback
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        countries = data.get("countries", [])
+        return countries if countries else fallback
+    except (OSError, json.JSONDecodeError):
+        return fallback
+
+
+def sort_country_records(records):
+    featured = set(FEATURED_COUNTRIES)
+
+    def sort_key(record):
+        country_id = record.get("id", "")
+        return (0 if country_id in featured else 1, record.get("name_fa") or record.get("name_en") or country_id)
+
+    return sorted(records, key=sort_key)
+
+
+def country_label_from_registry(records, country_id):
+    for record in records:
+        if record.get("id") == country_id:
+            return record.get("name_fa") or record.get("name_en") or country_id
+    return country_id
+
+
+def languages_for_country(records, country_id):
+    for record in records:
+        if record.get("id") == country_id:
+            langs = record.get("languages") or []
+            if langs:
+                return langs
+    return LANGUAGES_BY_COUNTRY.get(country_id, ["english", "persian"])
+
+
+def prayer_method_for_country(records, country_id):
+    for record in records:
+        if record.get("id") == country_id:
+            method = record.get("prayer_method")
+            if method:
+                return method
+    return SUGGESTED_METHOD_BY_COUNTRY.get(country_id, "mwl")
 
 
 def resolve_settings_css():
@@ -342,6 +421,9 @@ class BolootSettingsApp(Adw.Application):
         self._preview_month = 0
         self._preview_selected_gregorian = None
         self._city_catalog = {}
+        self._country_registry = load_countries_registry()
+        self._country_id = "iran"
+        self._previous_city_timezone = None
         self._adhan_preview_proc = None
         self.connect("activate", self.on_activate)
 
@@ -435,7 +517,7 @@ class BolootSettingsApp(Adw.Application):
         self.sync_locale_btn = Adw.ButtonRow(
             title=_("همگام‌سازی اکنون"),
         )
-        self.country_row = self._combo_row(_("کشور"), COUNTRY_OPTIONS)
+        self.country_row = self._build_country_picker_row()
         self.language_row = self._combo_row(_("زبان"), LANGUAGE_OPTIONS)
         region.add(self.follow_system_locale_row)
         region.add(self.sync_locale_btn)
@@ -463,7 +545,7 @@ class BolootSettingsApp(Adw.Application):
         cal.add(self.holiday_notifications_row)
         page.add(cal)
 
-        self.country_row.connect("notify::selected", self._on_country_changed)
+        self.country_row.connect("activated", self._on_country_picker_activated)
         self.language_row.connect("notify::selected", self._on_locale_manual_change)
         self.numerals_row.connect("notify::selected", self._on_locale_manual_change)
         self.calendar_row.connect("notify::selected", self._on_calendar_changed)
@@ -498,9 +580,14 @@ class BolootSettingsApp(Adw.Application):
             title="نمایش ساعت",
             subtitle="ساعت فعلی در کنار تاریخ در نوار بالا",
         )
+        self.show_wisdom_tooltip_row = Adw.SwitchRow(
+            title="نمایش قصار امیرالمؤمنین امام علی (ع)",
+            subtitle="کلمات قصار امیرالمؤمنین امام علی علیه‌السلام با نگه‌داشتن موس روی تاریخ",
+        )
         self.show_in_popup_row = Adw.SwitchRow(title="نمایش در پاپ‌آپ")
         panel.add(self.show_in_top_bar_row)
         panel.add(self.show_clock_row)
+        panel.add(self.show_wisdom_tooltip_row)
         panel.add(self.show_in_popup_row)
         page.add(panel)
 
@@ -566,6 +653,7 @@ class BolootSettingsApp(Adw.Application):
         for row in (
             self.show_in_top_bar_row,
             self.show_clock_row,
+            self.show_wisdom_tooltip_row,
             self.show_in_popup_row,
             self.font_family_row,
             self.font_size_row,
@@ -647,7 +735,6 @@ class BolootSettingsApp(Adw.Application):
 
         for row in (
             self.prayer_enabled_row,
-            self.city_row,
             self.method_row,
             self.madhab_row,
             self.prayer_display_row,
@@ -662,6 +749,7 @@ class BolootSettingsApp(Adw.Application):
             *self.adhan_prayer_rows.values(),
         ):
             self._wire_change(row)
+        self.city_row.connect("notify::selected", self._on_city_changed)
 
         self.win.add(page)
 
@@ -744,14 +832,14 @@ class BolootSettingsApp(Adw.Application):
 
     def _build_about_page(self):
         page = Adw.PreferencesPage()
-        page.set_title("درباره")
+        page.set_title(_("درباره"))
         page.set_icon_name("help-about-symbolic")
 
         group = Adw.PreferencesGroup(
             title=APP_NAME,
-            description="تقویم فارسی، اوقات شرعی و تعطیلات رسمی",
+            description=_("تقویم فارسی، اوقات شرعی و تعطیلات رسمی"),
         )
-        about_row = Adw.ActionRow(title="درباره بولوت")
+        about_row = Adw.ActionRow(title=_("درباره بولوت"))
         about_row.set_subtitle(WEBSITE_LABEL)
         about_row.add_suffix(Gtk.Image.new_from_icon_name("go-next-symbolic"))
         about_row.set_activatable(True)
@@ -760,8 +848,8 @@ class BolootSettingsApp(Adw.Application):
         page.add(group)
 
         donate_group = Adw.PreferencesGroup(
-            title="حمایت",
-            description=(
+            title=_("حمایت"),
+            description=_(
                 "اگر بولوت هر روز کنارت بود، با یک حمایت کوچک کمک کن تا تقویم فارسی "
                 "رایگان بماند و برای همه بهتر شود. برای USDT فقط شبکه TRC20 را انتخاب کنید."
             ),
@@ -780,14 +868,14 @@ class BolootSettingsApp(Adw.Application):
         cards.set_halign(Gtk.Align.CENTER)
         cards.append(
             self._build_donate_card(
-                "USDT · TRC20",
+                _("USDT · TRC20"),
                 DONATE_USDT_TRC20,
                 "usdt-trc20-qr.png",
             )
         )
         cards.append(
             self._build_donate_card(
-                "Bitcoin (BTC)",
+                _("Bitcoin (BTC)"),
                 DONATE_BTC,
                 "btc-qr.png",
             )
@@ -795,7 +883,10 @@ class BolootSettingsApp(Adw.Application):
         donate_box.append(cards)
 
         warn = Gtk.Label(
-            label="⚠️ برای USDT فقط TRC20 ارسال کنید؛ شبکه دیگر ممکن است باعث از دست رفتن دارایی شود.",
+            label=_(
+                "⚠️ برای USDT فقط TRC20 ارسال کنید؛ "
+                "شبکه دیگر ممکن است باعث از دست رفتن دارایی شود."
+            ),
             wrap=True,
             xalign=0,
         )
@@ -809,13 +900,13 @@ class BolootSettingsApp(Adw.Application):
         page.add(donate_group)
 
         service_group = Adw.PreferencesGroup(
-            title="سرویس",
-            description="راه‌اندازی مجدد دیمون پس از به‌روزرسانی یا مشکل اتصال",
+            title=_("سرویس"),
+            description=_("راه‌اندازی مجدد دیمون پس از به‌روزرسانی یا مشکل اتصال"),
         )
-        self.service_status_row = Adw.ActionRow(title="وضعیت سرویس")
+        self.service_status_row = Adw.ActionRow(title=_("وضعیت سرویس"))
         self.service_status_row.set_selectable(False)
         self.restart_service_btn = Adw.ButtonRow(
-            title="راه‌اندازی مجدد سرویس",
+            title=_("راه‌اندازی مجدد سرویس"),
         )
         service_group.add(self.service_status_row)
         service_group.add(self.restart_service_btn)
@@ -842,7 +933,7 @@ class BolootSettingsApp(Adw.Application):
         if qr is not None:
             card.append(qr)
         else:
-            missing = Gtk.Label(label="کد QR یافت نشد", xalign=0.5)
+            missing = Gtk.Label(label=_("کد QR یافت نشد"), xalign=0.5)
             missing.add_css_class("dim-label")
             card.append(missing)
 
@@ -856,7 +947,7 @@ class BolootSettingsApp(Adw.Application):
         addr.add_css_class("boloot-donate-address")
         card.append(addr)
 
-        copy_btn = Gtk.Button(label="کپی آدرس")
+        copy_btn = Gtk.Button(label=_("کپی آدرس"))
         copy_btn.add_css_class("pill")
         copy_btn.set_halign(Gtk.Align.CENTER)
         copy_btn.connect("clicked", self._copy_donate_address, address)
@@ -866,10 +957,10 @@ class BolootSettingsApp(Adw.Application):
     def _copy_donate_address(self, _btn, address):
         display = Gdk.Display.get_default()
         if display is None:
-            self.show_toast("کپی آدرس ناموفق بود")
+            self.show_toast(_("کپی آدرس ناموفق بود"))
             return
         display.get_clipboard().set(address)
-        self.show_toast("آدرس کپی شد")
+        self.show_toast(_("آدرس کپی شد"))
 
     def _show_about_dialog(self, *_args):
         dialog = Adw.AboutWindow(
@@ -879,9 +970,12 @@ class BolootSettingsApp(Adw.Application):
             website=WEBSITE,
             application_icon="preferences-system-time",
             comments=(
-                "تقویم شمسی، اوقات شرعی و تعطیلات برای ایران، افغانستان و تاجیکستان\n\n"
-                f"حمایت USDT (TRC20):\n{DONATE_USDT_TRC20}\n\n"
-                f"حمایت Bitcoin:\n{DONATE_BTC}"
+                _("تقویم شمسی، اوقات شرعی و تعطیلات برای ایران، افغانستان و تاجیکستان")
+                + "\n\n"
+                + _("حمایت USDT (TRC20):")
+                + f"\n{DONATE_USDT_TRC20}\n\n"
+                + _("حمایت Bitcoin:")
+                + f"\n{DONATE_BTC}"
             ),
         )
         dialog.present(self.win)
@@ -902,9 +996,9 @@ class BolootSettingsApp(Adw.Application):
         if not hasattr(self, "service_status_row"):
             return
         if self._service_is_active():
-            self.service_status_row.set_subtitle("در حال اجرا")
+            self.service_status_row.set_subtitle(_("در حال اجرا"))
         else:
-            self.service_status_row.set_subtitle("متوقف یا در دسترس نیست")
+            self.service_status_row.set_subtitle(_("متوقف یا در دسترس نیست"))
 
     def _after_service_restart(self):
         self.restart_service_btn.set_sensitive(True)
@@ -921,10 +1015,10 @@ class BolootSettingsApp(Adw.Application):
                 text=True,
                 check=True,
             )
-            self.show_toast("سرویس راه‌اندازی مجدد شد")
+            self.show_toast(_("سرویس راه‌اندازی مجدد شد"))
             GLib.timeout_add_seconds(1, self._after_service_restart)
         except (subprocess.CalledProcessError, FileNotFoundError):
-            self.show_toast("راه‌اندازی مجدد سرویس ناموفق بود")
+            self.show_toast(_("راه‌اندازی مجدد سرویس ناموفق بود"))
             self.restart_service_btn.set_sensitive(True)
             self._refresh_service_status()
 
@@ -951,6 +1045,107 @@ class BolootSettingsApp(Adw.Application):
         if HAS_ADW_COLOR_ROW and isinstance(widget, Adw.ColorRow):
             return True
         return getattr(widget, "_boloot_color_widget", None) is not None
+
+    def _build_country_picker_row(self):
+        row = Adw.ActionRow(title=_("کشور"))
+        row.set_subtitle(country_label_from_registry(self._country_registry, self._country_id))
+        row.set_activatable(True)
+        search_btn = Gtk.Button(icon_name="edit-find-symbolic", valign=Gtk.Align.CENTER)
+        search_btn.set_tooltip_text(_("جستجوی کشور"))
+        search_btn.connect("clicked", lambda *_: self._show_country_picker())
+        row.add_suffix(search_btn)
+        return row
+
+    def _country_get(self):
+        return self._country_id
+
+    def _country_set(self, country_id):
+        self._country_id = country_id or "iran"
+        self.country_row.set_subtitle(
+            country_label_from_registry(self._country_registry, self._country_id)
+        )
+
+    def _on_country_picker_activated(self, *_args):
+        self._show_country_picker()
+
+    def _show_country_picker(self):
+        dialog = Adw.Window(
+            transient_for=self.win,
+            modal=True,
+            title=_("انتخاب کشور"),
+            default_width=420,
+            default_height=520,
+        )
+        outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        outer.set_margin_top(12)
+        outer.set_margin_bottom(12)
+        outer.set_margin_start(12)
+        outer.set_margin_end(12)
+
+        search = Gtk.SearchEntry(placeholder_text=_("جستجو…"))
+        scrolled = Gtk.ScrolledWindow(vexpand=True, propagate_natural_height=True)
+        listbox = Gtk.ListBox()
+        listbox.set_selection_mode(Gtk.SelectionMode.SINGLE)
+        scrolled.set_child(listbox)
+
+        records = sort_country_records(self._country_registry)
+
+        def populate(filter_text=""):
+            child = listbox.get_first_child()
+            while child:
+                next_child = child.get_next_sibling()
+                listbox.remove(child)
+                child = next_child
+            needle = filter_text.strip().lower()
+            for record in records:
+                country_id = record.get("id", "")
+                label = record.get("name_fa") or record.get("name_en") or country_id
+                haystack = " ".join(
+                    [
+                        label.lower(),
+                        (record.get("name_en") or "").lower(),
+                        country_id.lower(),
+                        (record.get("iso_alpha2") or "").lower(),
+                    ]
+                )
+                if needle and needle not in haystack:
+                    continue
+                list_row = Gtk.ListBoxRow()
+                list_row._country_id = country_id
+                box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+                box.set_margin_top(8)
+                box.set_margin_bottom(8)
+                box.set_margin_start(12)
+                box.set_margin_end(12)
+                title = Gtk.Label(label=label, xalign=0)
+                title.add_css_class("title-4")
+                subtitle = Gtk.Label(
+                    label=record.get("name_en") or country_id,
+                    xalign=0,
+                )
+                subtitle.add_css_class("dim-label")
+                box.append(title)
+                box.append(subtitle)
+                list_row.set_child(box)
+                listbox.append(list_row)
+
+        def on_search_changed(entry):
+            populate(entry.get_text())
+
+        def on_row_activated(_listbox, list_row):
+            country_id = getattr(list_row, "_country_id", "iran")
+            self._country_set(country_id)
+            dialog.close()
+            self._on_country_changed()
+
+        search.connect("search-changed", on_search_changed)
+        listbox.connect("row-activated", on_row_activated)
+        populate()
+
+        outer.append(search)
+        outer.append(scrolled)
+        dialog.set_content(outer)
+        dialog.present()
 
     def _combo_row(self, title, options):
         row = Adw.ComboRow(title=title)
@@ -1020,13 +1215,64 @@ class BolootSettingsApp(Adw.Application):
             self._loading = True
             self.follow_system_locale_row.set_active(False)
             self._loading = False
-        country = self._combo_get(self.country_row)
+        country = self._country_get()
         self._refresh_language_options(country)
-        self._refresh_city_options(country, preserve=False)
+        self._apply_text_direction()
+        self._refresh_city_options(country, preserve=True)
+        self._on_setting_changed()
+
+    def _city_label(self, city_id, city):
+        country = city.get("country", "")
+        country_label = country_label_from_registry(self._country_registry, country)
+        city_name = city.get("name_fa") or city.get("name") or city_id
+        return f"{country_label} — {city_name}"
+
+    def _suggested_method_for_city(self, city):
+        country = city.get("country", "")
+        latitude = abs(city.get("latitude", 0))
+        region = city.get("region", "")
+        if latitude > 55:
+            if country in ("usa", "canada") or region == "europe":
+                return "moonsighting_committee"
+        if country in SUGGESTED_METHOD_BY_COUNTRY:
+            return SUGGESTED_METHOD_BY_COUNTRY[country]
+        registry_method = prayer_method_for_country(self._country_registry, country)
+        if registry_method:
+            return registry_method
+        if latitude > 55:
+            return "moonsighting_committee"
+        return "mwl"
+
+    def _method_label(self, method_id):
+        for value, label in PRAYER_METHOD_OPTIONS:
+            if value == method_id:
+                return label
+        return method_id
+
+    def _on_city_changed(self, *_args):
+        if self._loading:
+            return
+        city_id = self._combo_get(self.city_row)
+        city = self._city_catalog.get(city_id)
+        if city:
+            new_tz = city.get("timezone", "")
+            current_tz = self.timezone_row.get_text().strip()
+            if new_tz and (not current_tz or current_tz == (self._previous_city_timezone or "")):
+                self.timezone_row.set_text(new_tz)
+            self._previous_city_timezone = new_tz or self._previous_city_timezone
+
+            suggested = self._suggested_method_for_city(city)
+            current_method = self._combo_get(self.method_row)
+            if suggested != current_method and suggested in self.method_row._values:
+                self._combo_set(self.method_row, suggested)
+                toast = Adw.Toast.new(
+                    f"روش محاسبه به {self._method_label(suggested)} تغییر کرد"
+                )
+                self.win.add_toast(toast)
         self._on_setting_changed()
 
     def _refresh_language_options(self, country):
-        allowed = LANGUAGES_BY_COUNTRY.get(country, ["persian"])
+        allowed = languages_for_country(self._country_registry, country)
         options = [opt for opt in LANGUAGE_OPTIONS if opt[0] in allowed]
         current = self._combo_get(self.language_row)
         self.language_row._values = [value for value, _label in options]
@@ -1035,6 +1281,12 @@ class BolootSettingsApp(Adw.Application):
             self._combo_set(self.language_row, current)
         else:
             self._combo_set(self.language_row, self.language_row._values[0])
+
+    def _apply_text_direction(self):
+        language = self._combo_get(self.language_row)
+        is_ltr = language in ("tajik", "english")
+        direction = Gtk.TextDirection.LTR if is_ltr else Gtk.TextDirection.RTL
+        Gtk.Widget.set_default_direction(direction)
 
     def _load_city_catalog(self):
         catalog = {}
@@ -1052,26 +1304,29 @@ class BolootSettingsApp(Adw.Application):
                     catalog[city_id] = city
         return catalog
 
-    def _refresh_city_options(self, country, preserve=True):
+    def _refresh_city_options(self, calendar_country, preserve=True):
         previous = self._combo_get(self.city_row) if preserve else None
         options = []
-        for city_id, city in sorted(
-            self._city_catalog.items(),
-            key=lambda item: item[1].get("name_fa", item[0]),
-        ):
-            if city.get("country", country) == country:
-                label = city.get("name_fa") or city.get("name") or city_id
-                options.append((city_id, label))
+        for city_id, city in self._city_catalog.items():
+            label = self._city_label(city_id, city)
+            priority = 0 if city.get("country") == calendar_country else 1
+            sort_key = (priority, city.get("name_fa", city_id))
+            options.append((sort_key, city_id, label))
+        options.sort(key=lambda item: item[0])
         if not options:
-            options = [("tehran", "تهران")]
-        self.city_row._values = [value for value, _label in options]
-        self.city_row.set_model(Gtk.StringList.new([label for _v, label in options]))
-        target = previous if preserve and previous in self.city_row._values else options[0][0]
+            options = [(("", "tehran", "ایران — تهران"))]
+        flat = [(city_id, label) for _sort, city_id, label in options]
+        self._loading = True
+        self.city_row._values = [value for value, _label in flat]
+        self.city_row.set_model(Gtk.StringList.new([label for _v, label in flat]))
+        target = previous if preserve and previous in self.city_row._values else flat[0][0]
         self._combo_set(self.city_row, target)
+        self._loading = False
 
     def _sync_top_bar_rows(self, *_args):
         enabled = self.show_in_top_bar_row.get_active()
         self.show_clock_row.set_sensitive(enabled)
+        self.show_wisdom_tooltip_row.set_sensitive(enabled)
 
     def _sync_prayer_rows(self, *_args):
         enabled = self.prayer_enabled_row.get_active()
@@ -1223,6 +1478,7 @@ class BolootSettingsApp(Adw.Application):
             self._loading = True
             self.follow_system_locale_row.set_active(False)
             self._loading = False
+        self._apply_text_direction()
         self._on_setting_changed()
 
     def _on_calendar_changed(self, *_args):
@@ -1247,21 +1503,18 @@ class BolootSettingsApp(Adw.Application):
 
         self._loading = True
         country = detected.get("country", "iran")
-        self._combo_set(self.country_row, country)
+        self._country_set(country)
         self._refresh_language_options(country)
         self._combo_set(self.language_row, detected.get("language", "persian"))
         self._combo_set(self.numerals_row, detected.get("numerals", "persian"))
+        timezone = detected.get("timezone", "").strip()
+        if timezone:
+            self.timezone_row.set_text(timezone)
+            self._previous_city_timezone = timezone
         self._loading = False
         self._sync_locale_rows()
         self._apply_text_direction()
         self.schedule_save()
-
-    def _apply_text_direction(self):
-        language = self._combo_get(self.language_row)
-        if language == "tajik":
-            Gtk.Widget.set_default_direction(Gtk.TextDirection.LTR)
-        else:
-            Gtk.Widget.set_default_direction(Gtk.TextDirection.RTL)
 
     def _sync_color_rows(self):
         self._sync_theme_rows()
@@ -1346,7 +1599,7 @@ class BolootSettingsApp(Adw.Application):
         config.setdefault("prayer", {})
 
         cal = config["calendar"]
-        cal["country"] = self._combo_get(self.country_row)
+        cal["country"] = self._country_get()
         cal["language"] = self._combo_get(self.language_row)
         cal["calendar_type"] = self._combo_get(self.calendar_row)
         cal["week_start"] = self._combo_get(self.week_start_row)
@@ -1368,6 +1621,7 @@ class BolootSettingsApp(Adw.Application):
         app["use_system_theme"] = self.use_system_theme_row.get_active()
         app["show_in_top_bar"] = self.show_in_top_bar_row.get_active()
         app["show_clock"] = self.show_clock_row.get_active()
+        app["show_wisdom_tooltip"] = self.show_wisdom_tooltip_row.get_active()
         app["show_in_popup"] = self.show_in_popup_row.get_active()
 
         prayer = config["prayer"]
@@ -1413,7 +1667,7 @@ class BolootSettingsApp(Adw.Application):
         prayer = data.get("prayer", {})
 
         country = cal.get("country", "iran")
-        self._combo_set(self.country_row, country)
+        self._country_set(country)
         self._refresh_language_options(country)
         self._combo_set(self.language_row, cal.get("language", "persian"))
         self._combo_set(self.calendar_row, cal.get("calendar_type", "jalali"))
@@ -1428,6 +1682,7 @@ class BolootSettingsApp(Adw.Application):
 
         self.show_in_top_bar_row.set_active(app.get("show_in_top_bar", True))
         self.show_clock_row.set_active(app.get("show_clock", True))
+        self.show_wisdom_tooltip_row.set_active(app.get("show_wisdom_tooltip", True))
         self.show_in_popup_row.set_active(app.get("show_in_popup", True))
         self.font_family_row.set_text(app.get("font_family", "Vazirmatn"))
         self.font_size_row.set_value(app.get("font_size_pt", 11))
@@ -1441,7 +1696,10 @@ class BolootSettingsApp(Adw.Application):
         self._sync_top_bar_rows()
 
         self._refresh_city_options(country, preserve=True)
-        self._combo_set(self.city_row, prayer.get("city", "tehran"))
+        city_id = prayer.get("city", "tehran")
+        self._combo_set(self.city_row, city_id)
+        loaded_city = self._city_catalog.get(city_id, {})
+        self._previous_city_timezone = loaded_city.get("timezone")
         self.prayer_enabled_row.set_active(prayer.get("enabled", True))
         self._combo_set(self.method_row, prayer.get("method", "tehran"))
         self._combo_set(self.madhab_row, prayer.get("madhab", "jafari"))
@@ -1472,6 +1730,7 @@ class BolootSettingsApp(Adw.Application):
 
         self._sync_prayer_rows()
         self._loading = False
+        self._apply_text_direction()
         self._refresh_service_status()
 
     def save_settings(self, show_toast=True):
@@ -1759,47 +2018,11 @@ class BolootSettingsApp(Adw.Application):
             (self.preview_prev_year_btn, prev_year, "prev"),
             (self.preview_next_year_btn, next_year, "next"),
         )
-        display = {}
         for button, label, role in nav_buttons:
             text = self._format_nav_display_text(label, role, is_rtl)
             button.set_label(text)
             button.set_tooltip_text(label)
             set_accessible_name(button, label)
-            display[f"{role}_{label}"] = text
-
-        # #region agent log
-        try:
-            import json
-            import time
-            payload = {
-                "sessionId": "830e19",
-                "location": "boloot-settings.py:_apply_preview_nav",
-                "message": "preview nav applied",
-                "data": {
-                    "isRtl": is_rtl,
-                    "childOrder": "next,center,prev" if is_rtl else "prev,center,next",
-                    "buttonStyle": "text",
-                    "labels": {
-                        "prevMonth": prev_month,
-                        "nextMonth": next_month,
-                        "prevYear": prev_year,
-                        "nextYear": next_year,
-                    },
-                    "display": display,
-                },
-                "hypothesisId": "F",
-                "timestamp": int(time.time() * 1000),
-                "runId": "post-fix",
-            }
-            with open(
-                Path.home() / ".config" / "boloot-calendar" / "debug-nav.log",
-                "a",
-                encoding="utf-8",
-            ) as log_file:
-                log_file.write(json.dumps(payload, ensure_ascii=False) + "\n")
-        except OSError:
-            pass
-        # #endregion
 
     def refresh_calendar_preview(self):
         view = self.fetch_month_view(self._preview_year, self._preview_month)

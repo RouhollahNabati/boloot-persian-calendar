@@ -4,10 +4,10 @@ use std::process::Command;
 use std::sync::Arc;
 
 use boloot_cal_core::{
-    active_session_uids, is_adhan_enabled_for, resolve_adhan_path, should_trigger_adhan,
-    username_for_uid, BolootService, UiStrings, APP_NAME,
+    active_session_uids, is_adhan_enabled_for, local_time_of_day, local_today,
+    resolve_adhan_path, should_trigger_adhan, username_for_uid, BolootService, UiStrings, APP_NAME,
 };
-use chrono::{Datelike, Local, Timelike};
+use chrono::Datelike;
 use tokio::time::{interval, Duration, MissedTickBehavior};
 use tracing::{debug, warn};
 
@@ -24,7 +24,7 @@ pub fn spawn_notification_loop(registry: Arc<ServiceRegistry>) {
 
         loop {
             ticker.tick().await;
-            let day = Local::now().ordinal();
+            let day = local_today().ordinal();
             if day != last_day {
                 sent.clear();
                 last_day = day;
@@ -110,7 +110,7 @@ fn check_adhan(uid: u32, service: &BolootService, sent: &mut HashSet<String>, po
         return;
     };
 
-    let day = Local::now().ordinal();
+    let day = local_today().ordinal();
     let path = match resolve_adhan_path(config) {
         Ok(p) => p,
         Err(e) => {
@@ -139,21 +139,11 @@ fn check_adhan(uid: u32, service: &BolootService, sent: &mut HashSet<String>, po
             continue;
         }
         sent.insert(key);
-
-        if config.prayer.adhan_show_notification {
-            let ui = UiStrings::for_language(config.calendar.language);
-            send_notification(
-                uid,
-                APP_NAME,
-                &ui.prayer_adhan_summary(&entry.label),
-                &ui.prayer_adhan_body(&entry.label),
-            );
-        }
     }
 }
 
 fn should_send_holiday_notification() -> bool {
-    let hour = Local::now().hour();
+    let hour = local_time_of_day().0;
     (17..=21).contains(&hour)
 }
 

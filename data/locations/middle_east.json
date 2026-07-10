@@ -1,0 +1,184 @@
+{
+  "cities": [
+    {
+      "id": "abu_dhabi",
+      "name": "Abu Dhabi",
+      "name_fa": "ابوظبی",
+      "latitude": 24.4539,
+      "longitude": 54.3773,
+      "timezone": "Asia/Dubai",
+      "country": "uae",
+      "region": "middle_east"
+    },
+    {
+      "id": "amman",
+      "name": "Amman",
+      "name_fa": "اردن",
+      "latitude": 31.9539,
+      "longitude": 35.9106,
+      "timezone": "Asia/Amman",
+      "country": "jordan",
+      "region": "middle_east"
+    },
+    {
+      "id": "ankara",
+      "name": "Ankara",
+      "name_fa": "آنکارا",
+      "latitude": 39.9334,
+      "longitude": 32.8597,
+      "timezone": "Europe/Istanbul",
+      "country": "turkey",
+      "region": "middle_east"
+    },
+    {
+      "id": "baghdad",
+      "name": "Baghdad",
+      "name_fa": "عراق",
+      "latitude": 33.3152,
+      "longitude": 44.3661,
+      "timezone": "Asia/Baghdad",
+      "country": "iraq",
+      "region": "middle_east"
+    },
+    {
+      "id": "beirut",
+      "name": "Beirut",
+      "name_fa": "لبنان",
+      "latitude": 33.8938,
+      "longitude": 35.5018,
+      "timezone": "Asia/Beirut",
+      "country": "lebanon",
+      "region": "middle_east"
+    },
+    {
+      "id": "damascus",
+      "name": "Damascus",
+      "name_fa": "سوریه",
+      "latitude": 33.5138,
+      "longitude": 36.2765,
+      "timezone": "Asia/Damascus",
+      "country": "syria",
+      "region": "middle_east"
+    },
+    {
+      "id": "doha",
+      "name": "Doha",
+      "name_fa": "دوحه",
+      "latitude": 25.2854,
+      "longitude": 51.531,
+      "timezone": "Asia/Qatar",
+      "country": "qatar",
+      "region": "middle_east"
+    },
+    {
+      "id": "dubai",
+      "name": "Dubai",
+      "name_fa": "دبی",
+      "latitude": 25.2048,
+      "longitude": 55.2708,
+      "timezone": "Asia/Dubai",
+      "country": "uae",
+      "region": "middle_east"
+    },
+    {
+      "id": "east_jerusalem",
+      "name": "East Jerusalem",
+      "name_fa": "فلسطین",
+      "latitude": 31.9522,
+      "longitude": 35.2332,
+      "timezone": "Asia/Gaza",
+      "country": "palestine",
+      "region": "middle_east"
+    },
+    {
+      "id": "istanbul",
+      "name": "Istanbul",
+      "name_fa": "استانبول",
+      "latitude": 41.0082,
+      "longitude": 28.9784,
+      "timezone": "Europe/Istanbul",
+      "country": "turkey",
+      "region": "middle_east"
+    },
+    {
+      "id": "jeddah",
+      "name": "Jeddah",
+      "name_fa": "جده",
+      "latitude": 21.4858,
+      "longitude": 39.1925,
+      "timezone": "Asia/Riyadh",
+      "country": "saudi_arabia",
+      "region": "middle_east"
+    },
+    {
+      "id": "jerusalem",
+      "name": "Jerusalem",
+      "name_fa": "اسرائیل",
+      "latitude": 31.7683,
+      "longitude": 35.2137,
+      "timezone": "Asia/Jerusalem",
+      "country": "israel",
+      "region": "middle_east"
+    },
+    {
+      "id": "kuwait_city",
+      "name": "Kuwait City",
+      "name_fa": "کویت",
+      "latitude": 29.3759,
+      "longitude": 47.9774,
+      "timezone": "Asia/Kuwait",
+      "country": "kuwait",
+      "region": "middle_east"
+    },
+    {
+      "id": "manama",
+      "name": "Manama",
+      "name_fa": "منامه",
+      "latitude": 26.2285,
+      "longitude": 50.586,
+      "timezone": "Asia/Bahrain",
+      "country": "bahrain",
+      "region": "middle_east"
+    },
+    {
+      "id": "mecca",
+      "name": "Mecca",
+      "name_fa": "مکه",
+      "latitude": 21.4225,
+      "longitude": 39.8262,
+      "timezone": "Asia/Riyadh",
+      "country": "saudi_arabia",
+      "region": "middle_east"
+    },
+    {
+      "id": "muscat",
+      "name": "Muscat",
+      "name_fa": "عمان",
+      "latitude": 23.588,
+      "longitude": 58.3829,
+      "timezone": "Asia/Muscat",
+      "country": "oman",
+      "region": "middle_east"
+    },
+    {
+      "id": "riyadh",
+      "name": "Riyadh",
+      "name_fa": "ریاض",
+      "latitude": 24.7136,
+      "longitude": 46.6753,
+      "timezone": "Asia/Riyadh",
+      "country": "saudi_arabia",
+      "region": "middle_east"
+    },
+    {
+      "id": "sanaa",
+      "name": "Sanaa",
+      "name_fa": "یمن",
+      "latitude": 15.3694,
+      "longitude": 44.191,
+      "timezone": "Asia/Aden",
+      "country": "yemen",
+      "region": "middle_east"
+    }
+  ]
+}

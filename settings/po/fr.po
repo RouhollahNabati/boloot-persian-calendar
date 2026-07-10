@@ -1,0 +1,113 @@
+# BOLOOT Persian Calendar settings — French
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fr\n"
+
+msgid "تنظیمات {name}"
+msgstr "Paramètres de {name}"
+
+msgid "منطقه و زبان"
+msgstr "Région et langue"
+
+msgid "کشور، زبان و قوانین تقویم محلی"
+msgstr "Pays, langue et règles du calendrier local"
+
+msgid "همگام با locale سیستم"
+msgstr "Suivre la locale système"
+
+msgid "کشور، زبان و اعداد از LANG/LC_TIME سیستم"
+msgstr "Pays, langue et chiffres depuis LANG/LC_TIME du système"
+
+msgid "همگام‌سازی اکنون"
+msgstr "Synchroniser maintenant"
+
+msgid "کشور"
+msgstr "Pays"
+
+msgid "زبان"
+msgstr "Langue"
+
+msgid "همگام‌سازی locale ناموفق بود"
+msgstr "Échec de la synchronisation de la locale"
+
+msgid "تنظیمات ذخیره شد"
+msgstr "Paramètres enregistrés"
+
+msgid "ذخیره تنظیمات ناموفق بود"
+msgstr "Échec de l'enregistrement des paramètres"
+
+msgid "درباره"
+msgstr "À propos"
+
+msgid "تقویم فارسی، اوقات شرعی و تعطیلات رسمی"
+msgstr "Calendrier persan, heures de prière et jours fériés officiels"
+
+msgid "درباره بولوت"
+msgstr "À propos de BOLOOT"
+
+msgid "حمایت"
+msgstr "Soutien"
+
+msgid "اگر بولوت هر روز کنارت بود، با یک حمایت کوچک کمک کن تا تقویم فارسی رایگان بماند و برای همه بهتر شود. برای USDT فقط شبکه TRC20 را انتخاب کنید."
+msgstr "Si BOLOOT fait partie de votre quotidien, un petit don aide à garder le calendrier persan gratuit et en amélioration pour tous. Pour USDT, utilisez uniquement le réseau TRC20."
+
+msgid "USDT · TRC20"
+msgstr "USDT · TRC20"
+
+msgid "Bitcoin (BTC)"
+msgstr "Bitcoin (BTC)"
+
+msgid "⚠️ برای USDT فقط TRC20 ارسال کنید؛ شبکه دیگر ممکن است باعث از دست رفتن دارایی شود."
+msgstr "⚠️ Envoyez USDT uniquement sur TRC20. Un autre réseau peut entraîner une perte définitive des fonds."
+
+msgid "کد QR یافت نشد"
+msgstr "Code QR introuvable"
+
+msgid "کپی آدرس"
+msgstr "Copier l'adresse"
+
+msgid "کپی آدرس ناموفق بود"
+msgstr "Échec de la copie de l'adresse"
+
+msgid "آدرس کپی شد"
+msgstr "Adresse copiée"
+
+msgid "تقویم شمسی، اوقات شرعی و تعطیلات برای ایران، افغانستان و تاجیکستان"
+msgstr "Calendrier solaire, heures de prière et jours fériés pour l'Iran, l'Afghanistan et le Tadjikistan"
+
+msgid "حمایت USDT (TRC20):"
+msgstr "Soutien USDT (TRC20) :"
+
+msgid "حمایت Bitcoin:"
+msgstr "Soutien Bitcoin :"
+
+msgid "سرویس"
+msgstr "Service"
+
+msgid "راه‌اندازی مجدد دیمون پس از به‌روزرسانی یا مشکل اتصال"
+msgstr "Redémarrer le démon après une mise à jour ou un problème de connexion"
+
+msgid "وضعیت سرویس"
+msgstr "État du service"
+
+msgid "راه‌اندازی مجدد سرویس"
+msgstr "Redémarrer le service"
+
+msgid "در حال اجرا"
+msgstr "En cours d'exécution"
+
+msgid "متوقف یا در دسترس نیست"
+msgstr "Arrêté ou indisponible"
+
+msgid "سرویس راه‌اندازی مجدد شد"
+msgstr "Service redémarré"
+
+msgid "راه‌اندازی مجدد سرویس ناموفق بود"
+msgstr "Échec du redémarrage du service"
+
+msgid "نمایش قصار امام علی (ع)"
+msgstr "Afficher la sagesse de l'imam Ali (psl)"
+
+msgid "با نگه‌داشتن موس روی تاریخ در نوار بالا"
+msgstr "En survolant la date dans la barre supérieure"

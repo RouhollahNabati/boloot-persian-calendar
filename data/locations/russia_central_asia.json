@@ -1,0 +1,84 @@
+{
+  "cities": [
+    {
+      "id": "almaty",
+      "name": "Almaty",
+      "name_fa": "آلماتی",
+      "latitude": 43.222,
+      "longitude": 76.8512,
+      "timezone": "Asia/Almaty",
+      "country": "kazakhstan",
+      "region": "russia_central_asia"
+    },
+    {
+      "id": "ashgabat",
+      "name": "Ashgabat",
+      "name_fa": "ترکمنستان",
+      "latitude": 37.9601,
+      "longitude": 58.3261,
+      "timezone": "Asia/Ashgabat",
+      "country": "turkmenistan",
+      "region": "russia_central_asia"
+    },
+    {
+      "id": "baku",
+      "name": "Baku",
+      "name_fa": "باکو",
+      "latitude": 40.4093,
+      "longitude": 49.8671,
+      "timezone": "Asia/Baku",
+      "country": "azerbaijan",
+      "region": "russia_central_asia"
+    },
+    {
+      "id": "bishkek",
+      "name": "Bishkek",
+      "name_fa": "قرقیزستان",
+      "latitude": 42.8746,
+      "longitude": 74.5698,
+      "timezone": "Asia/Bishkek",
+      "country": "kyrgyzstan",
+      "region": "russia_central_asia"
+    },
+    {
+      "id": "moscow",
+      "name": "Moscow",
+      "name_fa": "مسکو",
+      "latitude": 55.7558,
+      "longitude": 37.6173,
+      "timezone": "Europe/Moscow",
+      "country": "russia",
+      "region": "russia_central_asia"
+    },
+    {
+      "id": "tashkent",
+      "name": "Tashkent",
+      "name_fa": "تاشکند",
+      "latitude": 41.2995,
+      "longitude": 69.2401,
+      "timezone": "Asia/Tashkent",
+      "country": "uzbekistan",
+      "region": "russia_central_asia"
+    },
+    {
+      "id": "tbilisi",
+      "name": "Tbilisi",
+      "name_fa": "تفلیس",
+      "latitude": 41.7151,
+      "longitude": 44.8271,
+      "timezone": "Asia/Tbilisi",
+      "country": "georgia",
+      "region": "russia_central_asia"
+    },
+    {
+      "id": "yerevan",
+      "name": "Yerevan",
+      "name_fa": "ایروان",
+      "latitude": 40.1792,
+      "longitude": 44.4991,
+      "timezone": "Asia/Yerevan",
+      "country": "armenia",
+      "region": "russia_central_asia"
+    }
+  ]
+}

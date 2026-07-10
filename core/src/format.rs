@@ -268,7 +268,7 @@ mod tests {
 
     #[test]
     fn gregorian_calendar_uses_latin_digits_even_with_persian_numerals() {
-        let engine = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let gregorian = engine.jalali_to_gregorian(1404, 1, 1).unwrap();
         let date = engine.on_date(gregorian).unwrap();
         let formatter = DateFormatter {
@@ -288,7 +288,7 @@ mod tests {
 
     #[test]
     fn long_format() {
-        let engine = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let gregorian = engine.jalali_to_gregorian(1404, 1, 1).unwrap();
         let date = engine.on_date(gregorian).unwrap();
         let formatter = DateFormatter::default();
@@ -299,7 +299,7 @@ mod tests {
 
     #[test]
     fn hijri_long_named_uses_arabic_month() {
-        let engine = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let gregorian = engine.hijri_to_gregorian(1447, 9, 15).unwrap();
         let date = engine.on_date(gregorian).unwrap();
         let formatter = DateFormatter {
@@ -313,7 +313,7 @@ mod tests {
 
     #[test]
     fn gregorian_long_named_uses_standard_month_name() {
-        let engine = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let engine = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let gregorian = engine.jalali_to_gregorian(1405, 4, 16).unwrap();
         let date = engine.on_date(gregorian).unwrap();
         let formatter = DateFormatter {

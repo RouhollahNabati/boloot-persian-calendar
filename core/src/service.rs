@@ -1,7 +1,6 @@
-use chrono::{Datelike, Local, NaiveDate, Timelike, Utc};
-use chrono_tz::Tz;
-
+use chrono::{Datelike, NaiveDate};
 use crate::format::format_time;
+use crate::system_time::{local_time_of_day, local_today};
 
 use crate::calendar::{CalendarEngine, CalendarView};
 use crate::config::BolootConfig;
@@ -12,23 +11,30 @@ use crate::locale::LocaleProfile;
 use crate::month_view::{build_month_view, format_day, MonthView};
 use crate::prayer::{PrayerDayStatus, PrayerEngine};
 use crate::ui_strings::UiStrings;
+use crate::wisdom::WisdomStore;
 
 pub struct BolootService {
     config: BolootConfig,
     calendar: CalendarEngine,
     holidays: HolidayStore,
+    wisdom: WisdomStore,
     prayer: PrayerEngine,
 }
 
 impl BolootService {
     pub fn new(config: BolootConfig) -> Result<Self> {
-        let calendar = CalendarEngine::new(config.calendar.country, config.calendar.language);
+        let calendar = CalendarEngine::new(
+            config.calendar.country.clone(),
+            config.calendar.language,
+        );
         let holidays = HolidayStore::embedded().unwrap_or_default();
+        let wisdom = WisdomStore::embedded().unwrap_or_default();
         let prayer = PrayerEngine::new();
         Ok(Self {
             config,
             calendar,
             holidays,
+            wisdom,
             prayer,
         })
     }
@@ -60,15 +66,14 @@ impl BolootService {
     pub fn today_view(&self) -> Result<CalendarView> {
         let date = self.calendar.today()?;
         let mut view = self.format_view(&date)?;
-        view.panel_tooltip = self.build_panel_tooltip(&view, true);
+        view.panel_tooltip = self.build_wisdom_tooltip(&view);
         Ok(view)
     }
 
     pub fn view_for(&self, gregorian: NaiveDate) -> Result<CalendarView> {
         let date = self.calendar.on_date(gregorian)?;
         let mut view = self.format_view(&date)?;
-        let is_today = gregorian == Local::now().date_naive();
-        view.panel_tooltip = self.build_panel_tooltip(&view, is_today);
+        view.panel_tooltip = self.build_wisdom_tooltip(&view);
         Ok(view)
     }
 
@@ -84,7 +89,7 @@ impl BolootService {
         let locale = self.calendar.locale();
         let day_holidays = if self.config.calendar.show_holidays {
             self.holidays
-                .for_date(self.config.calendar.country, date, &self.calendar)
+                .for_date(&self.config.calendar.country, date, &self.calendar)
         } else {
             Vec::new()
         };
@@ -110,6 +115,7 @@ impl BolootService {
         })
     }
 
+    #[allow(dead_code)]
     fn build_panel_tooltip(&self, view: &CalendarView, include_prayer: bool) -> String {
         let formatter = DateFormatter {
             calendar: self.config.calendar.calendar_type,
@@ -139,6 +145,15 @@ impl BolootService {
         }
 
         lines.join("\n")
+    }
+
+    fn build_wisdom_tooltip(&self, view: &CalendarView) -> String {
+        if !self.config.appearance.show_wisdom_tooltip {
+            return String::new();
+        }
+        self.wisdom
+            .quote_for_date(&view.jalali, self.config.calendar.language)
+            .unwrap_or_default()
     }
 
     fn panel_day_label(&self, date: &crate::calendar::CalendarDate) -> String {
@@ -186,7 +201,7 @@ impl BolootService {
     pub fn holidays_for_today(&self) -> Result<Vec<Holiday>> {
         let date = self.calendar.today()?;
         Ok(self.holidays.for_date(
-            self.config.calendar.country,
+            &self.config.calendar.country,
             &date,
             &self.calendar,
         ))
@@ -194,7 +209,7 @@ impl BolootService {
 
     pub fn holidays_for_month(&self, jalali_year: i32, jalali_month: u8) -> Vec<Holiday> {
         self.holidays.for_month(
-            self.config.calendar.country,
+            &self.config.calendar.country,
             jalali_year,
             jalali_month,
             &self.calendar,
@@ -204,15 +219,14 @@ impl BolootService {
     pub fn holidays_tomorrow(&self) -> Result<Vec<Holiday>> {
         let today = self.calendar.today()?;
         Ok(self.holidays.tomorrow_holidays(
-            self.config.calendar.country,
+            &self.config.calendar.country,
             &today,
             &self.calendar,
         ))
     }
 
     pub fn prayer_today(&self) -> Result<PrayerDayStatus> {
-        let today = Local::now().date_naive();
-        self.prayer_for(today)
+        self.prayer_for(local_today())
     }
 
     pub fn prayer_for(&self, date: NaiveDate) -> Result<PrayerDayStatus> {
@@ -234,21 +248,10 @@ impl BolootService {
         let mut parts = Vec::new();
 
         if self.config.appearance.show_clock {
-            let tz: Tz = self
-                .config
-                .calendar
-                .timezone
-                .parse()
-                .map_err(|_| {
-                    crate::error::BolootError::InvalidConfig(format!(
-                        "invalid timezone: {}",
-                        self.config.calendar.timezone
-                    ))
-                })?;
-            let now = Utc::now().with_timezone(&tz);
+            let (hour, minute) = local_time_of_day();
             parts.push(format_time(
-                now.hour(),
-                now.minute(),
+                hour,
+                minute,
                 self.config.calendar.effective_numerals(),
             ));
         }
@@ -274,9 +277,15 @@ impl BolootService {
     }
 
     pub fn apply_settings(&mut self, new_config: BolootConfig) {
-        let old_country = self.config.calendar.country;
+        let old_country = self.config.calendar.country.clone();
         let old_language = self.config.calendar.language;
+        let old_city = self.config.prayer.city.clone();
+        let old_tz = self.config.calendar.timezone.clone();
         self.config = new_config;
+        if self.config.prayer.city != old_city {
+            self.config
+                .apply_prayer_city_change(Some(old_tz.as_str()));
+        }
         if self.config.calendar.follow_system_locale {
             self.config.apply_system_locale();
         } else {
@@ -284,7 +293,7 @@ impl BolootService {
                 .apply_country_defaults_on_change(old_country, old_language);
         }
         self.calendar = CalendarEngine::new(
-            self.config.calendar.country,
+            self.config.calendar.country.clone(),
             self.config.calendar.language,
         );
     }
@@ -314,25 +323,57 @@ mod tests {
     use chrono::NaiveDate;
 
     #[test]
-    fn panel_tooltip_without_prayer() {
+    fn panel_tooltip_shows_wisdom_when_enabled() {
+        let service = BolootService::new(BolootConfig::default()).unwrap();
+        let view = service.today_view().unwrap();
+
+        assert!(view.panel_tooltip.starts_with("امیرالمومنین علی علیه السلام:"));
+        assert!(view.panel_tooltip.contains('\n'));
+    }
+
+    #[test]
+    fn panel_tooltip_shows_wisdom_in_english() {
+        let mut config = BolootConfig::default();
+        config.calendar.language = crate::locale::LanguageVariant::English;
+        let service = BolootService::new(config).unwrap();
+        let view = service.today_view().unwrap();
+
+        assert!(view.panel_tooltip.starts_with("Imam Ali (AS):"));
+        assert!(view.panel_tooltip.contains('\n'));
+    }
+
+    #[test]
+    fn panel_tooltip_empty_when_wisdom_disabled() {
+        let mut config = BolootConfig::default();
+        config.appearance.show_wisdom_tooltip = false;
+        let service = BolootService::new(config).unwrap();
+        let view = service.today_view().unwrap();
+
+        assert!(view.panel_tooltip.is_empty());
+    }
+
+    #[test]
+    fn build_panel_tooltip_still_formats_date_lines() {
         let mut config = BolootConfig::default();
         config.prayer.enabled = false;
         let service = BolootService::new(config).unwrap();
         let view = service.today_view().unwrap();
+        let tooltip = service.build_panel_tooltip(&view, true);
 
-        assert!(!view.panel_tooltip.contains("بعدی:"));
-        assert!(view.panel_tooltip.starts_with(&view.weekday));
-        assert_eq!(view.panel_tooltip.matches('\n').count(), 1);
+        assert!(!tooltip.contains("بعدی:"));
+        assert!(tooltip.starts_with(&view.weekday));
+        assert_eq!(tooltip.matches('\n').count(), 1);
     }
 
     #[test]
     fn panel_tooltip_with_prayer_includes_next_time() {
         let service = BolootService::new(BolootConfig::default()).unwrap();
         let view = service.today_view().unwrap();
+        let tooltip = service.build_panel_tooltip(&view, true);
 
-        assert!(view.panel_tooltip.starts_with(&view.weekday));
-        assert!(view.panel_tooltip.contains('\n'));
-        assert!(view.panel_tooltip.contains("بعدی:"));
+        assert!(tooltip.starts_with(&view.weekday));
+        assert!(tooltip.contains('\n'));
+        assert!(tooltip.contains("بعدی:"));
     }
 
     #[test]
@@ -340,9 +381,10 @@ mod tests {
         let service = BolootService::new(BolootConfig::default()).unwrap();
         let past = NaiveDate::from_ymd_opt(2020, 1, 1).unwrap();
         let view = service.view_for(past).unwrap();
+        let tooltip = service.build_panel_tooltip(&view, false);
 
-        assert!(!view.panel_tooltip.contains("بعدی:"));
-        assert!(view.panel_tooltip.starts_with(&view.weekday));
+        assert!(!tooltip.contains("بعدی:"));
+        assert!(tooltip.starts_with(&view.weekday));
     }
 
     #[test]
@@ -394,5 +436,22 @@ mod tests {
         let detected = crate::system_locale::detect_from_env();
         assert_eq!(service.config().calendar.country, detected.country);
         assert_eq!(service.config().calendar.language, detected.language);
+        assert_eq!(service.config().calendar.timezone, detected.timezone);
+    }
+
+    #[test]
+    fn top_bar_clock_uses_system_local_time() {
+        let service = BolootService::new(BolootConfig::default()).unwrap();
+        let text = service.top_bar_text().unwrap();
+        let (hour, minute) = crate::system_time::local_time_of_day();
+        let expected = crate::format::format_time(
+            hour,
+            minute,
+            service.config().calendar.effective_numerals(),
+        );
+        assert!(
+            text.starts_with(&expected),
+            "top bar should start with system clock, got {text}"
+        );
     }
 }

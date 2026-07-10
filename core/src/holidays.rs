@@ -7,8 +7,8 @@ use hijri_date::HijriDate;
 use serde::{Deserialize, Serialize};
 
 use crate::calendar::{CalendarDate, CalendarEngine};
+use crate::countries::CountryProfile;
 use crate::error::Result;
-use crate::locale::CountryProfile;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Holiday {
@@ -66,21 +66,30 @@ fn default_kind() -> HolidayKind {
 
 #[derive(Debug, Default)]
 pub struct HolidayStore {
-    templates: HashMap<CountryProfile, Vec<HolidayTemplate>>,
+    templates: HashMap<String, Vec<HolidayTemplate>>,
 }
 
 impl HolidayStore {
     pub fn load_from_dir(dir: &Path) -> Result<Self> {
         let mut store = Self::default();
-        for country in [
-            CountryProfile::Iran,
-            CountryProfile::Afghanistan,
-            CountryProfile::Tajikistan,
-        ] {
-            let file = dir.join(format!("{}.json", country_file_name(country)));
-            if file.exists() {
-                store.load_file(country, &file)?;
+        if !dir.is_dir() {
+            return Ok(store);
+        }
+        for entry in fs::read_dir(dir)? {
+            let entry = entry?;
+            let path = entry.path();
+            if path.extension().and_then(|e| e.to_str()) != Some("json") {
+                continue;
             }
+            let country_id = path
+                .file_stem()
+                .and_then(|s| s.to_str())
+                .unwrap_or_default()
+                .to_string();
+            if country_id.is_empty() {
+                continue;
+            }
+            store.load_file(&country_id, &path)?;
         }
         Ok(store)
     }
@@ -89,7 +98,7 @@ impl HolidayStore {
         Self::load_from_dir(&holidays_dir())
     }
 
-    fn load_file(&mut self, country: CountryProfile, path: &Path) -> Result<()> {
+    fn load_file(&mut self, country_id: &str, path: &Path) -> Result<()> {
         let raw = fs::read_to_string(path)?;
         let file: HolidayFile = serde_json::from_str(&raw)?;
         let holidays = file
@@ -104,19 +113,19 @@ impl HolidayStore {
                 kind: entry.kind,
             })
             .collect();
-        self.templates.insert(country, holidays);
+        self.templates.insert(country_id.to_string(), holidays);
         Ok(())
     }
 
     pub fn for_month(
         &self,
-        country: CountryProfile,
+        country: &CountryProfile,
         jalali_year: i32,
         jalali_month: u8,
         calendar: &CalendarEngine,
     ) -> Vec<Holiday> {
         self.templates
-            .get(&country)
+            .get(country.as_str())
             .cloned()
             .unwrap_or_default()
             .into_iter()
@@ -143,7 +152,7 @@ impl HolidayStore {
 
     pub fn for_hijri_month(
         &self,
-        country: CountryProfile,
+        country: &CountryProfile,
         hijri_year: i32,
         hijri_month: u8,
         calendar: &CalendarEngine,
@@ -178,7 +187,7 @@ impl HolidayStore {
 
     pub fn for_date(
         &self,
-        country: CountryProfile,
+        country: &CountryProfile,
         date: &CalendarDate,
         calendar: &CalendarEngine,
     ) -> Vec<Holiday> {
@@ -190,7 +199,7 @@ impl HolidayStore {
 
     pub fn for_year(
         &self,
-        country: CountryProfile,
+        country: &CountryProfile,
         jalali_year: i32,
         calendar: &CalendarEngine,
     ) -> Vec<Holiday> {
@@ -203,7 +212,7 @@ impl HolidayStore {
 
     pub fn tomorrow_holidays(
         &self,
-        country: CountryProfile,
+        country: &CountryProfile,
         today: &CalendarDate,
         calendar: &CalendarEngine,
     ) -> Vec<Holiday> {
@@ -287,17 +296,21 @@ fn hijri_year_range_for_jalali(
     Some((start_hijri, end_hijri))
 }
 
-fn country_file_name(country: CountryProfile) -> &'static str {
-    match country {
-        CountryProfile::Iran => "iran",
-        CountryProfile::Afghanistan => "afghanistan",
-        CountryProfile::Tajikistan => "tajikistan",
-    }
+
+pub fn countries_json_path() -> PathBuf {
+    data_dir().join("countries.json")
 }
 
 pub fn data_dir() -> PathBuf {
     if let Ok(dir) = std::env::var("BOLOOT_DATA_DIR") {
         return PathBuf::from(dir);
+    }
+    #[cfg(test)]
+    {
+        let test_data = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../data");
+        if test_data.exists() {
+            return test_data;
+        }
     }
     ["/usr/share/boloot-calendar/data", "./data"]
         .iter()
@@ -326,8 +339,8 @@ mod tests {
             return;
         }
         let store = HolidayStore::load_from_dir(&dir).unwrap();
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
-        let holidays = store.for_month(CountryProfile::Iran, 1404, 1, &calendar);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
+        let holidays = store.for_month(&CountryProfile::iran(), 1404, 1, &calendar);
         assert!(!holidays.is_empty());
     }
 
@@ -338,8 +351,8 @@ mod tests {
             return;
         }
         let store = HolidayStore::load_from_dir(&dir).unwrap();
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
-        let year_holidays = store.for_year(CountryProfile::Iran, 1404, &calendar);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
+        let year_holidays = store.for_year(&CountryProfile::iran(), 1404, &calendar);
         let eid = year_holidays
             .iter()
             .find(|h| h.name.contains("عید فطر"));

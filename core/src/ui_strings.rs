@@ -15,11 +15,14 @@ pub struct UiStrings {
     pub next_month_label: String,
     pub prev_year_label: String,
     pub next_year_label: String,
+    pub adhan_stop_label: String,
+    pub adhan_playing_label: String,
 }
 
 impl UiStrings {
     pub fn for_language(language: LanguageVariant) -> Self {
         match language {
+            LanguageVariant::English => english(),
             LanguageVariant::Persian => persian(),
             LanguageVariant::Dari => dari(),
             LanguageVariant::Pashto => pashto(),
@@ -36,6 +39,7 @@ impl UiStrings {
 
     pub fn prayer_notification_summary(&self, label: &str, minutes: u32) -> String {
         match self.prayer_section_title.as_str() {
+            "Prayer times" => format!("Adhan {label} in {minutes} minutes"),
             "Вақти намоз" => format!("Азон {label} дар {minutes} дақиқа"),
             "د لمانځه وختونه" => format!("اذان {label} تر {minutes} دقیقو"),
             _ => format!("اذان {label} تا {minutes} دقیقه دیگر"),
@@ -44,6 +48,7 @@ impl UiStrings {
 
     pub fn prayer_notification_body(&self, label: &str, time: &str) -> String {
         match self.prayer_section_title.as_str() {
+            "Prayer times" => format!("{label} at {time}"),
             "Вақти намоз" => format!("{label} соат {time}"),
             "د لمانځه وختونه" => format!("{label} وخت {time}"),
             _ => format!("{label} ساعت {time}"),
@@ -52,6 +57,7 @@ impl UiStrings {
 
     pub fn prayer_adhan_summary(&self, label: &str) -> String {
         match self.prayer_section_title.as_str() {
+            "Prayer times" => format!("{label} time"),
             "Вақти намоз" => format!("Вақти {label}"),
             "د لمانځه وختونه" => format!("د {label} وخت"),
             _ => format!("وقت {label}"),
@@ -60,6 +66,7 @@ impl UiStrings {
 
     pub fn prayer_adhan_body(&self, label: &str) -> String {
         match self.prayer_section_title.as_str() {
+            "Prayer times" => format!("It is now time for {label} prayer"),
             "Вақти намоз" => format!("Акнун вақти намози {label}"),
             "د لمانځه وختونه" => format!("اوس د {label} لمانځه وخت دی"),
             _ => format!("اکنون وقت نماز {label}"),
@@ -84,6 +91,8 @@ fn persian() -> UiStrings {
         next_month_label: "ماه بعد".into(),
         prev_year_label: "سال قبل".into(),
         next_year_label: "سال بعد".into(),
+        adhan_stop_label: "قطع اذان".into(),
+        adhan_playing_label: "در حال پخش اذان".into(),
     }
 }
 
@@ -100,6 +109,8 @@ fn dari() -> UiStrings {
         next_month_label: "ماه بعد".into(),
         prev_year_label: "سال قبل".into(),
         next_year_label: "سال بعد".into(),
+        adhan_stop_label: "قطع اذان".into(),
+        adhan_playing_label: "در حال پخش اذان".into(),
     }
 }
 
@@ -116,6 +127,26 @@ fn pashto() -> UiStrings {
         next_month_label: "راتلونکی ماه".into(),
         prev_year_label: "تیر کال".into(),
         next_year_label: "راتلونکی کال".into(),
+        adhan_stop_label: "اذان بند کړئ".into(),
+        adhan_playing_label: "اذان غږېږي".into(),
+    }
+}
+
+fn english() -> UiStrings {
+    UiStrings {
+        holidays_prefix: "Holidays:".into(),
+        prayer_section_title: "Prayer times".into(),
+        next_prayer_prefix: "Next:".into(),
+        today_button: "Today".into(),
+        settings_button: "BOLOOT Settings".into(),
+        holiday_notification_title: "Holiday tomorrow".into(),
+        holiday_notification_body_prefix: "Tomorrow:".into(),
+        prev_month_label: "Previous month".into(),
+        next_month_label: "Next month".into(),
+        prev_year_label: "Previous year".into(),
+        next_year_label: "Next year".into(),
+        adhan_stop_label: "Stop adhan".into(),
+        adhan_playing_label: "Playing adhan".into(),
     }
 }
 
@@ -132,6 +163,8 @@ fn tajik() -> UiStrings {
         next_month_label: "Моҳи баъдӣ".into(),
         prev_year_label: "Соли қаблӣ".into(),
         next_year_label: "Соли баъдӣ".into(),
+        adhan_stop_label: "Қатъ кардани азон".into(),
+        adhan_playing_label: "Азон пахш мешавад".into(),
     }
 }
 
@@ -144,6 +177,13 @@ mod tests {
         let ui = UiStrings::for_language(LanguageVariant::Persian);
         assert_eq!(ui.prev_month_label, "ماه قبل");
         assert_eq!(ui.next_year_label, "سال بعد");
+    }
+
+    #[test]
+    fn english_uses_latin_nav_labels() {
+        let ui = UiStrings::for_language(LanguageVariant::English);
+        assert_eq!(ui.prev_month_label, "Previous month");
+        assert_eq!(ui.today_button, "Today");
     }
 
     #[test]

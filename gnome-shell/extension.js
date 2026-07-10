@@ -8,10 +8,12 @@ import Pango from 'gi://Pango';
 
 import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as MessageTray from 'resource:///org/gnome/shell/ui/messageTray.js';
 import * as Util from 'resource:///org/gnome/shell/misc/util.js';
 
 const APP_NAME = 'BOLOOT Persian Calendar';
 const WEBSITE_LABEL = 'boloot.ir';
+
 const DBUS_NAME = 'org.boloot.Calendar';
 const DBUS_PATH = '/org/boloot/Calendar';
 const DBUS_IFACE = 'org.boloot.Calendar';
@@ -403,6 +405,23 @@ function fetchJson(method, params = null) {
     }
 }
 
+function wisdomTextDirection(settings) {
+    const lang = settings?.calendar?.language;
+    if (lang === 'english' || lang === 'tajik')
+        return Clutter.TextDirection.LTR;
+    return Clutter.TextDirection.RTL;
+}
+
+function applyWisdomTextDirection(overlay, titleLabel, bodyLabel, settings) {
+    const dir = wisdomTextDirection(settings);
+    if (overlay)
+        overlay.text_direction = dir;
+    if (titleLabel)
+        titleLabel.text_direction = dir;
+    if (bodyLabel)
+        bodyLabel.text_direction = dir;
+}
+
 function fetchSettings() {
     const reply = dbusCall('GetSettings', null, new GLib.VariantType('(s)'));
     if (!reply)
@@ -424,6 +443,19 @@ function fetchSettingsCached(maxAgeUs = 5_000_000) {
     _settingsCache = fetchSettings();
     _settingsCacheTime = now;
     return _settingsCache;
+}
+
+function dbusCallBool(method) {
+    const reply = dbusCall(method, null, new GLib.VariantType('(b)'));
+    return reply ? reply.deepUnpack()[0] : false;
+}
+
+function isAdhanPlaying() {
+    return dbusCallBool('IsAdhanPlaying');
+}
+
+function stopAdhan() {
+    return dbusCallBool('StopAdhan');
 }
 
 function invalidateSettingsCache() {
@@ -955,6 +987,15 @@ class BolootMenuSection extends St.BoxLayout {
         this._dateMenu = null;
         this._dayButtons = [];
         this._isRtl = false;
+        this._adhanPlaying = false;
+    }
+
+    setAdhanPlaying(playing) {
+        if (this._adhanPlaying === playing)
+            return;
+        this._adhanPlaying = playing;
+        if (this._prayerBox)
+            this._renderPrayer(false);
     }
 
     setDateMenu(dateMenu) {
@@ -1439,6 +1480,31 @@ class BolootMenuSection extends St.BoxLayout {
             this._prayerBox.add_child(nextLabel);
         }
 
+        if (this._adhanPlaying) {
+            const playingRow = new St.BoxLayout({
+                style_class: 'boloot-adhan-playing-row',
+            });
+            const playingLabel = makeEllipsisLabel({
+                text: ui.adhan_playing_label || '',
+                style_class: 'boloot-adhan-playing-label',
+            });
+            playingRow.add_child(playingLabel);
+            const stopBtn = new St.Button({
+                style_class: 'boloot-adhan-stop-btn',
+                can_focus: true,
+            });
+            stopBtn.child = new St.Icon({
+                icon_name: 'media-playback-stop-symbolic',
+                icon_size: 16,
+            });
+            stopBtn.accessible_name = ui.adhan_stop_label || '';
+            stopBtn.connect('clicked', () => {
+                stopAdhan();
+            });
+            playingRow.add_child(stopBtn);
+            this._prayerBox.add_child(playingRow);
+        }
+
         if (prayerCfg.display_mode === 'countdown' && !this._reducedMotion) {
             this._prayerRefreshTimer = GLib.timeout_add_seconds(
                 GLib.PRIORITY_DEFAULT,
@@ -1661,6 +1727,21 @@ class DateMenuIntegrator extends GObject.Object {
         this._sessionModeId = 0;
         this._greeterDelayIds = [];
         this._clockAppliedOnce = false;
+        this._adhanStopBtn = null;
+        this._adhanPollId = 0;
+        this._adhanWasPlaying = false;
+        this._adhanSource = null;
+        this._adhanNotification = null;
+        this._wisdomTooltipText = '';
+        this._wisdomOverlay = null;
+        this._wisdomTitleLabel = null;
+        this._wisdomBodyLabel = null;
+        this._wisdomStageMotionId = 0;
+        this._wisdomPanelLeaveId = 0;
+        this._wisdomEnterId = 0;
+        this._wisdomLeaveId = 0;
+        this._wisdomOverlayShown = false;
+        this._wisdomSettings = null;
     }
 
     enable() {
@@ -1720,9 +1801,13 @@ class DateMenuIntegrator extends GObject.Object {
 
         this._openStateId = this._dateMenu.menu.connect('open-state-changed', (_menu, isOpen) => {
             if (isOpen)
+                this._hideWisdomOverlay();
+            if (isOpen)
                 this._onMenuOpen();
-            else
+            else {
+                this._hideWisdomOverlay();
                 this._calendarSection?._stopPrayerTimers();
+            }
         });
 
         const display = this._dateMenu._clockDisplay;
@@ -1735,7 +1820,22 @@ class DateMenuIntegrator extends GObject.Object {
             });
         }
 
+        this._adhanStopBtn = new St.Button({
+            style_class: 'boloot-adhan-stop-topbar',
+            visible: false,
+            can_focus: true,
+        });
+        this._adhanStopBtn.child = new St.Icon({
+            icon_name: 'media-playback-stop-symbolic',
+            icon_size: 14,
+        });
+        this._adhanStopBtn.connect('clicked', () => stopAdhan());
+        const clockParent = display.get_parent();
+        if (clockParent)
+            clockParent.insert_child_above(this._adhanStopBtn, display);
+
         this._rearmTimer();
+        this._syncAdhanPoll();
 
         this._ownerWatchId = dbusBus().watch_name(
             DBUS_NAME,
@@ -1947,6 +2047,7 @@ class DateMenuIntegrator extends GObject.Object {
 
         const settings = fetchSettingsCached();
         if (settings?.appearance?.show_in_top_bar === false) {
+            this._applyTopBarTooltip('');
             if (!this._restoringGnomeClock) {
                 this._restoringGnomeClock = true;
                 this._dateMenu._clock?.notify('clock');
@@ -1985,11 +2086,333 @@ class DateMenuIntegrator extends GObject.Object {
             holidaysToday = [];
         }
         applyTopBarDayStyle(display, calendarView, settings, holidaysToday);
+        const tooltip = calendarView?.panel_tooltip || '';
+        this._applyTopBarTooltip(tooltip);
+    }
+
+    _applyTopBarTooltip(tooltip) {
+        const settings = fetchSettingsCached();
+        const enabled = settings?.appearance?.show_wisdom_tooltip !== false;
+        this._wisdomTooltipText = enabled ? (tooltip || '') : '';
+        this._wisdomSettings = settings;
+        this._syncWisdomHoverHandlers();
+        if (!this._wisdomTooltipText)
+            this._hideWisdomOverlay();
+    }
+
+    _clearWisdomHoverHandlers() {
+        const anchor = this._dateMenu;
+        if (anchor) {
+            if (this._wisdomEnterId) {
+                anchor.disconnect(this._wisdomEnterId);
+                this._wisdomEnterId = 0;
+            }
+            if (this._wisdomLeaveId) {
+                anchor.disconnect(this._wisdomLeaveId);
+                this._wisdomLeaveId = 0;
+            }
+        }
+        if (this._wisdomStageMotionId) {
+            global.stage.disconnect(this._wisdomStageMotionId);
+            this._wisdomStageMotionId = 0;
+        }
+        if (this._wisdomPanelLeaveId) {
+            Main.panel.disconnect(this._wisdomPanelLeaveId);
+            this._wisdomPanelLeaveId = 0;
+        }
+        this._hideWisdomOverlay();
+    }
+
+    _wisdomPositionActor() {
+        return this._dateMenu?._clockDisplay || this._dateMenu || null;
+    }
+
+    _pointerInClockDisplay(px, py) {
+        const display = this._dateMenu?._clockDisplay;
+        if (!display)
+            return false;
+        const [x, y] = display.get_transformed_position();
+        const [w, h] = display.get_transformed_size();
+        return w > 0 && h > 0 &&
+            px >= x && px <= x + w &&
+            py >= y && py <= y + h;
+    }
+
+    _syncWisdomPointerIfOverClock() {
+        if (!this._wisdomTooltipText)
+            return;
+        const [px, py] = global.get_pointer();
+        if (this._pointerInClockDisplay(px, py))
+            this._showWisdomOverlay();
+    }
+
+    _onWisdomPointerMove(px, py) {
+        if (!this._wisdomTooltipText)
+            return;
+        if (this._pointerInClockDisplay(px, py))
+            this._showWisdomOverlay();
+        else if (this._wisdomOverlayShown)
+            this._hideWisdomOverlay();
+    }
+
+    _onWisdomPointerMotion(event) {
+        const [px, py] = event.get_coords();
+        this._onWisdomPointerMove(px, py);
+    }
+
+    _syncWisdomHoverHandlers() {
+        if (!this._dateMenu)
+            return;
+
+        this._clearWisdomHoverHandlers();
+
+        if (!this._wisdomTooltipText)
+            return;
+
+        const anchor = this._dateMenu;
+        anchor.track_hover = true;
+        this._wisdomEnterId = anchor.connect('enter-event', () => {
+            const [px, py] = global.get_pointer();
+            if (this._pointerInClockDisplay(px, py))
+                this._showWisdomOverlay();
+            return Clutter.EVENT_PROPAGATE;
+        });
+        this._wisdomLeaveId = anchor.connect('leave-event', () => {
+            this._hideWisdomOverlay();
+            return Clutter.EVENT_PROPAGATE;
+        });
+
+        this._wisdomStageMotionId = global.stage.connect('motion-event', (_actor, event) => {
+            this._onWisdomPointerMotion(event);
+            return Clutter.EVENT_PROPAGATE;
+        });
+
+        Main.panel.track_hover = true;
+        this._wisdomPanelLeaveId = Main.panel.connect('leave-event', () => {
+            this._hideWisdomOverlay();
+            return Clutter.EVENT_PROPAGATE;
+        });
+
+        this._syncWisdomPointerIfOverClock();
+    }
+
+    _applyWisdomBodyLayout() {
+        if (!this._wisdomBodyLabel)
+            return;
+        this._wisdomBodyLabel.width = 336;
+        const ct = this._wisdomBodyLabel.clutter_text;
+        if (!ct)
+            return;
+        ct.line_wrap = true;
+        ct.ellipsize = Pango.EllipsizeMode.NONE;
+        ct.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
+    }
+
+    _setWisdomOverlayText(text) {
+        const nl = text.indexOf('\n');
+        const title = nl >= 0 ? text.slice(0, nl) : text;
+        const body = nl >= 0 ? text.slice(nl + 1) : '';
+        if (this._wisdomTitleLabel)
+            this._wisdomTitleLabel.text = title;
+        if (this._wisdomBodyLabel)
+            this._wisdomBodyLabel.text = body;
+    }
+
+    _ensureWisdomOverlay() {
+        if (this._wisdomOverlay && this._wisdomTitleLabel && this._wisdomBodyLabel) {
+            this._applyWisdomBodyLayout();
+            return;
+        }
+        if (this._wisdomOverlay) {
+            Main.layoutManager.removeChrome(this._wisdomOverlay);
+            this._wisdomOverlay.destroy();
+            this._wisdomOverlay = null;
+            this._wisdomTitleLabel = null;
+            this._wisdomBodyLabel = null;
+        }
+
+        this._wisdomOverlay = new St.BoxLayout({
+            style_class: 'boloot-wisdom-tooltip',
+            vertical: true,
+            reactive: false,
+            visible: false,
+            width: 360,
+        });
+        this._wisdomTitleLabel = new St.Label({
+            style_class: 'boloot-wisdom-tooltip-title',
+            x_expand: true,
+        });
+        this._wisdomBodyLabel = new St.Label({
+            style_class: 'boloot-wisdom-tooltip-body',
+            x_expand: true,
+        });
+        this._wisdomOverlay.add_child(this._wisdomTitleLabel);
+        this._wisdomOverlay.add_child(this._wisdomBodyLabel);
+        this._applyWisdomBodyLayout();
+        applyWisdomTextDirection(
+            this._wisdomOverlay,
+            this._wisdomTitleLabel,
+            this._wisdomBodyLabel,
+            this._wisdomSettings || fetchSettingsCached(),
+        );
+        Main.layoutManager.addTopChrome(this._wisdomOverlay, {
+            affectsStruts: false,
+            trackFullscreen: true,
+        });
+    }
+
+    _positionWisdomOverlay() {
+        if (!this._wisdomOverlay?.visible)
+            return;
+        const anchor = this._wisdomPositionActor();
+        if (!anchor)
+            return;
+
+        const [x, y] = anchor.get_transformed_position();
+        const [, height] = anchor.get_transformed_size();
+        const [, overlayHeight] = this._wisdomOverlay.get_preferred_size(-1, -1);
+        const overlayWidth = this._wisdomOverlay.get_width?.() || 320;
+        const monitor = Main.layoutManager.primaryMonitor;
+        let left = Math.round(x);
+        let top = Math.round(y + height + 4);
+        const maxLeft = monitor.x + monitor.width - overlayWidth - 8;
+        left = Math.max(monitor.x + 8, Math.min(left, maxLeft));
+        if (top + overlayHeight > monitor.y + monitor.height - 8)
+            top = Math.round(y - overlayHeight - 4);
+        this._wisdomOverlay.set_position(left, top);
+    }
+
+    _showWisdomOverlay() {
+        if (!this._wisdomTooltipText || !this._dateMenu || this._wisdomOverlayShown)
+            return;
+        this._ensureWisdomOverlay();
+        this._setWisdomOverlayText(this._wisdomTooltipText);
+        applyWisdomTextDirection(
+            this._wisdomOverlay,
+            this._wisdomTitleLabel,
+            this._wisdomBodyLabel,
+            this._wisdomSettings || fetchSettingsCached(),
+        );
+        this._wisdomOverlay.visible = true;
+        this._wisdomOverlayShown = true;
+        GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+            this._positionWisdomOverlay();
+            return GLib.SOURCE_REMOVE;
+        });
+    }
+
+    _hideWisdomOverlay() {
+        if (!this._wisdomOverlayShown)
+            return;
+        if (this._wisdomOverlay)
+            this._wisdomOverlay.visible = false;
+        this._wisdomOverlayShown = false;
+    }
+
+    _destroyWisdomOverlay() {
+        this._hideWisdomOverlay();
+        if (this._wisdomOverlay) {
+            Main.layoutManager.removeChrome(this._wisdomOverlay);
+            this._wisdomOverlay.destroy();
+            this._wisdomOverlay = null;
+            this._wisdomTitleLabel = null;
+            this._wisdomBodyLabel = null;
+        }
+    }
+
+    _syncAdhanPoll() {
+        const settings = fetchSettingsCached();
+        const adhanOn = settings?.prayer?.adhan_enabled;
+        if (!adhanOn) {
+            this._stopAdhanPoll();
+            this._updateAdhanUi(false);
+            return;
+        }
+        if (this._adhanPollId)
+            return;
+        this._adhanWasPlaying = isAdhanPlaying();
+        this._updateAdhanUi(this._adhanWasPlaying);
+        this._adhanPollId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 1, () => {
+            this._tickAdhanPlayback();
+            return GLib.SOURCE_CONTINUE;
+        });
+    }
+
+    _stopAdhanPoll() {
+        if (this._adhanPollId) {
+            GLib.source_remove(this._adhanPollId);
+            this._adhanPollId = 0;
+        }
+        this._dismissAdhanNotification();
+    }
+
+    _tickAdhanPlayback() {
+        const playing = isAdhanPlaying();
+        const settings = fetchSettingsCached();
+        if (playing && !this._adhanWasPlaying) {
+            if (settings?.prayer?.adhan_show_notification !== false)
+                this._showAdhanNotification();
+        }
+        if (!playing && this._adhanWasPlaying)
+            this._dismissAdhanNotification();
+        if (playing !== this._adhanWasPlaying)
+            this._updateAdhanUi(playing);
+        this._adhanWasPlaying = playing;
+    }
+
+    _updateAdhanUi(playing) {
+        if (this._adhanStopBtn) {
+            const settings = fetchSettingsCached();
+            this._adhanStopBtn.accessible_name =
+                this._calendarSection?._monthView?.ui?.adhan_stop_label
+                || settings?.prayer?.adhan_stop_label
+                || _('قطع اذان');
+            this._adhanStopBtn.visible = playing;
+        }
+        this._calendarSection?.setAdhanPlaying(playing);
+    }
+
+    _showAdhanNotification() {
+        try {
+            if (!this._adhanSource) {
+                this._adhanSource = new MessageTray.Source('boloot-calendar-adhan', APP_NAME);
+                Main.messageTray.add(this._adhanSource);
+            }
+            this._dismissAdhanNotification();
+            const monthView = fetchJson('GetMonthView', GLib.Variant.new('(ii)', [0, 0]));
+            const schedule = fetchJson('GetPrayerTimes');
+            const ui = monthView?.ui || {};
+            const prayer = schedule?.current || schedule?.next;
+            const title = ui.adhan_playing_label || APP_NAME;
+            const body = prayer
+                ? `${prayer.label} ${prayer.time}`
+                : (ui.adhan_playing_label || '');
+            const notification = new MessageTray.Notification(
+                this._adhanSource,
+                title,
+                body,
+            );
+            notification.addAction(ui.adhan_stop_label || _('قطع اذان'), () => {
+                stopAdhan();
+            });
+            this._adhanSource.notify(notification);
+            this._adhanNotification = notification;
+        } catch (e) {
+            log(`${APP_NAME}: adhan notification failed: ${e}`);
+        }
+    }
+
+    _dismissAdhanNotification() {
+        if (this._adhanNotification) {
+            this._adhanNotification.destroy();
+            this._adhanNotification = null;
+        }
     }
 
     onSettingsChanged() {
         invalidateSettingsCache();
         this._rearmTimer();
+        this._syncAdhanPoll();
         GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
             this._applyClock();
             return GLib.SOURCE_REMOVE;
@@ -2004,6 +2427,17 @@ class DateMenuIntegrator extends GObject.Object {
     }
 
     disable() {
+        this._stopAdhanPoll();
+        if (this._adhanStopBtn) {
+            this._adhanStopBtn.destroy();
+            this._adhanStopBtn = null;
+        }
+        if (this._adhanSource) {
+            Main.messageTray.remove(this._adhanSource);
+            this._adhanSource.destroy();
+            this._adhanSource = null;
+        }
+        this._adhanNotification = null;
         if (this._retryId) {
             GLib.source_remove(this._retryId);
             this._retryId = 0;
@@ -2062,6 +2496,9 @@ class DateMenuIntegrator extends GObject.Object {
             this._bolootContainer = null;
         }
         if (this._dateMenu) {
+            this._clearWisdomHoverHandlers();
+            this._destroyWisdomOverlay();
+            this._wisdomTooltipText = '';
             this._applyGnomeWidgetVisibility(false);
             this._dateMenu.menu.box.remove_style_class_name('boloot-datemenu-popup');
             if (this._dateMenu._calendar)

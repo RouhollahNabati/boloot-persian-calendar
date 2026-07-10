@@ -1,6 +1,6 @@
 {
   "cities": [
-    { "id": "dushanbe", "name": "Dushanbe", "name_fa": "دوشنبه", "latitude": 38.5598, "longitude": 68.7740, "timezone": "Asia/Dushanbe", "country": "tajikistan" },
-    { "id": "khujand", "name": "Khujand", "name_fa": "خجند", "latitude": 40.2826, "longitude": 69.6222, "timezone": "Asia/Dushanbe", "country": "tajikistan" }
+    { "id": "dushanbe", "name": "Dushanbe", "name_fa": "دوشنبه", "latitude": 38.5598, "longitude": 68.7740, "timezone": "Asia/Dushanbe", "country": "tajikistan", "region": "tajikistan" },
+    { "id": "khujand", "name": "Khujand", "name_fa": "خجند", "latitude": 40.2826, "longitude": 69.6222, "timezone": "Asia/Dushanbe", "country": "tajikistan", "region": "tajikistan" }
   ]
 }

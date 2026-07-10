@@ -1,15 +1,10 @@
+use std::str::FromStr;
+
 use serde::{Deserialize, Serialize};
 
 use crate::calendar::CalendarSystem;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
-#[serde(rename_all = "snake_case")]
-pub enum CountryProfile {
-    #[default]
-    Iran,
-    Afghanistan,
-    Tajikistan,
-}
+pub use crate::countries::CountryProfile;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
 #[serde(rename_all = "snake_case")]
@@ -19,6 +14,7 @@ pub enum LanguageVariant {
     Dari,
     Pashto,
     Tajik,
+    English,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
@@ -72,6 +68,23 @@ impl Weekday {
     }
 }
 
+impl FromStr for Weekday {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s.to_ascii_lowercase().as_str() {
+            "saturday" => Ok(Self::Saturday),
+            "sunday" => Ok(Self::Sunday),
+            "monday" => Ok(Self::Monday),
+            "tuesday" => Ok(Self::Tuesday),
+            "wednesday" => Ok(Self::Wednesday),
+            "thursday" => Ok(Self::Thursday),
+            "friday" => Ok(Self::Friday),
+            _ => Err(()),
+        }
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LocaleProfile {
     pub country: CountryProfile,
@@ -90,11 +103,14 @@ pub struct LocaleProfile {
 
 impl LocaleProfile {
     pub fn resolve(country: CountryProfile, language: LanguageVariant) -> Self {
-        match (country, language) {
-            (CountryProfile::Iran, _) => iran(),
-            (CountryProfile::Afghanistan, LanguageVariant::Pashto) => afghanistan_pashto(),
-            (CountryProfile::Afghanistan, _) => afghanistan_dari(),
-            (CountryProfile::Tajikistan, _) => tajikistan(),
+        match (country.as_str(), language) {
+            (_, LanguageVariant::English) => english_profile(&country),
+            ("iran", _) => iran(country),
+            ("afghanistan", LanguageVariant::Pashto) => afghanistan_pashto(country),
+            ("afghanistan", _) => afghanistan_dari(country),
+            ("tajikistan", _) => tajikistan(country),
+            (_, LanguageVariant::Persian) => persian_diaspora_profile(&country),
+            _ => english_profile(&country),
         }
     }
 
@@ -173,9 +189,9 @@ fn hijri_weekday_short() -> Vec<String> {
         .collect()
 }
 
-fn iran() -> LocaleProfile {
+fn iran(country: CountryProfile) -> LocaleProfile {
     LocaleProfile {
-        country: CountryProfile::Iran,
+        country,
         language: LanguageVariant::Persian,
         month_names: vec![
             "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر",
@@ -204,9 +220,9 @@ fn iran() -> LocaleProfile {
     }
 }
 
-fn afghanistan_dari() -> LocaleProfile {
+fn afghanistan_dari(country: CountryProfile) -> LocaleProfile {
     LocaleProfile {
-        country: CountryProfile::Afghanistan,
+        country,
         language: LanguageVariant::Dari,
         month_names: vec![
             "حمل", "ثور", "جوزا", "سرطان", "اسد", "سنبله", "میزان", "عقرب", "قوس", "جدی",
@@ -235,8 +251,8 @@ fn afghanistan_dari() -> LocaleProfile {
     }
 }
 
-fn afghanistan_pashto() -> LocaleProfile {
-    let mut profile = afghanistan_dari();
+fn afghanistan_pashto(country: CountryProfile) -> LocaleProfile {
+    let mut profile = afghanistan_dari(country);
     profile.language = LanguageVariant::Pashto;
     profile.month_names = vec![
         "وری", "غویی", "غبرګولی", "چنګاښ", "زمری", "وږی", "تله", "لړم", "لیندۍ", "مرغومی",
@@ -249,9 +265,60 @@ fn afghanistan_pashto() -> LocaleProfile {
     profile
 }
 
-fn tajikistan() -> LocaleProfile {
+fn jalali_month_names_english() -> Vec<String> {
+    vec![
+        "Farvardin", "Ordibehesht", "Khordad", "Tir", "Mordad", "Shahrivar", "Mehr", "Aban",
+        "Azar", "Dey", "Bahman", "Esfand",
+    ]
+    .into_iter()
+    .map(String::from)
+    .collect()
+}
+
+fn english_weekday_names() -> Vec<String> {
+    vec![
+        "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+    ]
+    .into_iter()
+    .map(String::from)
+    .collect()
+}
+
+fn english_weekday_short() -> Vec<String> {
+    vec!["Sa", "Su", "Mo", "Tu", "We", "Th", "Fr"]
+        .into_iter()
+        .map(String::from)
+        .collect()
+}
+
+fn english_profile(country: &CountryProfile) -> LocaleProfile {
     LocaleProfile {
-        country: CountryProfile::Tajikistan,
+        country: country.clone(),
+        language: LanguageVariant::English,
+        month_names: jalali_month_names_english(),
+        hijri_month_names: hijri_month_names(),
+        weekday_names: english_weekday_names(),
+        weekday_short: english_weekday_short(),
+        hijri_weekday_names: hijri_weekday_names(),
+        hijri_weekday_short: hijri_weekday_short(),
+        default_week_start: country.default_week_start(),
+        weekend_days: country.weekend_days(),
+        default_timezone: country.default_timezone(),
+        locale_code: "en".into(),
+    }
+}
+
+fn persian_diaspora_profile(country: &CountryProfile) -> LocaleProfile {
+    let mut profile = iran(country.clone());
+    profile.default_week_start = country.default_week_start();
+    profile.weekend_days = country.weekend_days();
+    profile.default_timezone = country.default_timezone();
+    profile
+}
+
+fn tajikistan(country: CountryProfile) -> LocaleProfile {
+    LocaleProfile {
+        country,
         language: LanguageVariant::Tajik,
         month_names: vec![
             "Фарвардин", "Урдибихишт", "Хурдод", "Тир", "Мурдод", "Шаҳривар", "Мехр", "Абон",
@@ -285,9 +352,17 @@ mod tests {
     use super::*;
 
     #[test]
+    fn english_locale_uses_latin_months() {
+        let profile = LocaleProfile::resolve(CountryProfile::iran(), LanguageVariant::English);
+        assert_eq!(profile.month_names[0], "Farvardin");
+        assert_eq!(profile.weekday_names[0], "Saturday");
+        assert_eq!(profile.locale_code, "en");
+    }
+
+    #[test]
     fn afghan_months_differ_from_iran() {
-        let ir = iran();
-        let af = afghanistan_dari();
+        let ir = iran(CountryProfile::iran());
+        let af = afghanistan_dari(CountryProfile::afghanistan());
         assert_ne!(ir.month_names[0], af.month_names[0]);
         assert_eq!(ir.month_names[0], "فروردین");
         assert_eq!(af.month_names[0], "حمل");

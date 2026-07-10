@@ -98,7 +98,7 @@ fn build_jalali_month_view(
 
     let grid = calendar.month_grid_padded(year, month, week_start)?;
     let month_holidays = if config.calendar.show_holidays {
-        holidays.for_month(config.calendar.country, year, month, calendar)
+        holidays.for_month(&config.calendar.country, year, month, calendar)
     } else {
         Vec::new()
     };
@@ -111,7 +111,7 @@ fn build_jalali_month_view(
             && date.jalali_month == today.jalali_month
             && date.jalali_day == today.jalali_day;
         let day_holidays = if config.calendar.show_holidays {
-            holidays.for_date(config.calendar.country, &date, calendar)
+            holidays.for_date(&config.calendar.country, &date, calendar)
         } else {
             Vec::new()
         };
@@ -184,7 +184,7 @@ fn build_hijri_month_view(
 
     let grid = calendar.hijri_month_grid_padded(year, month, week_start)?;
     let month_holidays = if config.calendar.show_holidays {
-        holidays.for_hijri_month(config.calendar.country, year, month, calendar)
+        holidays.for_hijri_month(&config.calendar.country, year, month, calendar)
     } else {
         Vec::new()
     };
@@ -197,7 +197,7 @@ fn build_hijri_month_view(
             && date.hijri_month == today.hijri_month
             && date.hijri_day == today.hijri_day;
         let day_holidays = if config.calendar.show_holidays {
-            holidays.for_date(config.calendar.country, &date, calendar)
+            holidays.for_date(&config.calendar.country, &date, calendar)
         } else {
             Vec::new()
         };
@@ -253,7 +253,7 @@ fn format_gregorian_iso(date: &chrono::NaiveDate) -> String {
 
 fn text_direction_for_language(language: LanguageVariant) -> String {
     match language {
-        LanguageVariant::Tajik => "ltr".to_string(),
+        LanguageVariant::English | LanguageVariant::Tajik => "ltr".to_string(),
         LanguageVariant::Persian | LanguageVariant::Dari | LanguageVariant::Pashto => {
             "rtl".to_string()
         }
@@ -392,7 +392,7 @@ mod tests {
 
     #[test]
     fn padded_grid_has_seven_columns() {
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let grid = calendar
             .month_grid_padded(1404, 4, Weekday::Saturday)
             .unwrap();
@@ -402,7 +402,7 @@ mod tests {
 
     #[test]
     fn hijri_padded_grid_has_seven_columns() {
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let grid = calendar
             .hijri_month_grid_padded(1447, 9, Weekday::Saturday)
             .unwrap();
@@ -413,7 +413,7 @@ mod tests {
     #[test]
     fn padding_days_are_outside_current_month() {
         let config = test_service_config();
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let holidays = HolidayStore::embedded().unwrap_or_default();
         let view = build_month_view(
             &config,
@@ -440,7 +440,7 @@ mod tests {
     fn dual_calendar_includes_secondary_label() {
         let mut config = test_service_config();
         config.calendar.calendar_type = CalendarSystem::DualJalaliGregorian;
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let holidays = HolidayStore::embedded().unwrap_or_default();
         let view = build_month_view(
             &config,
@@ -463,7 +463,7 @@ mod tests {
     #[test]
     fn title_uses_month_name_and_year() {
         let config = test_service_config();
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let holidays = HolidayStore::embedded().unwrap_or_default();
         let view = build_month_view(
             &config,
@@ -484,7 +484,7 @@ mod tests {
     fn hijri_month_view_uses_arabic_weekday_headers() {
         let mut config = test_service_config();
         config.calendar.calendar_type = CalendarSystem::Hijri;
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let holidays = HolidayStore::embedded().unwrap_or_default();
         let view = build_month_view(
             &config,
@@ -508,7 +508,7 @@ mod tests {
     #[test]
     fn weekend_header_indices_serialize_in_month_view() {
         let config = test_service_config();
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let holidays = HolidayStore::embedded().unwrap_or_default();
         let view = build_month_view(
             &config,
@@ -527,7 +527,7 @@ mod tests {
     #[test]
     fn weekend_header_indices_mark_friday_for_iran() {
         let config = test_service_config();
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let holidays = HolidayStore::embedded().unwrap_or_default();
         let view = build_month_view(
             &config,
@@ -545,7 +545,7 @@ mod tests {
     #[test]
     fn cells_include_gregorian_date() {
         let config = test_service_config();
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let holidays = HolidayStore::embedded().unwrap_or_default();
         let view = build_month_view(
             &config,
@@ -570,7 +570,7 @@ mod tests {
 
     #[test]
     fn gregorian_calendar_uses_english_nav_and_ltr() {
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let holidays = HolidayStore::embedded().unwrap_or_default();
 
         let mut gregorian_config = test_service_config();
@@ -591,7 +591,7 @@ mod tests {
 
     #[test]
     fn text_direction_is_rtl_for_persian_and_ltr_for_tajik() {
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
         let holidays = HolidayStore::embedded().unwrap_or_default();
 
         let mut persian_config = test_service_config();
@@ -610,7 +610,7 @@ mod tests {
         let mut tajik_config = test_service_config();
         tajik_config.calendar.language = LanguageVariant::Tajik;
         let tajik_calendar =
-            CalendarEngine::new(CountryProfile::Tajikistan, LanguageVariant::Tajik);
+            CalendarEngine::new(CountryProfile::tajikistan(), LanguageVariant::Tajik);
         let tajik_view = build_month_view(
             &tajik_config,
             &tajik_calendar,
@@ -631,8 +631,8 @@ mod tests {
             return;
         }
 
-        let calendar = CalendarEngine::new(CountryProfile::Iran, LanguageVariant::Persian);
-        let year_holidays = holidays.for_year(CountryProfile::Iran, 1404, &calendar);
+        let calendar = CalendarEngine::new(CountryProfile::iran(), LanguageVariant::Persian);
+        let year_holidays = holidays.for_year(&CountryProfile::iran(), 1404, &calendar);
         let lunar = year_holidays.iter().find(|h| h.is_lunar);
         if let Some(holiday) = lunar {
             let tooltip = build_tooltip(&[holiday.clone()]).unwrap();

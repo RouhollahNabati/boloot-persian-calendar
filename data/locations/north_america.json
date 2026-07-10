@@ -1,0 +1,474 @@
+{
+  "cities": [
+    {
+      "id": "basse_terre",
+      "name": "Basse-Terre",
+      "name_fa": "جزیره گوادلوپ",
+      "latitude": 16.25,
+      "longitude": -61.583333,
+      "timezone": "America/Guadeloupe",
+      "country": "guadeloupe",
+      "region": "north_america"
+    },
+    {
+      "id": "basseterre",
+      "name": "Basseterre",
+      "name_fa": "سنت کیتس و نویس",
+      "latitude": 17.3026,
+      "longitude": -62.7177,
+      "timezone": "America/St_Kitts",
+      "country": "saint_kitts_nevis",
+      "region": "north_america"
+    },
+    {
+      "id": "belmopan",
+      "name": "Belmopan",
+      "name_fa": "بلیز",
+      "latitude": 17.251,
+      "longitude": -88.759,
+      "timezone": "America/Belize",
+      "country": "belize",
+      "region": "north_america"
+    },
+    {
+      "id": "bridgetown",
+      "name": "Bridgetown",
+      "name_fa": "باربادوس",
+      "latitude": 13.1939,
+      "longitude": -59.5432,
+      "timezone": "America/Barbados",
+      "country": "barbados",
+      "region": "north_america"
+    },
+    {
+      "id": "castries",
+      "name": "Castries",
+      "name_fa": "سنت لوسیا",
+      "latitude": 14.0101,
+      "longitude": -60.9875,
+      "timezone": "America/St_Lucia",
+      "country": "saint_lucia",
+      "region": "north_america"
+    },
+    {
+      "id": "charlotte_amalie",
+      "name": "Charlotte Amalie",
+      "name_fa": "جزایر ویرجین آمریکا",
+      "latitude": 18.34,
+      "longitude": -64.93,
+      "timezone": "America/St_Thomas",
+      "country": "us_virgin_islands",
+      "region": "north_america"
+    },
+    {
+      "id": "chicago",
+      "name": "Chicago",
+      "name_fa": "شیکاگو",
+      "latitude": 41.8781,
+      "longitude": -87.6298,
+      "timezone": "America/Chicago",
+      "country": "usa",
+      "region": "north_america"
+    },
+    {
+      "id": "ciudad_de_mexico",
+      "name": "Ciudad de México",
+      "name_fa": "مکزیک",
+      "latitude": 19.4326,
+      "longitude": -99.1332,
+      "timezone": "America/Bahia_Banderas",
+      "country": "mexico",
+      "region": "north_america"
+    },
+    {
+      "id": "cockburn_town",
+      "name": "Cockburn Town",
+      "name_fa": "جزایر تورکس و کایکوس",
+      "latitude": 21.75,
+      "longitude": -71.58333333,
+      "timezone": "America/Grand_Turk",
+      "country": "turks_and_caicos_islands",
+      "region": "north_america"
+    },
+    {
+      "id": "fort_de_france",
+      "name": "Fort-de-France",
+      "name_fa": "مونتسرات",
+      "latitude": 14.666667,
+      "longitude": -61.0,
+      "timezone": "America/Martinique",
+      "country": "martinique",
+      "region": "north_america"
+    },
+    {
+      "id": "george_town",
+      "name": "George Town",
+      "name_fa": "جزایر کیمن",
+      "latitude": 19.5,
+      "longitude": -80.5,
+      "timezone": "America/Cayman",
+      "country": "cayman_islands",
+      "region": "north_america"
+    },
+    {
+      "id": "guatemala_city",
+      "name": "Guatemala City",
+      "name_fa": "گواتمالا",
+      "latitude": 14.6349,
+      "longitude": -90.5069,
+      "timezone": "America/Guatemala",
+      "country": "guatemala",
+      "region": "north_america"
+    },
+    {
+      "id": "gustavia",
+      "name": "Gustavia",
+      "name_fa": "سن-بارتلمی",
+      "latitude": 18.5,
+      "longitude": -63.41666666,
+      "timezone": "America/St_Barthelemy",
+      "country": "saint_barthelemy",
+      "region": "north_america"
+    },
+    {
+      "id": "hamilton",
+      "name": "Hamilton",
+      "name_fa": "برمودا",
+      "latitude": 32.33333333,
+      "longitude": -64.75,
+      "timezone": "Atlantic/Bermuda",
+      "country": "bermuda",
+      "region": "north_america"
+    },
+    {
+      "id": "havana",
+      "name": "Havana",
+      "name_fa": "کوبا",
+      "latitude": 23.1136,
+      "longitude": -82.3666,
+      "timezone": "America/Havana",
+      "country": "cuba",
+      "region": "north_america"
+    },
+    {
+      "id": "houston",
+      "name": "Houston",
+      "name_fa": "هیوستون",
+      "latitude": 29.7604,
+      "longitude": -95.3698,
+      "timezone": "America/Chicago",
+      "country": "usa",
+      "region": "north_america"
+    },
+    {
+      "id": "kingston",
+      "name": "Kingston",
+      "name_fa": "جامائیکا",
+      "latitude": 18.0179,
+      "longitude": -76.8099,
+      "timezone": "America/Jamaica",
+      "country": "jamaica",
+      "region": "north_america"
+    },
+    {
+      "id": "kingstown",
+      "name": "Kingstown",
+      "name_fa": "سنت وینسنت و گرنادین‌ها",
+      "latitude": 13.16,
+      "longitude": -61.2248,
+      "timezone": "America/St_Vincent",
+      "country": "saint_vincent_grenadines",
+      "region": "north_america"
+    },
+    {
+      "id": "kralendijk",
+      "name": "Kralendijk",
+      "name_fa": "بونیر",
+      "latitude": 12.15,
+      "longitude": -68.266667,
+      "timezone": "America/Kralendijk",
+      "country": "bonaire_sint_eustatius_and_saba",
+      "region": "north_america"
+    },
+    {
+      "id": "los_angeles",
+      "name": "Los Angeles",
+      "name_fa": "لس‌آنجلس",
+      "latitude": 34.0522,
+      "longitude": -118.2437,
+      "timezone": "America/Los_Angeles",
+      "country": "usa",
+      "region": "north_america"
+    },
+    {
+      "id": "managua",
+      "name": "Managua",
+      "name_fa": "نیکاراگوئه",
+      "latitude": 12.114,
+      "longitude": -86.2362,
+      "timezone": "America/Managua",
+      "country": "nicaragua",
+      "region": "north_america"
+    },
+    {
+      "id": "marigot",
+      "name": "Marigot",
+      "name_fa": "سینت مارتن",
+      "latitude": 18.08333333,
+      "longitude": -63.95,
+      "timezone": "America/Marigot",
+      "country": "saint_martin_french_part",
+      "region": "north_america"
+    },
+    {
+      "id": "nassau",
+      "name": "Nassau",
+      "name_fa": "باهاما",
+      "latitude": 25.0343,
+      "longitude": -77.3963,
+      "timezone": "America/Nassau",
+      "country": "the_bahamas",
+      "region": "north_america"
+    },
+    {
+      "id": "new_york",
+      "name": "New York",
+      "name_fa": "نیویورک",
+      "latitude": 40.7128,
+      "longitude": -74.006,
+      "timezone": "America/New_York",
+      "country": "usa",
+      "region": "north_america"
+    },
+    {
+      "id": "nuuk",
+      "name": "Nuuk",
+      "name_fa": "گرینلند",
+      "latitude": 72.0,
+      "longitude": -40.0,
+      "timezone": "America/Danmarkshavn",
+      "country": "greenland",
+      "region": "north_america"
+    },
+    {
+      "id": "oranjestad",
+      "name": "Oranjestad",
+      "name_fa": "آروبا",
+      "latitude": 12.5,
+      "longitude": -69.96666666,
+      "timezone": "America/Aruba",
+      "country": "aruba",
+      "region": "north_america"
+    },
+    {
+      "id": "panama_city",
+      "name": "Panama City",
+      "name_fa": "پاناما",
+      "latitude": 8.9824,
+      "longitude": -79.5199,
+      "timezone": "America/Panama",
+      "country": "panama",
+      "region": "north_america"
+    },
+    {
+      "id": "philipsburg",
+      "name": "Philipsburg",
+      "name_fa": "سینت مارتن",
+      "latitude": 18.033333,
+      "longitude": -63.05,
+      "timezone": "America/Anguilla",
+      "country": "sint_maarten_dutch_part",
+      "region": "north_america"
+    },
+    {
+      "id": "plymouth",
+      "name": "Plymouth",
+      "name_fa": "مایوت",
+      "latitude": 16.75,
+      "longitude": -62.2,
+      "timezone": "America/Montserrat",
+      "country": "montserrat",
+      "region": "north_america"
+    },
+    {
+      "id": "port_au_prince",
+      "name": "Port-au-Prince",
+      "name_fa": "هائیتی",
+      "latitude": 18.5944,
+      "longitude": -72.3074,
+      "timezone": "America/Port-au-Prince",
+      "country": "haiti",
+      "region": "north_america"
+    },
+    {
+      "id": "port_of_spain",
+      "name": "Port of Spain",
+      "name_fa": "ترینیداد و توباگو",
+      "latitude": 10.6918,
+      "longitude": -61.2225,
+      "timezone": "America/Port_of_Spain",
+      "country": "trinidad_tobago",
+      "region": "north_america"
+    },
+    {
+      "id": "road_town",
+      "name": "Road Town",
+      "name_fa": "جزایر ویرجین بریتانیا",
+      "latitude": 18.431383,
+      "longitude": -64.62305,
+      "timezone": "America/Tortola",
+      "country": "british_virgin_islands",
+      "region": "north_america"
+    },
+    {
+      "id": "roseau",
+      "name": "Roseau",
+      "name_fa": "دومینیکا",
+      "latitude": 15.3092,
+      "longitude": -61.3794,
+      "timezone": "America/Dominica",
+      "country": "dominica",
+      "region": "north_america"
+    },
+    {
+      "id": "saint_pierre",
+      "name": "Saint-Pierre",
+      "name_fa": "سن پیر و میکلن",
+      "latitude": 46.83333333,
+      "longitude": -56.33333333,
+      "timezone": "America/Miquelon",
+      "country": "saint_pierre_and_miquelon",
+      "region": "north_america"
+    },
+    {
+      "id": "san_francisco",
+      "name": "San Francisco",
+      "name_fa": "سان‌فرانسیسکو",
+      "latitude": 37.7749,
+      "longitude": -122.4194,
+      "timezone": "America/Los_Angeles",
+      "country": "usa",
+      "region": "north_america"
+    },
+    {
+      "id": "san_jose",
+      "name": "San Jose",
+      "name_fa": "کاستاریکا",
+      "latitude": 9.9281,
+      "longitude": -84.0907,
+      "timezone": "America/Costa_Rica",
+      "country": "costa_rica",
+      "region": "north_america"
+    },
+    {
+      "id": "san_juan",
+      "name": "San Juan",
+      "name_fa": "پورتو ریکو",
+      "latitude": 18.25,
+      "longitude": -66.5,
+      "timezone": "America/Puerto_Rico",
+      "country": "puerto_rico",
+      "region": "north_america"
+    },
+    {
+      "id": "san_salvador",
+      "name": "San Salvador",
+      "name_fa": "السالوادور",
+      "latitude": 13.6929,
+      "longitude": -89.2182,
+      "timezone": "America/El_Salvador",
+      "country": "el_salvador",
+      "region": "north_america"
+    },
+    {
+      "id": "santo_domingo",
+      "name": "Santo Domingo",
+      "name_fa": "جمهوری دومینیکن",
+      "latitude": 18.4861,
+      "longitude": -69.9312,
+      "timezone": "America/Santo_Domingo",
+      "country": "dominican_republic",
+      "region": "north_america"
+    },
+    {
+      "id": "st_george_s",
+      "name": "St. George's",
+      "name_fa": "گرنادا",
+      "latitude": 12.0561,
+      "longitude": -61.7488,
+      "timezone": "America/Grenada",
+      "country": "grenada",
+      "region": "north_america"
+    },
+    {
+      "id": "st_john_s",
+      "name": "St. John's",
+      "name_fa": "آنتیگوا و باربودا",
+      "latitude": 17.1274,
+      "longitude": -61.8468,
+      "timezone": "America/Antigua",
+      "country": "antigua_and_barbuda",
+      "region": "north_america"
+    },
+    {
+      "id": "tegucigalpa",
+      "name": "Tegucigalpa",
+      "name_fa": "هندوراس",
+      "latitude": 14.0723,
+      "longitude": -87.1921,
+      "timezone": "America/Tegucigalpa",
+      "country": "honduras",
+      "region": "north_america"
+    },
+    {
+      "id": "the_valley",
+      "name": "The Valley",
+      "name_fa": "آنگویلا",
+      "latitude": 18.25,
+      "longitude": -63.16666666,
+      "timezone": "America/Anguilla",
+      "country": "anguilla",
+      "region": "north_america"
+    },
+    {
+      "id": "toronto",
+      "name": "Toronto",
+      "name_fa": "تورنتو",
+      "latitude": 43.6532,
+      "longitude": -79.3832,
+      "timezone": "America/Toronto",
+      "country": "canada",
+      "region": "north_america"
+    },
+    {
+      "id": "vancouver",
+      "name": "Vancouver",
+      "name_fa": "ونکوور",
+      "latitude": 49.2827,
+      "longitude": -123.1207,
+      "timezone": "America/Vancouver",
+      "country": "canada",
+      "region": "north_america"
+    },
+    {
+      "id": "washington_dc",
+      "name": "Washington D.C.",
+      "name_fa": "واشنگتن",
+      "latitude": 38.9072,
+      "longitude": -77.0369,
+      "timezone": "America/New_York",
+      "country": "usa",
+      "region": "north_america"
+    },
+    {
+      "id": "willemstad",
+      "name": "Willemstad",
+      "name_fa": "کوراسائو",
+      "latitude": 12.116667,
+      "longitude": -68.933333,
+      "timezone": "America/Curacao",
+      "country": "curacao",
+      "region": "north_america"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+# BOLOOT Persian Calendar settings — Spanish
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es\n"
+
+msgid "تنظیمات {name}"
+msgstr "Ajustes de {name}"
+
+msgid "منطقه و زبان"
+msgstr "Región e idioma"
+
+msgid "کشور، زبان و قوانین تقویم محلی"
+msgstr "País, idioma y reglas del calendario local"
+
+msgid "همگام با locale سیستم"
+msgstr "Seguir la configuración regional del sistema"
+
+msgid "کشور، زبان و اعداد از LANG/LC_TIME سیستم"
+msgstr "País, idioma y números desde LANG/LC_TIME del sistema"
+
+msgid "همگام‌سازی اکنون"
+msgstr "Sincronizar ahora"
+
+msgid "کشور"
+msgstr "País"
+
+msgid "زبان"
+msgstr "Idioma"
+
+msgid "همگام‌سازی locale ناموفق بود"
+msgstr "Error al sincronizar la configuración regional"
+
+msgid "تنظیمات ذخیره شد"
+msgstr "Ajustes guardados"
+
+msgid "ذخیره تنظیمات ناموفق بود"
+msgstr "Error al guardar los ajustes"
+
+msgid "درباره"
+msgstr "Acerca de"
+
+msgid "تقویم فارسی، اوقات شرعی و تعطیلات رسمی"
+msgstr "Calendario persa, horarios de oración y festivos oficiales"
+
+msgid "درباره بولوت"
+msgstr "Acerca de BOLOOT"
+
+msgid "حمایت"
+msgstr "Apoyo"
+
+msgid "اگر بولوت هر روز کنارت بود، با یک حمایت کوچک کمک کن تا تقویم فارسی رایگان بماند و برای همه بهتر شود. برای USDT فقط شبکه TRC20 را انتخاب کنید."
+msgstr "Si BOLOOT forma parte de tu día a día, una pequeña donación ayuda a mantener el calendario persa gratuito y en mejora para todos. Para USDT, usa solo la red TRC20."
+
+msgid "USDT · TRC20"
+msgstr "USDT · TRC20"
+
+msgid "Bitcoin (BTC)"
+msgstr "Bitcoin (BTC)"
+
+msgid "⚠️ برای USDT فقط TRC20 ارسال کنید؛ شبکه دیگر ممکن است باعث از دست رفتن دارایی شود."
+msgstr "⚠️ Envía USDT solo por TRC20. Otra red puede provocar la pérdida permanente de fondos."
+
+msgid "کد QR یافت نشد"
+msgstr "Código QR no encontrado"
+
+msgid "کپی آدرس"
+msgstr "Copiar dirección"
+
+msgid "کپی آدرس ناموفق بود"
+msgstr "Error al copiar la dirección"
+
+msgid "آدرس کپی شد"
+msgstr "Dirección copiada"
+
+msgid "تقویم شمسی، اوقات شرعی و تعطیلات برای ایران، افغانستان و تاجیکستان"
+msgstr "Calendario solar, horarios de oración y festivos para Irán, Afganistán y Tayikistán"
+
+msgid "حمایت USDT (TRC20):"
+msgstr "Apoyo USDT (TRC20):"
+
+msgid "حمایت Bitcoin:"
+msgstr "Apoyo Bitcoin:"
+
+msgid "سرویس"
+msgstr "Servicio"
+
+msgid "راه‌اندازی مجدد دیمون پس از به‌روزرسانی یا مشکل اتصال"
+msgstr "Reiniciar el demonio tras una actualización o un problema de conexión"
+
+msgid "وضعیت سرویس"
+msgstr "Estado del servicio"
+
+msgid "راه‌اندازی مجدد سرویس"
+msgstr "Reiniciar servicio"
+
+msgid "در حال اجرا"
+msgstr "En ejecución"
+
+msgid "متوقف یا در دسترس نیست"
+msgstr "Detenido o no disponible"
+
+msgid "سرویس راه‌اندازی مجدد شد"
+msgstr "Servicio reiniciado"
+
+msgid "راه‌اندازی مجدد سرویس ناموفق بود"
+msgstr "Error al reiniciar el servicio"
+
+msgid "نمایش قصار امام علی (ع)"
+msgstr "Mostrar sabiduría del Imam Ali (la paz sea con él)"
+
+msgid "با نگه‌داشتن موس روی تاریخ در نوار بالا"
+msgstr "Al pasar el cursor sobre la fecha en la barra superior"

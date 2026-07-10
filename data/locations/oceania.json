@@ -1,0 +1,264 @@
+{
+  "cities": [
+    {
+      "id": "alofi",
+      "name": "Alofi",
+      "name_fa": "نیووی",
+      "latitude": -19.03333333,
+      "longitude": -169.86666666,
+      "timezone": "Pacific/Niue",
+      "country": "niue",
+      "region": "oceania"
+    },
+    {
+      "id": "apia",
+      "name": "Apia",
+      "name_fa": "ساموآ",
+      "latitude": -13.8506,
+      "longitude": -171.7513,
+      "timezone": "Pacific/Apia",
+      "country": "samoa",
+      "region": "oceania"
+    },
+    {
+      "id": "avarua",
+      "name": "Avarua",
+      "name_fa": "جزایر کوک",
+      "latitude": -21.23333333,
+      "longitude": -159.76666666,
+      "timezone": "Pacific/Rarotonga",
+      "country": "cook_islands",
+      "region": "oceania"
+    },
+    {
+      "id": "flying_fish_cove",
+      "name": "Flying Fish Cove",
+      "name_fa": "جزیره کریسمس",
+      "latitude": -10.5,
+      "longitude": 105.66666666,
+      "timezone": "Indian/Christmas",
+      "country": "christmas_island",
+      "region": "oceania"
+    },
+    {
+      "id": "funafuti",
+      "name": "Funafuti",
+      "name_fa": "تووالو",
+      "latitude": -8.5243,
+      "longitude": 179.1942,
+      "timezone": "Pacific/Funafuti",
+      "country": "tuvalu",
+      "region": "oceania"
+    },
+    {
+      "id": "hagatna",
+      "name": "Hagatna",
+      "name_fa": "گوام",
+      "latitude": 13.46666666,
+      "longitude": 144.78333333,
+      "timezone": "Pacific/Guam",
+      "country": "guam",
+      "region": "oceania"
+    },
+    {
+      "id": "honiara",
+      "name": "Honiara",
+      "name_fa": "جزایر سلیمان",
+      "latitude": -9.4438,
+      "longitude": 159.9729,
+      "timezone": "Pacific/Guadalcanal",
+      "country": "solomon_islands",
+      "region": "oceania"
+    },
+    {
+      "id": "kingston",
+      "name": "Kingston",
+      "name_fa": "جزیره نورفک",
+      "latitude": -29.03333333,
+      "longitude": 167.95,
+      "timezone": "Pacific/Norfolk",
+      "country": "norfolk_island",
+      "region": "oceania"
+    },
+    {
+      "id": "majuro",
+      "name": "Majuro",
+      "name_fa": "جزایر مارشال",
+      "latitude": 7.1164,
+      "longitude": 171.1858,
+      "timezone": "Pacific/Kwajalein",
+      "country": "marshall_islands",
+      "region": "oceania"
+    },
+    {
+      "id": "mata_utu",
+      "name": "Mata Utu",
+      "name_fa": "والیس و فوتونا",
+      "latitude": -13.3,
+      "longitude": -176.2,
+      "timezone": "Pacific/Wallis",
+      "country": "wallis_and_futuna_islands",
+      "region": "oceania"
+    },
+    {
+      "id": "melbourne",
+      "name": "Melbourne",
+      "name_fa": "ملبورن",
+      "latitude": -37.8136,
+      "longitude": 144.9631,
+      "timezone": "Australia/Melbourne",
+      "country": "australia",
+      "region": "oceania"
+    },
+    {
+      "id": "melekeok",
+      "name": "Melekeok",
+      "name_fa": "پالائو",
+      "latitude": 7.5004,
+      "longitude": 134.6243,
+      "timezone": "Pacific/Palau",
+      "country": "palau",
+      "region": "oceania"
+    },
+    {
+      "id": "noumea",
+      "name": "Noumea",
+      "name_fa": "کالدونیای جدید",
+      "latitude": -21.5,
+      "longitude": 165.5,
+      "timezone": "Pacific/Noumea",
+      "country": "new_caledonia",
+      "region": "oceania"
+    },
+    {
+      "id": "nuku_alofa",
+      "name": "Nuku'alofa",
+      "name_fa": "تونگا",
+      "latitude": -21.1789,
+      "longitude": -175.1982,
+      "timezone": "Pacific/Tongatapu",
+      "country": "tonga",
+      "region": "oceania"
+    },
+    {
+      "id": "pago_pago",
+      "name": "Pago Pago",
+      "name_fa": "ساموآی آمریکا",
+      "latitude": -14.33333333,
+      "longitude": -170.0,
+      "timezone": "Pacific/Pago_Pago",
+      "country": "american_samoa",
+      "region": "oceania"
+    },
+    {
+      "id": "palikir",
+      "name": "Palikir",
+      "name_fa": "ایالات فدرال میکرونزی",
+      "latitude": 6.9147,
+      "longitude": 158.161,
+      "timezone": "Pacific/Chuuk",
+      "country": "micronesia",
+      "region": "oceania"
+    },
+    {
+      "id": "papeete",
+      "name": "Papeete",
+      "name_fa": "پلی‌نزی فرانسه",
+      "latitude": -15.0,
+      "longitude": -140.0,
+      "timezone": "Pacific/Gambier",
+      "country": "french_polynesia",
+      "region": "oceania"
+    },
+    {
+      "id": "port_moresby",
+      "name": "Port Moresby",
+      "name_fa": "پاپوآ گینه نو",
+      "latitude": -9.4438,
+      "longitude": 147.1803,
+      "timezone": "Pacific/Bougainville",
+      "country": "papua_new_guinea",
+      "region": "oceania"
+    },
+    {
+      "id": "port_vila",
+      "name": "Port Vila",
+      "name_fa": "وانواتو",
+      "latitude": -17.7333,
+      "longitude": 168.3273,
+      "timezone": "Pacific/Efate",
+      "country": "vanuatu",
+      "region": "oceania"
+    },
+    {
+      "id": "saipan",
+      "name": "Saipan",
+      "name_fa": "جزایر ماریانای شمالی",
+      "latitude": 15.2,
+      "longitude": 145.75,
+      "timezone": "Pacific/Saipan",
+      "country": "northern_mariana_islands",
+      "region": "oceania"
+    },
+    {
+      "id": "suva",
+      "name": "Suva",
+      "name_fa": "فیجی",
+      "latitude": -18.1416,
+      "longitude": 178.4419,
+      "timezone": "Pacific/Fiji",
+      "country": "fiji_islands",
+      "region": "oceania"
+    },
+    {
+      "id": "sydney",
+      "name": "Sydney",
+      "name_fa": "سیدنی",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "timezone": "Australia/Sydney",
+      "country": "australia",
+      "region": "oceania"
+    },
+    {
+      "id": "tarawa",
+      "name": "Tarawa",
+      "name_fa": "کیریباتی",
+      "latitude": 1.3382,
+      "longitude": 173.0176,
+      "timezone": "Pacific/Enderbury",
+      "country": "kiribati",
+      "region": "oceania"
+    },
+    {
+      "id": "wellington",
+      "name": "Wellington",
+      "name_fa": "نیوزیلند",
+      "latitude": -41.2865,
+      "longitude": 174.7762,
+      "timezone": "Pacific/Auckland",
+      "country": "new_zealand",
+      "region": "oceania"
+    },
+    {
+      "id": "west_island",
+      "name": "West Island",
+      "name_fa": "جزایر کوکوس",
+      "latitude": -12.5,
+      "longitude": 96.83333333,
+      "timezone": "Indian/Cocos",
+      "country": "cocos_keeling_islands",
+      "region": "oceania"
+    },
+    {
+      "id": "yaren",
+      "name": "Yaren",
+      "name_fa": "نائورو",
+      "latitude": -0.5477,
+      "longitude": 166.9209,
+      "timezone": "Pacific/Nauru",
+      "country": "nauru",
+      "region": "oceania"
+    }
+  ]
+}

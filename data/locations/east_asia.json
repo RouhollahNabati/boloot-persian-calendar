@@ -1,0 +1,214 @@
+{
+  "cities": [
+    {
+      "id": "bandar_seri_begawan",
+      "name": "Bandar Seri Begawan",
+      "name_fa": "برونئی",
+      "latitude": 4.9031,
+      "longitude": 114.9398,
+      "timezone": "Asia/Brunei",
+      "country": "brunei",
+      "region": "east_asia"
+    },
+    {
+      "id": "bangkok",
+      "name": "Bangkok",
+      "name_fa": "تایلند",
+      "latitude": 13.7563,
+      "longitude": 100.5018,
+      "timezone": "Asia/Bangkok",
+      "country": "thailand",
+      "region": "east_asia"
+    },
+    {
+      "id": "beijing",
+      "name": "Beijing",
+      "name_fa": "پکن",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "timezone": "Asia/Shanghai",
+      "country": "china",
+      "region": "east_asia"
+    },
+    {
+      "id": "dili",
+      "name": "Dili",
+      "name_fa": "تیمور شرقی",
+      "latitude": -8.5569,
+      "longitude": 125.5603,
+      "timezone": "Asia/Dili",
+      "country": "timor_leste",
+      "region": "east_asia"
+    },
+    {
+      "id": "hanoi",
+      "name": "Hanoi",
+      "name_fa": "ویتنام",
+      "latitude": 21.0285,
+      "longitude": 105.8542,
+      "timezone": "Asia/Ho_Chi_Minh",
+      "country": "vietnam",
+      "region": "east_asia"
+    },
+    {
+      "id": "hong_kong",
+      "name": "Hong Kong",
+      "name_fa": "هنگ‌کنگ",
+      "latitude": 22.3193,
+      "longitude": 114.1694,
+      "timezone": "Asia/Hong_Kong",
+      "country": "china",
+      "region": "east_asia"
+    },
+    {
+      "id": "jakarta",
+      "name": "Jakarta",
+      "name_fa": "جاکارتا",
+      "latitude": -6.2088,
+      "longitude": 106.8456,
+      "timezone": "Asia/Jakarta",
+      "country": "indonesia",
+      "region": "east_asia"
+    },
+    {
+      "id": "kuala_lumpur",
+      "name": "Kuala Lumpur",
+      "name_fa": "کوالالامپور",
+      "latitude": 3.139,
+      "longitude": 101.6869,
+      "timezone": "Asia/Kuala_Lumpur",
+      "country": "malaysia",
+      "region": "east_asia"
+    },
+    {
+      "id": "macao",
+      "name": "Macao",
+      "name_fa": "مکائو",
+      "latitude": 22.16666666,
+      "longitude": 113.55,
+      "timezone": "Asia/Macau",
+      "country": "macau_s_a_r",
+      "region": "east_asia"
+    },
+    {
+      "id": "manila",
+      "name": "Manila",
+      "name_fa": "جزایر الندفیلیپین",
+      "latitude": 14.5995,
+      "longitude": 120.9842,
+      "timezone": "Asia/Manila",
+      "country": "philippines",
+      "region": "east_asia"
+    },
+    {
+      "id": "nay_pyi_taw",
+      "name": "Nay Pyi Taw",
+      "name_fa": "میانمار",
+      "latitude": 19.7633,
+      "longitude": 96.0785,
+      "timezone": "Asia/Yangon",
+      "country": "myanmar",
+      "region": "east_asia"
+    },
+    {
+      "id": "osaka",
+      "name": "Osaka",
+      "name_fa": "اوساکا",
+      "latitude": 34.6937,
+      "longitude": 135.5023,
+      "timezone": "Asia/Tokyo",
+      "country": "japan",
+      "region": "east_asia"
+    },
+    {
+      "id": "phnom_penh",
+      "name": "Phnom Penh",
+      "name_fa": "کامبوج",
+      "latitude": 11.5564,
+      "longitude": 104.9282,
+      "timezone": "Asia/Phnom_Penh",
+      "country": "cambodia",
+      "region": "east_asia"
+    },
+    {
+      "id": "pyongyang",
+      "name": "Pyongyang",
+      "name_fa": "کره جنوبی",
+      "latitude": 39.0392,
+      "longitude": 125.7625,
+      "timezone": "Asia/Pyongyang",
+      "country": "north_korea",
+      "region": "east_asia"
+    },
+    {
+      "id": "seoul",
+      "name": "Seoul",
+      "name_fa": "سئول",
+      "latitude": 37.5665,
+      "longitude": 126.978,
+      "timezone": "Asia/Seoul",
+      "country": "south_korea",
+      "region": "east_asia"
+    },
+    {
+      "id": "shanghai",
+      "name": "Shanghai",
+      "name_fa": "شانگهای",
+      "latitude": 31.2304,
+      "longitude": 121.4737,
+      "timezone": "Asia/Shanghai",
+      "country": "china",
+      "region": "east_asia"
+    },
+    {
+      "id": "singapur",
+      "name": "Singapur",
+      "name_fa": "سنگاپور",
+      "latitude": 1.3521,
+      "longitude": 103.8198,
+      "timezone": "Asia/Singapore",
+      "country": "singapore",
+      "region": "east_asia"
+    },
+    {
+      "id": "taipei",
+      "name": "Taipei",
+      "name_fa": "تایوان",
+      "latitude": 25.033,
+      "longitude": 121.5654,
+      "timezone": "Asia/Taipei",
+      "country": "taiwan",
+      "region": "east_asia"
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "name_fa": "توکیو",
+      "latitude": 35.6762,
+      "longitude": 139.6503,
+      "timezone": "Asia/Tokyo",
+      "country": "japan",
+      "region": "east_asia"
+    },
+    {
+      "id": "ulan_bator",
+      "name": "Ulan Bator",
+      "name_fa": "مغولستان",
+      "latitude": 47.8864,
+      "longitude": 106.9057,
+      "timezone": "Asia/Choibalsan",
+      "country": "mongolia",
+      "region": "east_asia"
+    },
+    {
+      "id": "vientiane",
+      "name": "Vientiane",
+      "name_fa": "لائوس",
+      "latitude": 17.9757,
+      "longitude": 102.6331,
+      "timezone": "Asia/Vientiane",
+      "country": "laos",
+      "region": "east_asia"
+    }
+  ]
+}

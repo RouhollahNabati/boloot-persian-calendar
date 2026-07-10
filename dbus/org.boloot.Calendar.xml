@@ -30,6 +30,12 @@
     </method>
     <method name="Reload">
     </method>
+    <method name="IsAdhanPlaying">
+      <arg type="b" direction="out" name="playing"/>
+    </method>
+    <method name="StopAdhan">
+      <arg type="b" direction="out" name="stopped"/>
+    </method>
     <signal name="SettingsChanged">
     </signal>
   </interface>

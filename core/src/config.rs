@@ -11,7 +11,8 @@ use crate::colors::{
 };
 use crate::error::{BolootError, Result};
 use crate::format::{effective_numerals, DateFormatStyle, NumeralStyle};
-use crate::locale::{CountryProfile, LanguageVariant, Weekday};
+use crate::countries::CountryProfile;
+use crate::locale::{LanguageVariant, Weekday};
 use crate::prayer::{
     LocationStore, PrayerCalculationMethod, PrayerMadhab, PrayerName,
 };
@@ -73,11 +74,11 @@ impl CalendarSettings {
 impl Default for CalendarSettings {
     fn default() -> Self {
         let locale = crate::locale::LocaleProfile::resolve(
-            CountryProfile::Iran,
+            CountryProfile::iran(),
             LanguageVariant::Persian,
         );
         Self {
-            country: CountryProfile::Iran,
+            country: CountryProfile::iran(),
             language: LanguageVariant::Persian,
             calendar_type: CalendarSystem::Jalali,
             week_start: locale.default_week_start,
@@ -115,6 +116,8 @@ pub struct AppearanceSettings {
     pub show_clock: bool,
     #[serde(default = "default_true")]
     pub show_in_popup: bool,
+    #[serde(default = "default_true")]
+    pub show_wisdom_tooltip: bool,
 }
 
 fn default_font() -> String {
@@ -156,6 +159,7 @@ impl Default for AppearanceSettings {
             show_in_top_bar: true,
             show_clock: true,
             show_in_popup: true,
+            show_wisdom_tooltip: true,
         }
     }
 }
@@ -415,16 +419,37 @@ impl BolootConfig {
         old_language: LanguageVariant,
     ) {
         let locale = crate::locale::LocaleProfile::resolve(
-            self.calendar.country,
+            self.calendar.country.clone(),
             self.calendar.language,
         );
         if self.calendar.country != old_country || self.calendar.language != old_language {
             self.calendar.week_start = locale.default_week_start;
-            self.calendar.timezone = locale.default_timezone.clone();
-            self.prayer.method = PrayerCalculationMethod::for_country(self.calendar.country);
-            self.prayer.madhab = PrayerMadhab::for_country(self.calendar.country);
+            let store = LocationStore::with_fallback();
+            let prayer_in_same_country = store
+                .get(&self.prayer.city)
+                .is_some_and(|city| city.matches_calendar_country(&self.calendar.country));
+            if prayer_in_same_country {
+                self.calendar.timezone = locale.default_timezone.clone();
+                self.prayer.method = PrayerCalculationMethod::for_country(&self.calendar.country);
+                self.prayer.madhab = PrayerMadhab::for_country(&self.calendar.country);
+            }
         } else if self.calendar.timezone.is_empty() {
             self.calendar.timezone = locale.default_timezone.clone();
+        }
+    }
+
+    /// Apply prayer defaults when the selected prayer city changes.
+    pub fn apply_prayer_city_change(&mut self, previous_city_timezone: Option<&str>) {
+        let store = LocationStore::with_fallback();
+        let Some(city) = store.get(&self.prayer.city) else {
+            return;
+        };
+        self.prayer.method = PrayerCalculationMethod::suggested_for_city(city);
+        let current_tz = self.calendar.timezone.as_str();
+        let should_update_tz = current_tz.is_empty()
+            || previous_city_timezone.is_some_and(|old| current_tz == old);
+        if should_update_tz {
+            self.calendar.timezone = city.timezone.clone();
         }
     }
 
@@ -438,12 +463,13 @@ impl BolootConfig {
 
     pub fn apply_system_locale(&mut self) {
         let detected = crate::system_locale::detect_from_env();
-        let old_country = self.calendar.country;
+        let old_country = self.calendar.country.clone();
         let old_language = self.calendar.language;
         self.calendar.country = detected.country;
         self.calendar.language = detected.language;
         self.calendar.numerals = detected.numerals;
         self.apply_country_defaults_on_change(old_country, old_language);
+        self.calendar.timezone = detected.timezone;
     }
 
     pub fn validate(&self) -> Result<()> {
@@ -485,11 +511,18 @@ impl BolootConfig {
 
         if self.prayer.enabled {
             let has_coords = self.prayer.latitude.is_some() && self.prayer.longitude.is_some();
-            if !has_coords && LocationStore::with_fallback().get(&self.prayer.city).is_none() {
+            let store = LocationStore::with_fallback();
+            let city_known = store.get(&self.prayer.city).is_some();
+            if !has_coords && !city_known {
                 return Err(BolootError::InvalidConfig(format!(
                     "unknown prayer city: {}",
                     self.prayer.city
                 )));
+            }
+            if has_coords && !city_known && self.calendar.timezone.is_empty() {
+                return Err(BolootError::InvalidConfig(
+                    "timezone required for custom prayer coordinates".into(),
+                ));
             }
             for minutes in &self.prayer.notification_minutes {
                 if *minutes == 0 || *minutes > 24 * 60 {
@@ -604,14 +637,15 @@ pub fn active_session_uids() -> Vec<u32> {
 mod tests {
     use super::*;
     use crate::config::AdhanPreset;
-    use crate::locale::{CountryProfile, LanguageVariant, Weekday};
+    use crate::countries::CountryProfile;
+use crate::locale::{LanguageVariant, Weekday};
 
     #[test]
     fn preserves_week_start_when_country_unchanged() {
         let mut config = BolootConfig::default();
         config.calendar.week_start = Weekday::Monday;
         config.apply_country_defaults_on_change(
-            CountryProfile::Iran,
+            CountryProfile::iran(),
             LanguageVariant::Persian,
         );
         assert_eq!(config.calendar.week_start, Weekday::Monday);
@@ -620,10 +654,10 @@ mod tests {
     #[test]
     fn resets_week_start_when_country_changes() {
         let mut config = BolootConfig::default();
-        config.calendar.country = CountryProfile::Tajikistan;
+        config.calendar.country = CountryProfile::tajikistan();
         config.calendar.week_start = Weekday::Saturday;
         config.apply_country_defaults_on_change(
-            CountryProfile::Iran,
+            CountryProfile::iran(),
             LanguageVariant::Persian,
         );
         assert_eq!(config.calendar.week_start, Weekday::Monday);
@@ -723,7 +757,7 @@ font_family = "Vazirmatn"
         let raw = include_str!("../../data/system-config/config.toml");
         let config: BolootConfig = toml::from_str(raw).unwrap();
         config.validate().unwrap();
-        assert_eq!(config.calendar.country, CountryProfile::Iran);
+        assert_eq!(config.calendar.country, CountryProfile::iran());
         assert!(!config.calendar.follow_system_locale);
     }
 
@@ -733,5 +767,61 @@ font_family = "Vazirmatn"
         let path = crate::adhan::resolve_adhan_path(&config).unwrap();
         assert!(path.ends_with("mansouri.ogg"));
         assert!(path.is_file());
+    }
+
+    #[test]
+    fn prayer_method_serde_round_trip() {
+        for method in [
+            PrayerCalculationMethod::MoonsightingCommittee,
+            PrayerCalculationMethod::UmmAlQura,
+            PrayerCalculationMethod::Turkey,
+            PrayerCalculationMethod::Singapore,
+            PrayerCalculationMethod::Dubai,
+        ] {
+            let raw = serde_json::to_string(&method).unwrap();
+            let parsed: PrayerCalculationMethod = serde_json::from_str(&raw).unwrap();
+            assert_eq!(parsed, method);
+        }
+    }
+
+    #[test]
+    fn country_change_preserves_foreign_prayer_city_method() {
+        let mut config = BolootConfig::default();
+        config.prayer.city = "berlin".into();
+        config.prayer.method = PrayerCalculationMethod::Mwl;
+        config.calendar.timezone = "Europe/Berlin".into();
+        config.apply_country_defaults_on_change(CountryProfile::iran(), LanguageVariant::Persian);
+        assert_eq!(config.prayer.method, PrayerCalculationMethod::Mwl);
+        assert_eq!(config.calendar.timezone, "Europe/Berlin");
+    }
+
+    #[test]
+    fn country_change_resets_prayer_method_for_same_country_city() {
+        let mut config = BolootConfig::default();
+        config.prayer.city = "kabul".into();
+        config.prayer.method = PrayerCalculationMethod::Tehran;
+        config.calendar.country = CountryProfile::afghanistan();
+        config.apply_country_defaults_on_change(CountryProfile::iran(), LanguageVariant::Persian);
+        assert_eq!(config.prayer.method, PrayerCalculationMethod::Karachi);
+    }
+
+    #[test]
+    fn apply_prayer_city_change_updates_method_and_timezone() {
+        let mut config = BolootConfig::default();
+        config.prayer.city = "new_york".into();
+        config.calendar.timezone = "Asia/Tehran".into();
+        config.apply_prayer_city_change(Some("Asia/Tehran"));
+        assert_eq!(config.prayer.method, PrayerCalculationMethod::Isna);
+        assert_eq!(config.calendar.timezone, "America/New_York");
+    }
+
+    #[test]
+    fn validate_accepts_custom_coordinates_with_timezone() {
+        let mut config = BolootConfig::default();
+        config.prayer.city = "custom".into();
+        config.prayer.latitude = Some(52.52);
+        config.prayer.longitude = Some(13.405);
+        config.calendar.timezone = "Europe/Berlin".into();
+        assert!(config.validate().is_ok());
     }
 }

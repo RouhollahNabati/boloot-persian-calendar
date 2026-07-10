@@ -1,5 +1,10 @@
-use std::collections::HashMap;
+use std::cell::Cell;
+use std::collections::{HashMap, HashSet};
 use std::fs;
+use std::panic::{catch_unwind, AssertUnwindSafe, UnwindSafe};
+use std::str::FromStr;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::{Mutex, Once, OnceLock};
 
 use chrono::{NaiveDate, NaiveTime, TimeZone, Timelike, Utc};
 use chrono_tz::Tz;
@@ -7,10 +12,69 @@ use salah::prelude::*;
 use serde::{Deserialize, Serialize};
 
 use crate::config::PrayerDisplayMode;
+use crate::countries::CountryProfile;
 use crate::error::{BolootError, Result};
 use crate::format::{format_time, NumeralStyle};
 use crate::holidays::locations_dir;
-use crate::locale::{CountryProfile, LanguageVariant};
+use crate::locale::LanguageVariant;
+use crate::system_time::local_now;
+
+thread_local! {
+    static SUPPRESS_SALAH_PANIC: Cell<bool> = const { Cell::new(false) };
+}
+
+static SUPPRESS_SALAH_PANIC_GLOBAL: AtomicBool = AtomicBool::new(false);
+static SALAH_PANIC_HOOK: Once = Once::new();
+static COORD_CACHE: OnceLock<Mutex<HashMap<(String, NaiveDate), (f64, f64)>>> = OnceLock::new();
+static FAILED_COORD_CACHE: OnceLock<Mutex<HashSet<(String, NaiveDate, i64, i64)>>> = OnceLock::new();
+
+fn coord_cache() -> &'static Mutex<HashMap<(String, NaiveDate), (f64, f64)>> {
+    COORD_CACHE.get_or_init(|| Mutex::new(HashMap::new()))
+}
+
+fn failed_coord_cache() -> &'static Mutex<HashSet<(String, NaiveDate, i64, i64)>> {
+    FAILED_COORD_CACHE.get_or_init(|| Mutex::new(HashSet::new()))
+}
+
+fn coord_failure_key(city_id: &str, date: NaiveDate, lat: f64, lng: f64) -> (String, NaiveDate, i64, i64) {
+    (
+        city_id.to_string(),
+        date,
+        (lat * 1_000_000.0) as i64,
+        (lng * 1_000_000.0) as i64,
+    )
+}
+
+fn salah_panic_suppressed() -> bool {
+    SUPPRESS_SALAH_PANIC.with(|flag| flag.get()) || SUPPRESS_SALAH_PANIC_GLOBAL.load(Ordering::Relaxed)
+}
+
+/// Install a panic hook that silences expected `salah` edge-case panics.
+pub fn install_salah_panic_hook() {
+    ensure_salah_panic_hook();
+}
+
+fn ensure_salah_panic_hook() {
+    SALAH_PANIC_HOOK.call_once(|| {
+        let default_hook = std::panic::take_hook();
+        std::panic::set_hook(Box::new(move |info| {
+            if salah_panic_suppressed() {
+                return;
+            }
+            default_hook(info);
+        }));
+    });
+}
+
+fn with_suppressed_salah_panic<R, F: FnOnce() -> R + UnwindSafe>(f: F) -> std::thread::Result<R> {
+    ensure_salah_panic_hook();
+    SUPPRESS_SALAH_PANIC.with(|flag| flag.set(true));
+    SUPPRESS_SALAH_PANIC_GLOBAL.store(true, Ordering::Relaxed);
+    let result = catch_unwind(f);
+    SUPPRESS_SALAH_PANIC.with(|flag| flag.set(false));
+    SUPPRESS_SALAH_PANIC_GLOBAL.store(false, Ordering::Relaxed);
+    result
+}
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default)]
 #[serde(rename_all = "snake_case")]
@@ -21,15 +85,45 @@ pub enum PrayerCalculationMethod {
     Karachi,
     Isna,
     Egypt,
+    MoonsightingCommittee,
+    UmmAlQura,
+    Turkey,
+    Singapore,
+    Dubai,
 }
 
 impl PrayerCalculationMethod {
-    pub fn for_country(country: CountryProfile) -> Self {
-        match country {
-            CountryProfile::Iran => Self::Tehran,
-            CountryProfile::Afghanistan => Self::Karachi,
-            CountryProfile::Tajikistan => Self::Mwl,
+    pub fn for_country(country: &CountryProfile) -> Self {
+        Self::from_str(country.prayer_method_id()).unwrap_or(Self::Mwl)
+    }
+
+    pub fn suggested_for_city(city: &CityLocation) -> Self {
+        if city.latitude.abs() > 55.0 {
+            if matches!(city.country.as_str(), "usa" | "canada") {
+                return Self::MoonsightingCommittee;
+            }
+            if city.region.as_deref() == Some("europe") {
+                return Self::MoonsightingCommittee;
+            }
         }
+
+        Self::from_str(
+            CountryProfile::new(&city.country)
+                .prayer_method_id(),
+        )
+        .unwrap_or_else(|_| match city.country.as_str() {
+            "iran" => Self::Tehran,
+            "afghanistan" | "pakistan" => Self::Karachi,
+            "tajikistan" => Self::Mwl,
+            "usa" | "canada" => Self::Isna,
+            "saudi_arabia" => Self::UmmAlQura,
+            "uae" => Self::Dubai,
+            "qatar" | "kuwait" | "bahrain" => Self::UmmAlQura,
+            "turkey" => Self::Turkey,
+            "malaysia" | "indonesia" => Self::Singapore,
+            _ if city.latitude.abs() > 55.0 => Self::MoonsightingCommittee,
+            _ => Self::Mwl,
+        })
     }
 
     fn to_salah(self) -> Method {
@@ -39,6 +133,33 @@ impl PrayerCalculationMethod {
             Self::Karachi => Method::Karachi,
             Self::Isna => Method::NorthAmerica,
             Self::Egypt => Method::Egyptian,
+            Self::MoonsightingCommittee => Method::MoonsightingCommittee,
+            Self::UmmAlQura => Method::UmmAlQura,
+            Self::Turkey => Method::Turkey,
+            Self::Singapore => Method::Singapore,
+            Self::Dubai => Method::Dubai,
+        }
+    }
+}
+
+impl FromStr for PrayerCalculationMethod {
+    type Err = BolootError;
+
+    fn from_str(s: &str) -> Result<Self> {
+        match s.to_ascii_lowercase().as_str() {
+            "tehran" => Ok(Self::Tehran),
+            "mwl" => Ok(Self::Mwl),
+            "karachi" => Ok(Self::Karachi),
+            "isna" => Ok(Self::Isna),
+            "egypt" => Ok(Self::Egypt),
+            "moonsighting_committee" => Ok(Self::MoonsightingCommittee),
+            "umm_al_qura" => Ok(Self::UmmAlQura),
+            "turkey" => Ok(Self::Turkey),
+            "singapore" => Ok(Self::Singapore),
+            "dubai" => Ok(Self::Dubai),
+            _ => Err(BolootError::InvalidConfig(format!(
+                "unknown prayer method: {s}"
+            ))),
         }
     }
 }
@@ -53,17 +174,29 @@ pub enum PrayerMadhab {
 }
 
 impl PrayerMadhab {
-    pub fn for_country(country: CountryProfile) -> Self {
-        match country {
-            CountryProfile::Afghanistan => Self::Hanafi,
-            _ => Self::Jafari,
-        }
+    pub fn for_country(country: &CountryProfile) -> Self {
+        Self::from_str(country.prayer_madhab_id()).unwrap_or(Self::Jafari)
     }
 
     fn to_salah(self) -> Madhab {
         match self {
             Self::Jafari | Self::Shafi => Madhab::Shafi,
             Self::Hanafi => Madhab::Hanafi,
+        }
+    }
+}
+
+impl FromStr for PrayerMadhab {
+    type Err = BolootError;
+
+    fn from_str(s: &str) -> Result<Self> {
+        match s.to_ascii_lowercase().as_str() {
+            "jafari" => Ok(Self::Jafari),
+            "shafi" => Ok(Self::Shafi),
+            "hanafi" => Ok(Self::Hanafi),
+            _ => Err(BolootError::InvalidConfig(format!(
+                "unknown prayer madhab: {s}"
+            ))),
         }
     }
 }
@@ -82,9 +215,21 @@ pub enum PrayerName {
 impl PrayerName {
     pub fn label(self, language: LanguageVariant) -> &'static str {
         match language {
+            LanguageVariant::English => self.label_en(),
             LanguageVariant::Tajik => self.label_tg(),
             LanguageVariant::Pashto => self.label_ps(),
             LanguageVariant::Dari | LanguageVariant::Persian => self.label_fa(),
+        }
+    }
+
+    fn label_en(self) -> &'static str {
+        match self {
+            Self::Fajr => "Fajr",
+            Self::Sunrise => "Sunrise",
+            Self::Dhuhr => "Dhuhr",
+            Self::Asr => "Asr",
+            Self::Maghrib => "Maghrib",
+            Self::Isha => "Isha",
         }
     }
 
@@ -175,7 +320,10 @@ impl PrayerTimes {
             .from_local_datetime(&self.date.and_time(time))
             .earliest()?
             .with_timezone(&Utc);
-        Some(utc.signed_duration_since(Utc::now()).num_seconds())
+        Some(
+            utc.signed_duration_since(local_now().with_timezone(&Utc))
+                .num_seconds(),
+        )
     }
 
     /// Minimum seconds until any enabled prayer entry (for adaptive polling).
@@ -201,6 +349,21 @@ pub struct CityLocation {
     pub longitude: f64,
     pub timezone: String,
     pub country: String,
+    #[serde(default)]
+    pub region: Option<String>,
+}
+
+impl CityLocation {
+    pub fn matches_calendar_country(&self, country: &CountryProfile) -> bool {
+        self.country == country.as_str()
+    }
+}
+
+struct ResolvedPrayerLocation {
+    lat: f64,
+    lng: f64,
+    timezone: String,
+    display_name: String,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -221,6 +384,7 @@ fn tehran_fallback_city() -> CityLocation {
         longitude: 51.3890,
         timezone: "Asia/Tehran".into(),
         country: "iran".into(),
+        region: None,
     }
 }
 
@@ -283,6 +447,34 @@ impl Default for PrayerEngine {
     }
 }
 
+fn calculate_salah_schedule(
+    date: NaiveDate,
+    coords: Coordinates,
+    params: Parameters,
+    city_id: &str,
+) -> Result<salah::PrayerTimes> {
+    let result = with_suppressed_salah_panic(AssertUnwindSafe(|| {
+        PrayerSchedule::new()
+            .on(date)
+            .for_location(coords)
+            .with_configuration(params)
+            .calculate()
+    }));
+
+    match result {
+        Ok(Ok(schedule)) => Ok(schedule),
+        Ok(Err(e)) => Err(BolootError::Prayer(e.to_string())),
+        Err(_) => Err(BolootError::Prayer(format!(
+            "prayer calculation failed for {city_id} on {date} (astronomical edge case)"
+        ))),
+    }
+}
+
+struct SalahComputation {
+    location: ResolvedPrayerLocation,
+    salah: salah::PrayerTimes,
+}
+
 impl PrayerEngine {
     pub fn new() -> Self {
         Self::default()
@@ -292,7 +484,21 @@ impl PrayerEngine {
         &self.locations
     }
 
-    pub fn calculate(
+    fn fallback_coords_for(&self, city_id: &str) -> Vec<(f64, f64)> {
+        let Some(city) = self.locations.get(city_id) else {
+            return Vec::new();
+        };
+        self.locations
+            .all()
+            .into_iter()
+            .filter(|candidate| {
+                candidate.id != city_id && candidate.timezone == city.timezone
+            })
+            .map(|candidate| (candidate.latitude, candidate.longitude))
+            .collect()
+    }
+
+    fn compute_salah(
         &self,
         date: NaiveDate,
         city_id: &str,
@@ -301,36 +507,60 @@ impl PrayerEngine {
         timezone: &str,
         method: PrayerCalculationMethod,
         madhab: PrayerMadhab,
+    ) -> Result<SalahComputation> {
+        let location = self.resolve_location(city_id, latitude, longitude, timezone)?;
+        let cache_key = (city_id.to_string(), date);
+        let params = Configuration::with(method.to_salah(), madhab.to_salah());
+
+        if let Ok(cache) = coord_cache().lock() {
+            if let Some(&(lat, lng)) = cache.get(&cache_key) {
+                let coords = Coordinates::new(lat, lng);
+                if let Ok(salah) = calculate_salah_schedule(date, coords, params, city_id) {
+                    return Ok(SalahComputation { location, salah });
+                }
+            }
+        }
+
+        let mut coord_candidates = vec![(location.lat, location.lng)];
+        coord_candidates.extend(self.fallback_coords_for(city_id));
+
+        let mut last_err = BolootError::Prayer(format!(
+            "prayer calculation failed for {city_id} on {date}"
+        ));
+        for (lat, lng) in coord_candidates {
+            let failure_key = coord_failure_key(city_id, date, lat, lng);
+            if let Ok(failed) = failed_coord_cache().lock() {
+                if failed.contains(&failure_key) {
+                    continue;
+                }
+            }
+
+            let coords = Coordinates::new(lat, lng);
+            match calculate_salah_schedule(date, coords, params, city_id) {
+                Ok(salah) => {
+                    if let Ok(mut cache) = coord_cache().lock() {
+                        cache.insert(cache_key.clone(), (lat, lng));
+                    }
+                    return Ok(SalahComputation { location, salah });
+                }
+                Err(err) => {
+                    if let Ok(mut failed) = failed_coord_cache().lock() {
+                        failed.insert(failure_key);
+                    }
+                    last_err = err;
+                }
+            }
+        }
+        Err(last_err)
+    }
+
+    fn entries_from_salah(
+        salah_times: &salah::PrayerTimes,
+        tz: Tz,
         numerals: NumeralStyle,
         language: LanguageVariant,
-    ) -> Result<PrayerTimes> {
-        let city = self
-            .locations
-            .get(city_id)
-            .ok_or_else(|| BolootError::LocationNotFound(city_id.to_string()))?;
-
-        let lat = latitude.unwrap_or(city.latitude);
-        let lng = longitude.unwrap_or(city.longitude);
-        let tz_name = if timezone.is_empty() {
-            city.timezone.as_str()
-        } else {
-            timezone
-        };
-
-        let coords = Coordinates::new(lat, lng);
-        let params = Configuration::with(method.to_salah(), madhab.to_salah());
-        let salah_times = salah::PrayerSchedule::new()
-            .on(date)
-            .for_location(coords)
-            .with_configuration(params)
-            .calculate()
-            .map_err(|e| BolootError::Prayer(e))?;
-
-        let tz: Tz = tz_name
-            .parse()
-            .map_err(|_| BolootError::Prayer(format!("invalid timezone: {tz_name}")))?;
-
-        let entries = [
+    ) -> Vec<PrayerTimeEntry> {
+        [
             PrayerName::Fajr,
             PrayerName::Sunrise,
             PrayerName::Dhuhr,
@@ -352,12 +582,84 @@ impl PrayerEngine {
                 minute,
             }
         })
-        .collect();
+        .collect()
+    }
+
+    fn resolve_location(
+        &self,
+        city_id: &str,
+        latitude: Option<f64>,
+        longitude: Option<f64>,
+        timezone: &str,
+    ) -> Result<ResolvedPrayerLocation> {
+        if let (Some(lat), Some(lng)) = (latitude, longitude) {
+            if let Some(city) = self.locations.get(city_id) {
+                return Ok(ResolvedPrayerLocation {
+                    lat,
+                    lng,
+                    timezone: if timezone.is_empty() {
+                        city.timezone.clone()
+                    } else {
+                        timezone.to_string()
+                    },
+                    display_name: city.name_fa.clone(),
+                });
+            }
+            if timezone.is_empty() {
+                return Err(BolootError::InvalidConfig(
+                    "timezone required for custom prayer coordinates".into(),
+                ));
+            }
+            return Ok(ResolvedPrayerLocation {
+                lat,
+                lng,
+                timezone: timezone.to_string(),
+                display_name: "مختصات سفارشی".into(),
+            });
+        }
+
+        let city = self
+            .locations
+            .get(city_id)
+            .ok_or_else(|| BolootError::LocationNotFound(city_id.to_string()))?;
+        Ok(ResolvedPrayerLocation {
+            lat: city.latitude,
+            lng: city.longitude,
+            timezone: if timezone.is_empty() {
+                city.timezone.clone()
+            } else {
+                timezone.to_string()
+            },
+            display_name: city.name_fa.clone(),
+        })
+    }
+
+    pub fn calculate(
+        &self,
+        date: NaiveDate,
+        city_id: &str,
+        latitude: Option<f64>,
+        longitude: Option<f64>,
+        timezone: &str,
+        method: PrayerCalculationMethod,
+        madhab: PrayerMadhab,
+        numerals: NumeralStyle,
+        language: LanguageVariant,
+    ) -> Result<PrayerTimes> {
+        let SalahComputation { location, salah } =
+            self.compute_salah(date, city_id, latitude, longitude, timezone, method, madhab)?;
+
+        let tz: Tz = location
+            .timezone
+            .parse()
+            .map_err(|_| BolootError::Prayer(format!("invalid timezone: {}", location.timezone)))?;
+
+        let entries = Self::entries_from_salah(&salah, tz, numerals, language);
 
         Ok(PrayerTimes {
             date,
-            timezone: tz_name.to_string(),
-            city: city.name_fa.clone(),
+            timezone: location.timezone,
+            city: location.display_name,
             entries,
         })
     }
@@ -374,43 +676,27 @@ impl PrayerEngine {
         numerals: NumeralStyle,
         language: LanguageVariant,
     ) -> Result<PrayerDayStatus> {
-        let times = self.calculate(
-            date,
-            city_id,
-            latitude,
-            longitude,
-            timezone,
-            method,
-            madhab,
-            numerals,
-            language,
-        )?;
+        let SalahComputation { location, salah } =
+            self.compute_salah(date, city_id, latitude, longitude, timezone, method, madhab)?;
 
-        let city = self
-            .locations
-            .get(city_id)
-            .ok_or_else(|| BolootError::LocationNotFound(city_id.to_string()))?;
-        let lat = latitude.unwrap_or(city.latitude);
-        let lng = longitude.unwrap_or(city.longitude);
-        let coords = Coordinates::new(lat, lng);
-        let params = Configuration::with(method.to_salah(), madhab.to_salah());
-        let salah_times = salah::PrayerSchedule::new()
-            .on(date)
-            .for_location(coords)
-            .with_configuration(params)
-            .calculate()
-            .map_err(|e| BolootError::Prayer(e))?;
-
-        let tz: Tz = times
+        let tz: Tz = location
             .timezone
             .parse()
-            .map_err(|_| BolootError::Prayer(format!("invalid timezone: {}", times.timezone)))?;
+            .map_err(|_| BolootError::Prayer(format!("invalid timezone: {}", location.timezone)))?;
+
+        let entries = Self::entries_from_salah(&salah, tz, numerals, language);
+        let times = PrayerTimes {
+            date,
+            timezone: location.timezone.clone(),
+            city: location.display_name.clone(),
+            entries,
+        };
 
         let (current, next) = Self::resolve_current_and_next(
             date,
             &times.entries,
             tz,
-            &salah_times,
+            &salah,
             numerals,
             language,
         );
@@ -441,7 +727,7 @@ impl PrayerEngine {
         numerals: NumeralStyle,
         language: LanguageVariant,
     ) -> (Option<PrayerName>, Option<NextPrayer>) {
-        let now = Utc::now();
+        let now = local_now().with_timezone(&Utc);
         let track = [
             PrayerName::Fajr,
             PrayerName::Dhuhr,
@@ -551,6 +837,215 @@ mod tests {
             .unwrap();
         assert_eq!(times.entries.len(), 6);
         assert!(times.entries[0].hour < 6);
+    }
+
+    #[test]
+    fn global_city_prayer_times() {
+        let engine = PrayerEngine::new();
+        let date = NaiveDate::from_ymd_opt(2025, 3, 15).unwrap();
+        for (city_id, tz, method) in [
+            ("dubai", "Asia/Dubai", PrayerCalculationMethod::Dubai),
+            ("new_york", "America/New_York", PrayerCalculationMethod::Isna),
+            ("tokyo", "Asia/Tokyo", PrayerCalculationMethod::Mwl),
+        ] {
+            let times = engine
+                .calculate(
+                    date,
+                    city_id,
+                    None,
+                    None,
+                    tz,
+                    method,
+                    PrayerMadhab::Jafari,
+                    NumeralStyle::Latin,
+                    LanguageVariant::Persian,
+                )
+                .unwrap();
+            assert_eq!(times.entries.len(), 6, "city {city_id}");
+            assert_eq!(times.timezone, tz);
+        }
+    }
+
+    #[test]
+    fn location_store_loads_global_cities() {
+        let store = LocationStore::load().expect("load locations");
+        assert!(store.get("berlin").is_some());
+        assert!(store.get("new_york").is_some());
+        assert!(store.get("tokyo").is_some());
+        assert!(store.get("tehran").is_some());
+    }
+
+    #[test]
+    fn suggested_for_city_by_region() {
+        let berlin = CityLocation {
+            id: "berlin".into(),
+            name: "Berlin".into(),
+            name_fa: "برلین".into(),
+            latitude: 52.52,
+            longitude: 13.405,
+            timezone: "Europe/Berlin".into(),
+            country: "germany".into(),
+            region: Some("europe".into()),
+        };
+        assert_eq!(
+            PrayerCalculationMethod::suggested_for_city(&berlin),
+            PrayerCalculationMethod::Mwl
+        );
+
+        let new_york = CityLocation {
+            id: "new_york".into(),
+            name: "New York".into(),
+            name_fa: "نیویورک".into(),
+            latitude: 40.7128,
+            longitude: -74.006,
+            timezone: "America/New_York".into(),
+            country: "usa".into(),
+            region: Some("north_america".into()),
+        };
+        assert_eq!(
+            PrayerCalculationMethod::suggested_for_city(&new_york),
+            PrayerCalculationMethod::Isna
+        );
+
+        let oslo = CityLocation {
+            id: "oslo".into(),
+            name: "Oslo".into(),
+            name_fa: "اسلو".into(),
+            latitude: 59.9139,
+            longitude: 10.7522,
+            timezone: "Europe/Oslo".into(),
+            country: "norway".into(),
+            region: Some("europe".into()),
+        };
+        assert_eq!(
+            PrayerCalculationMethod::suggested_for_city(&oslo),
+            PrayerCalculationMethod::MoonsightingCommittee
+        );
+    }
+
+    #[test]
+    fn custom_coordinates_without_catalog_city() {
+        let engine = PrayerEngine::new();
+        let date = NaiveDate::from_ymd_opt(2025, 3, 15).unwrap();
+        let times = engine
+            .calculate(
+                date,
+                "custom",
+                Some(35.6892),
+                Some(51.3890),
+                "Asia/Tehran",
+                PrayerCalculationMethod::Tehran,
+                PrayerMadhab::Jafari,
+                NumeralStyle::Latin,
+                LanguageVariant::Persian,
+            )
+            .unwrap();
+        assert_eq!(times.city, "مختصات سفارشی");
+        assert_eq!(times.entries.len(), 6);
+    }
+
+    #[test]
+    fn custom_coordinates_require_timezone_without_catalog() {
+        let engine = PrayerEngine::new();
+        let date = NaiveDate::from_ymd_opt(2025, 6, 12).unwrap();
+        let err = engine
+            .calculate(
+                date,
+                "custom",
+                Some(52.52),
+                Some(13.405),
+                "",
+                PrayerCalculationMethod::Mwl,
+                PrayerMadhab::Jafari,
+                NumeralStyle::Latin,
+                LanguageVariant::Persian,
+            )
+            .unwrap_err();
+        assert!(matches!(err, BolootError::InvalidConfig(_)));
+    }
+
+    #[test]
+    fn khujand_uses_same_timezone_fallback_on_problem_date() {
+        let engine = PrayerEngine::new();
+        let date = NaiveDate::from_ymd_opt(2026, 7, 9).unwrap();
+        let times = engine
+            .calculate(
+                date,
+                "khujand",
+                None,
+                None,
+                "Asia/Dushanbe",
+                PrayerCalculationMethod::Mwl,
+                PrayerMadhab::Jafari,
+                NumeralStyle::Latin,
+                LanguageVariant::Persian,
+            )
+            .expect("khujand should fallback to dushanbe");
+        assert_eq!(times.city, "خجند");
+        assert_eq!(times.entries.len(), 6);
+    }
+
+    #[test]
+    fn khujand_schedule_can_be_polled_repeatedly() {
+        let engine = PrayerEngine::new();
+        let date = NaiveDate::from_ymd_opt(2026, 7, 9).unwrap();
+        for _ in 0..3 {
+            let status = engine
+                .schedule(
+                    date,
+                    "khujand",
+                    None,
+                    None,
+                    "Asia/Dushanbe",
+                    PrayerCalculationMethod::Mwl,
+                    PrayerMadhab::Jafari,
+                    NumeralStyle::Latin,
+                    LanguageVariant::Persian,
+                )
+                .expect("khujand schedule should succeed via fallback");
+            assert_eq!(status.times.entries.len(), 6);
+        }
+    }
+
+    #[test]
+    fn salah_panic_is_caught_when_no_fallback_exists() {
+        let engine = PrayerEngine::new();
+        let date = NaiveDate::from_ymd_opt(2026, 7, 9).unwrap();
+        let err = engine
+            .calculate(
+                date,
+                "london",
+                None,
+                None,
+                "Europe/London",
+                PrayerCalculationMethod::Mwl,
+                PrayerMadhab::Jafari,
+                NumeralStyle::Latin,
+                LanguageVariant::Persian,
+            )
+            .unwrap_err();
+        assert!(matches!(err, BolootError::Prayer(_)));
+    }
+
+    #[test]
+    fn tbilisi_prayer_times_on_problem_date() {
+        let engine = PrayerEngine::new();
+        let date = NaiveDate::from_ymd_opt(2026, 7, 9).unwrap();
+        let times = engine
+            .calculate(
+                date,
+                "tbilisi",
+                None,
+                None,
+                "Asia/Tbilisi",
+                PrayerCalculationMethod::Mwl,
+                PrayerMadhab::Jafari,
+                NumeralStyle::Latin,
+                LanguageVariant::Persian,
+            )
+            .expect("tbilisi prayer times");
+        assert_eq!(times.entries.len(), 6);
+        assert_eq!(times.timezone, "Asia/Tbilisi");
     }
 
     #[test]

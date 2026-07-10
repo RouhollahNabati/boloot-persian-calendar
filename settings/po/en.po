@@ -1,0 +1,113 @@
+# BOLOOT Persian Calendar settings — English
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+msgid "تنظیمات {name}"
+msgstr "{name} Settings"
+
+msgid "منطقه و زبان"
+msgstr "Region & language"
+
+msgid "کشور، زبان و قوانین تقویم محلی"
+msgstr "Country, language, and local calendar rules"
+
+msgid "همگام با locale سیستم"
+msgstr "Follow system locale"
+
+msgid "کشور، زبان و اعداد از LANG/LC_TIME سیستم"
+msgstr "Country, language, and numerals from system LANG/LC_TIME"
+
+msgid "همگام‌سازی اکنون"
+msgstr "Sync now"
+
+msgid "کشور"
+msgstr "Country"
+
+msgid "زبان"
+msgstr "Language"
+
+msgid "همگام‌سازی locale ناموفق بود"
+msgstr "Locale sync failed"
+
+msgid "تنظیمات ذخیره شد"
+msgstr "Settings saved"
+
+msgid "ذخیره تنظیمات ناموفق بود"
+msgstr "Failed to save settings"
+
+msgid "درباره"
+msgstr "About"
+
+msgid "تقویم فارسی، اوقات شرعی و تعطیلات رسمی"
+msgstr "Persian calendar, prayer times, and official holidays"
+
+msgid "درباره بولوت"
+msgstr "About BOLOOT"
+
+msgid "حمایت"
+msgstr "Support"
+
+msgid "اگر بولوت هر روز کنارت بود، با یک حمایت کوچک کمک کن تا تقویم فارسی رایگان بماند و برای همه بهتر شود. برای USDT فقط شبکه TRC20 را انتخاب کنید."
+msgstr "If BOLOOT is part of your daily routine, a small gift helps keep the Persian calendar free and improving for everyone. For USDT, use the TRC20 network only."
+
+msgid "USDT · TRC20"
+msgstr "USDT · TRC20"
+
+msgid "Bitcoin (BTC)"
+msgstr "Bitcoin (BTC)"
+
+msgid "⚠️ برای USDT فقط TRC20 ارسال کنید؛ شبکه دیگر ممکن است باعث از دست رفتن دارایی شود."
+msgstr "⚠️ Send USDT on TRC20 only. Sending on another network may result in permanent loss of funds."
+
+msgid "کد QR یافت نشد"
+msgstr "QR code not found"
+
+msgid "کپی آدرس"
+msgstr "Copy address"
+
+msgid "کپی آدرس ناموفق بود"
+msgstr "Failed to copy address"
+
+msgid "آدرس کپی شد"
+msgstr "Address copied"
+
+msgid "تقویم شمسی، اوقات شرعی و تعطیلات برای ایران، افغانستان و تاجیکستان"
+msgstr "Solar calendar, prayer times, and holidays for Iran, Afghanistan, and Tajikistan"
+
+msgid "حمایت USDT (TRC20):"
+msgstr "Support USDT (TRC20):"
+
+msgid "حمایت Bitcoin:"
+msgstr "Support Bitcoin:"
+
+msgid "سرویس"
+msgstr "Service"
+
+msgid "راه‌اندازی مجدد دیمون پس از به‌روزرسانی یا مشکل اتصال"
+msgstr "Restart the daemon after an update or connection issue"
+
+msgid "وضعیت سرویس"
+msgstr "Service status"
+
+msgid "راه‌اندازی مجدد سرویس"
+msgstr "Restart service"
+
+msgid "در حال اجرا"
+msgstr "Running"
+
+msgid "متوقف یا در دسترس نیست"
+msgstr "Stopped or unavailable"
+
+msgid "سرویس راه‌اندازی مجدد شد"
+msgstr "Service restarted"
+
+msgid "راه‌اندازی مجدد سرویس ناموفق بود"
+msgstr "Service restart failed"
+
+msgid "نمایش قصار امام علی (ع)"
+msgstr "Show Imam Ali (AS) wisdom"
+
+msgid "با نگه‌داشتن موس روی تاریخ در نوار بالا"
+msgstr "When hovering over the date in the top bar"

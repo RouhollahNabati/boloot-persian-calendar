@@ -1,0 +1,5043 @@
+{
+  "countries": [
+    {
+      "id": "afghanistan",
+      "iso_alpha2": "AF",
+      "name_en": "Afghanistan",
+      "name_fa": "افغانستان",
+      "region": "south_asia",
+      "default_timezone": "Asia/Kabul",
+      "week_start": "saturday",
+      "weekend_days": [
+        "thursday",
+        "friday"
+      ],
+      "default_language": "dari",
+      "languages": [
+        "dari",
+        "pashto",
+        "english"
+      ],
+      "prayer_method": "karachi",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "kabul"
+    },
+    {
+      "id": "albania",
+      "iso_alpha2": "AL",
+      "name_en": "Albania",
+      "name_fa": "آلبانی",
+      "region": "europe",
+      "default_timezone": "Europe/Tirane",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "tirana"
+    },
+    {
+      "id": "algeria",
+      "iso_alpha2": "DZ",
+      "name_en": "Algeria",
+      "name_fa": "الجزایر",
+      "region": "africa",
+      "default_timezone": "Africa/Algiers",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "algiers"
+    },
+    {
+      "id": "american_samoa",
+      "iso_alpha2": "AS",
+      "name_en": "American Samoa",
+      "name_fa": "ساموآی آمریکا",
+      "region": "oceania",
+      "default_timezone": "Pacific/Pago_Pago",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "pago_pago"
+    },
+    {
+      "id": "andorra",
+      "iso_alpha2": "AD",
+      "name_en": "Andorra",
+      "name_fa": "آندورا",
+      "region": "europe",
+      "default_timezone": "Europe/Andorra",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "andorra_la_vella"
+    },
+    {
+      "id": "angola",
+      "iso_alpha2": "AO",
+      "name_en": "Angola",
+      "name_fa": "آنگولا",
+      "region": "africa",
+      "default_timezone": "Africa/Luanda",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "luanda"
+    },
+    {
+      "id": "anguilla",
+      "iso_alpha2": "AI",
+      "name_en": "Anguilla",
+      "name_fa": "آنگویلا",
+      "region": "north_america",
+      "default_timezone": "America/Anguilla",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "the_valley"
+    },
+    {
+      "id": "antigua_and_barbuda",
+      "iso_alpha2": "AG",
+      "name_en": "Antigua and Barbuda",
+      "name_fa": "آنتیگوا و باربودا",
+      "region": "north_america",
+      "default_timezone": "America/Antigua",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "st_john_s"
+    },
+    {
+      "id": "argentina",
+      "iso_alpha2": "AR",
+      "name_en": "Argentina",
+      "name_fa": "آرژانتین",
+      "region": "latin_america",
+      "default_timezone": "America/Argentina/Buenos_Aires",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "buenos_aires"
+    },
+    {
+      "id": "armenia",
+      "iso_alpha2": "AM",
+      "name_en": "Armenia",
+      "name_fa": "ارمنستان",
+      "region": "middle_east",
+      "default_timezone": "Asia/Yerevan",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "yerevan"
+    },
+    {
+      "id": "aruba",
+      "iso_alpha2": "AW",
+      "name_en": "Aruba",
+      "name_fa": "آروبا",
+      "region": "north_america",
+      "default_timezone": "America/Aruba",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "oranjestad"
+    },
+    {
+      "id": "australia",
+      "iso_alpha2": "AU",
+      "name_en": "Australia",
+      "name_fa": "استرالیا",
+      "region": "oceania",
+      "default_timezone": "Australia/Sydney",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "sydney"
+    },
+    {
+      "id": "austria",
+      "iso_alpha2": "AT",
+      "name_en": "Austria",
+      "name_fa": "اتریش",
+      "region": "europe",
+      "default_timezone": "Europe/Vienna",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "vienna"
+    },
+    {
+      "id": "azerbaijan",
+      "iso_alpha2": "AZ",
+      "name_en": "Azerbaijan",
+      "name_fa": "آذربایجان",
+      "region": "middle_east",
+      "default_timezone": "Asia/Baku",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "baku"
+    },
+    {
+      "id": "bahrain",
+      "iso_alpha2": "BH",
+      "name_en": "Bahrain",
+      "name_fa": "بحرین",
+      "region": "middle_east",
+      "default_timezone": "Asia/Bahrain",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "umm_al_qura",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "manama"
+    },
+    {
+      "id": "bangladesh",
+      "iso_alpha2": "BD",
+      "name_en": "Bangladesh",
+      "name_fa": "بنگلادش",
+      "region": "south_asia",
+      "default_timezone": "Asia/Dhaka",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "dhaka"
+    },
+    {
+      "id": "barbados",
+      "iso_alpha2": "BB",
+      "name_en": "Barbados",
+      "name_fa": "باربادوس",
+      "region": "north_america",
+      "default_timezone": "America/Barbados",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bridgetown"
+    },
+    {
+      "id": "belarus",
+      "iso_alpha2": "BY",
+      "name_en": "Belarus",
+      "name_fa": "بلاروس",
+      "region": "europe",
+      "default_timezone": "Europe/Minsk",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "minsk"
+    },
+    {
+      "id": "belgium",
+      "iso_alpha2": "BE",
+      "name_en": "Belgium",
+      "name_fa": "بلژیک",
+      "region": "europe",
+      "default_timezone": "Europe/Brussels",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "brussels"
+    },
+    {
+      "id": "belize",
+      "iso_alpha2": "BZ",
+      "name_en": "Belize",
+      "name_fa": "بلیز",
+      "region": "north_america",
+      "default_timezone": "America/Belize",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "belmopan"
+    },
+    {
+      "id": "benin",
+      "iso_alpha2": "BJ",
+      "name_en": "Benin",
+      "name_fa": "بنین",
+      "region": "africa",
+      "default_timezone": "Africa/Porto-Novo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "porto_novo"
+    },
+    {
+      "id": "bermuda",
+      "iso_alpha2": "BM",
+      "name_en": "Bermuda",
+      "name_fa": "برمودا",
+      "region": "north_america",
+      "default_timezone": "Atlantic/Bermuda",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "hamilton"
+    },
+    {
+      "id": "bhutan",
+      "iso_alpha2": "BT",
+      "name_en": "Bhutan",
+      "name_fa": "بوتان",
+      "region": "south_asia",
+      "default_timezone": "Asia/Thimphu",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "thimphu"
+    },
+    {
+      "id": "bolivia",
+      "iso_alpha2": "BO",
+      "name_en": "Bolivia",
+      "name_fa": "بولیوی",
+      "region": "latin_america",
+      "default_timezone": "America/La_Paz",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "sucre"
+    },
+    {
+      "id": "bonaire_sint_eustatius_and_saba",
+      "iso_alpha2": "BQ",
+      "name_en": "Bonaire, Sint Eustatius and Saba",
+      "name_fa": "بونیر",
+      "region": "north_america",
+      "default_timezone": "America/Kralendijk",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kralendijk"
+    },
+    {
+      "id": "bosnia_herzegovina",
+      "iso_alpha2": "BA",
+      "name_en": "Bosnia and Herzegovina",
+      "name_fa": "بوسنی و هرزگوین",
+      "region": "europe",
+      "default_timezone": "Europe/Sarajevo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "sarajevo"
+    },
+    {
+      "id": "botswana",
+      "iso_alpha2": "BW",
+      "name_en": "Botswana",
+      "name_fa": "بوتسوانا",
+      "region": "africa",
+      "default_timezone": "Africa/Gaborone",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "gaborone"
+    },
+    {
+      "id": "brazil",
+      "iso_alpha2": "BR",
+      "name_en": "Brazil",
+      "name_fa": "برزیل",
+      "region": "latin_america",
+      "default_timezone": "America/Sao_Paulo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "brasilia"
+    },
+    {
+      "id": "british_indian_ocean_territory",
+      "iso_alpha2": "IO",
+      "name_en": "British Indian Ocean Territory",
+      "name_fa": "قلمرو بریتانیا در اقیانوس هند",
+      "region": "africa",
+      "default_timezone": "Indian/Chagos",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "diego_garcia"
+    },
+    {
+      "id": "brunei",
+      "iso_alpha2": "BN",
+      "name_en": "Brunei",
+      "name_fa": "برونئی",
+      "region": "east_asia",
+      "default_timezone": "Asia/Brunei",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bandar_seri_begawan"
+    },
+    {
+      "id": "bulgaria",
+      "iso_alpha2": "BG",
+      "name_en": "Bulgaria",
+      "name_fa": "بلغارستان",
+      "region": "europe",
+      "default_timezone": "Europe/Sofia",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "sofia"
+    },
+    {
+      "id": "burkina_faso",
+      "iso_alpha2": "BF",
+      "name_en": "Burkina Faso",
+      "name_fa": "بورکینافاسو",
+      "region": "africa",
+      "default_timezone": "Africa/Ouagadougou",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "ouagadougou"
+    },
+    {
+      "id": "burundi",
+      "iso_alpha2": "BI",
+      "name_en": "Burundi",
+      "name_fa": "بوروندی",
+      "region": "africa",
+      "default_timezone": "Africa/Bujumbura",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bujumbura"
+    },
+    {
+      "id": "cambodia",
+      "iso_alpha2": "KH",
+      "name_en": "Cambodia",
+      "name_fa": "کامبوج",
+      "region": "east_asia",
+      "default_timezone": "Asia/Phnom_Penh",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "phnom_penh"
+    },
+    {
+      "id": "cameroon",
+      "iso_alpha2": "CM",
+      "name_en": "Cameroon",
+      "name_fa": "کامرون",
+      "region": "africa",
+      "default_timezone": "Africa/Douala",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "yaounde"
+    },
+    {
+      "id": "canada",
+      "iso_alpha2": "CA",
+      "name_en": "Canada",
+      "name_fa": "کانادا",
+      "region": "north_america",
+      "default_timezone": "America/Toronto",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "isna",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "toronto"
+    },
+    {
+      "id": "cape_verde",
+      "iso_alpha2": "CV",
+      "name_en": "Cape Verde",
+      "name_fa": "کیپ ورد",
+      "region": "africa",
+      "default_timezone": "Atlantic/Cape_Verde",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "praia"
+    },
+    {
+      "id": "cayman_islands",
+      "iso_alpha2": "KY",
+      "name_en": "Cayman Islands",
+      "name_fa": "جزایر کیمن",
+      "region": "north_america",
+      "default_timezone": "America/Cayman",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "george_town"
+    },
+    {
+      "id": "central_african_republic",
+      "iso_alpha2": "CF",
+      "name_en": "Central African Republic",
+      "name_fa": "جمهوری آفریقای مرکزی",
+      "region": "africa",
+      "default_timezone": "Africa/Bangui",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bangui"
+    },
+    {
+      "id": "chad",
+      "iso_alpha2": "TD",
+      "name_en": "Chad",
+      "name_fa": "چاد",
+      "region": "africa",
+      "default_timezone": "Africa/Ndjamena",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "n_djamena"
+    },
+    {
+      "id": "chile",
+      "iso_alpha2": "CL",
+      "name_en": "Chile",
+      "name_fa": "شیلی",
+      "region": "latin_america",
+      "default_timezone": "America/Punta_Arenas",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "santiago"
+    },
+    {
+      "id": "china",
+      "iso_alpha2": "CN",
+      "name_en": "China",
+      "name_fa": "چین",
+      "region": "east_asia",
+      "default_timezone": "Asia/Shanghai",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "beijing"
+    },
+    {
+      "id": "christmas_island",
+      "iso_alpha2": "CX",
+      "name_en": "Christmas Island",
+      "name_fa": "جزیره کریسمس",
+      "region": "oceania",
+      "default_timezone": "Indian/Christmas",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "flying_fish_cove"
+    },
+    {
+      "id": "cocos_keeling_islands",
+      "iso_alpha2": "CC",
+      "name_en": "Cocos (Keeling) Islands",
+      "name_fa": "جزایر کوکوس",
+      "region": "oceania",
+      "default_timezone": "Indian/Cocos",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "west_island"
+    },
+    {
+      "id": "colombia",
+      "iso_alpha2": "CO",
+      "name_en": "Colombia",
+      "name_fa": "کلمبیا",
+      "region": "latin_america",
+      "default_timezone": "America/Bogota",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bogota"
+    },
+    {
+      "id": "comoros",
+      "iso_alpha2": "KM",
+      "name_en": "Comoros",
+      "name_fa": "کومور",
+      "region": "africa",
+      "default_timezone": "Indian/Comoro",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "moroni"
+    },
+    {
+      "id": "congo",
+      "iso_alpha2": "CG",
+      "name_en": "Congo",
+      "name_fa": "کنگو",
+      "region": "africa",
+      "default_timezone": "Africa/Brazzaville",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "brazzaville"
+    },
+    {
+      "id": "cook_islands",
+      "iso_alpha2": "CK",
+      "name_en": "Cook Islands",
+      "name_fa": "جزایر کوک",
+      "region": "oceania",
+      "default_timezone": "Pacific/Rarotonga",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "avarua"
+    },
+    {
+      "id": "costa_rica",
+      "iso_alpha2": "CR",
+      "name_en": "Costa Rica",
+      "name_fa": "کاستاریکا",
+      "region": "north_america",
+      "default_timezone": "America/Costa_Rica",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "san_jose"
+    },
+    {
+      "id": "croatia",
+      "iso_alpha2": "HR",
+      "name_en": "Croatia",
+      "name_fa": "کرواسی",
+      "region": "europe",
+      "default_timezone": "Europe/Zagreb",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "zagreb"
+    },
+    {
+      "id": "cuba",
+      "iso_alpha2": "CU",
+      "name_en": "Cuba",
+      "name_fa": "کوبا",
+      "region": "north_america",
+      "default_timezone": "America/Havana",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "havana"
+    },
+    {
+      "id": "curacao",
+      "iso_alpha2": "CW",
+      "name_en": "Curaçao",
+      "name_fa": "کوراسائو",
+      "region": "north_america",
+      "default_timezone": "America/Curacao",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "willemstad"
+    },
+    {
+      "id": "cyprus",
+      "iso_alpha2": "CY",
+      "name_en": "Cyprus",
+      "name_fa": "قبرس",
+      "region": "europe",
+      "default_timezone": "Asia/Famagusta",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "nicosia"
+    },
+    {
+      "id": "czechia",
+      "iso_alpha2": "CZ",
+      "name_en": "Czech Republic",
+      "name_fa": "جمهوری چک",
+      "region": "europe",
+      "default_timezone": "Europe/Prague",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "prague"
+    },
+    {
+      "id": "dr_congo",
+      "iso_alpha2": "CD",
+      "name_en": "Democratic Republic of the Congo",
+      "name_fa": "جمهوری کنگو",
+      "region": "africa",
+      "default_timezone": "Africa/Kinshasa",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kinshasa"
+    },
+    {
+      "id": "denmark",
+      "iso_alpha2": "DK",
+      "name_en": "Denmark",
+      "name_fa": "دانمارک",
+      "region": "europe",
+      "default_timezone": "Europe/Copenhagen",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "copenhagen"
+    },
+    {
+      "id": "djibouti",
+      "iso_alpha2": "DJ",
+      "name_en": "Djibouti",
+      "name_fa": "جیبوتی",
+      "region": "africa",
+      "default_timezone": "Africa/Djibouti",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "djibouti"
+    },
+    {
+      "id": "dominica",
+      "iso_alpha2": "DM",
+      "name_en": "Dominica",
+      "name_fa": "دومینیکا",
+      "region": "north_america",
+      "default_timezone": "America/Dominica",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "roseau"
+    },
+    {
+      "id": "dominican_republic",
+      "iso_alpha2": "DO",
+      "name_en": "Dominican Republic",
+      "name_fa": "جمهوری دومینیکن",
+      "region": "north_america",
+      "default_timezone": "America/Santo_Domingo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "santo_domingo"
+    },
+    {
+      "id": "ecuador",
+      "iso_alpha2": "EC",
+      "name_en": "Ecuador",
+      "name_fa": "اکوادور",
+      "region": "latin_america",
+      "default_timezone": "America/Guayaquil",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "quito"
+    },
+    {
+      "id": "egypt",
+      "iso_alpha2": "EG",
+      "name_en": "Egypt",
+      "name_fa": "مصر",
+      "region": "africa",
+      "default_timezone": "Africa/Cairo",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "egypt",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "cairo"
+    },
+    {
+      "id": "el_salvador",
+      "iso_alpha2": "SV",
+      "name_en": "El Salvador",
+      "name_fa": "السالوادور",
+      "region": "north_america",
+      "default_timezone": "America/El_Salvador",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "san_salvador"
+    },
+    {
+      "id": "equatorial_guinea",
+      "iso_alpha2": "GQ",
+      "name_en": "Equatorial Guinea",
+      "name_fa": "گینه استوایی",
+      "region": "africa",
+      "default_timezone": "Africa/Malabo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "malabo"
+    },
+    {
+      "id": "eritrea",
+      "iso_alpha2": "ER",
+      "name_en": "Eritrea",
+      "name_fa": "اریتره",
+      "region": "africa",
+      "default_timezone": "Africa/Asmara",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "asmara"
+    },
+    {
+      "id": "estonia",
+      "iso_alpha2": "EE",
+      "name_en": "Estonia",
+      "name_fa": "استونی",
+      "region": "europe",
+      "default_timezone": "Europe/Tallinn",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "tallinn"
+    },
+    {
+      "id": "eswatini",
+      "iso_alpha2": "SZ",
+      "name_en": "Eswatini",
+      "name_fa": "سوازیلند",
+      "region": "africa",
+      "default_timezone": "Africa/Mbabane",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "mbabane"
+    },
+    {
+      "id": "ethiopia",
+      "iso_alpha2": "ET",
+      "name_en": "Ethiopia",
+      "name_fa": "اتیوپی",
+      "region": "africa",
+      "default_timezone": "Africa/Addis_Ababa",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "addis_ababa"
+    },
+    {
+      "id": "falkland_islands",
+      "iso_alpha2": "FK",
+      "name_en": "Falkland Islands",
+      "name_fa": "جزایر فالکلند",
+      "region": "latin_america",
+      "default_timezone": "Atlantic/Stanley",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "stanley"
+    },
+    {
+      "id": "faroe_islands",
+      "iso_alpha2": "FO",
+      "name_en": "Faroe Islands",
+      "name_fa": "جزایر فارو",
+      "region": "europe",
+      "default_timezone": "Atlantic/Faroe",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "torshavn"
+    },
+    {
+      "id": "fiji_islands",
+      "iso_alpha2": "FJ",
+      "name_en": "Fiji Islands",
+      "name_fa": "فیجی",
+      "region": "oceania",
+      "default_timezone": "Pacific/Fiji",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "suva"
+    },
+    {
+      "id": "finland",
+      "iso_alpha2": "FI",
+      "name_en": "Finland",
+      "name_fa": "فنلاند",
+      "region": "europe",
+      "default_timezone": "Europe/Helsinki",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "helsinki"
+    },
+    {
+      "id": "france",
+      "iso_alpha2": "FR",
+      "name_en": "France",
+      "name_fa": "فرانسه",
+      "region": "europe",
+      "default_timezone": "Europe/Paris",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "paris"
+    },
+    {
+      "id": "french_guiana",
+      "iso_alpha2": "GF",
+      "name_en": "French Guiana",
+      "name_fa": "گویان فرانسه",
+      "region": "latin_america",
+      "default_timezone": "America/Cayenne",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "cayenne"
+    },
+    {
+      "id": "french_polynesia",
+      "iso_alpha2": "PF",
+      "name_en": "French Polynesia",
+      "name_fa": "پلی‌نزی فرانسه",
+      "region": "oceania",
+      "default_timezone": "Pacific/Gambier",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "papeete"
+    },
+    {
+      "id": "gabon",
+      "iso_alpha2": "GA",
+      "name_en": "Gabon",
+      "name_fa": "گابن",
+      "region": "africa",
+      "default_timezone": "Africa/Libreville",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "libreville"
+    },
+    {
+      "id": "georgia",
+      "iso_alpha2": "GE",
+      "name_en": "Georgia",
+      "name_fa": "گرجستان",
+      "region": "middle_east",
+      "default_timezone": "Asia/Tbilisi",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "tbilisi"
+    },
+    {
+      "id": "germany",
+      "iso_alpha2": "DE",
+      "name_en": "Germany",
+      "name_fa": "آلمان",
+      "region": "europe",
+      "default_timezone": "Europe/Berlin",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "berlin"
+    },
+    {
+      "id": "ghana",
+      "iso_alpha2": "GH",
+      "name_en": "Ghana",
+      "name_fa": "غنا",
+      "region": "africa",
+      "default_timezone": "Africa/Accra",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "accra"
+    },
+    {
+      "id": "gibraltar",
+      "iso_alpha2": "GI",
+      "name_en": "Gibraltar",
+      "name_fa": "جبل‌طارق",
+      "region": "europe",
+      "default_timezone": "Europe/Gibraltar",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "gibraltar"
+    },
+    {
+      "id": "greece",
+      "iso_alpha2": "GR",
+      "name_en": "Greece",
+      "name_fa": "یونان",
+      "region": "europe",
+      "default_timezone": "Europe/Athens",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "athens"
+    },
+    {
+      "id": "greenland",
+      "iso_alpha2": "GL",
+      "name_en": "Greenland",
+      "name_fa": "گرینلند",
+      "region": "north_america",
+      "default_timezone": "America/Danmarkshavn",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "nuuk"
+    },
+    {
+      "id": "grenada",
+      "iso_alpha2": "GD",
+      "name_en": "Grenada",
+      "name_fa": "گرنادا",
+      "region": "north_america",
+      "default_timezone": "America/Grenada",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "st_george_s"
+    },
+    {
+      "id": "guadeloupe",
+      "iso_alpha2": "GP",
+      "name_en": "Guadeloupe",
+      "name_fa": "جزیره گوادلوپ",
+      "region": "north_america",
+      "default_timezone": "America/Guadeloupe",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "basse_terre"
+    },
+    {
+      "id": "guam",
+      "iso_alpha2": "GU",
+      "name_en": "Guam",
+      "name_fa": "گوام",
+      "region": "oceania",
+      "default_timezone": "Pacific/Guam",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "hagatna"
+    },
+    {
+      "id": "guatemala",
+      "iso_alpha2": "GT",
+      "name_en": "Guatemala",
+      "name_fa": "گواتمالا",
+      "region": "north_america",
+      "default_timezone": "America/Guatemala",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "guatemala_city"
+    },
+    {
+      "id": "guernsey",
+      "iso_alpha2": "GG",
+      "name_en": "Guernsey",
+      "name_fa": "گرنزی",
+      "region": "europe",
+      "default_timezone": "Europe/Guernsey",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "st_peter_port"
+    },
+    {
+      "id": "guinea",
+      "iso_alpha2": "GN",
+      "name_en": "Guinea",
+      "name_fa": "گینه",
+      "region": "africa",
+      "default_timezone": "Africa/Conakry",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "conakry"
+    },
+    {
+      "id": "guinea_bissau",
+      "iso_alpha2": "GW",
+      "name_en": "Guinea-Bissau",
+      "name_fa": "گینه بیسائو",
+      "region": "africa",
+      "default_timezone": "Africa/Bissau",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bissau"
+    },
+    {
+      "id": "guyana",
+      "iso_alpha2": "GY",
+      "name_en": "Guyana",
+      "name_fa": "گویان",
+      "region": "latin_america",
+      "default_timezone": "America/Guyana",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "georgetown"
+    },
+    {
+      "id": "haiti",
+      "iso_alpha2": "HT",
+      "name_en": "Haiti",
+      "name_fa": "هائیتی",
+      "region": "north_america",
+      "default_timezone": "America/Port-au-Prince",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "port_au_prince"
+    },
+    {
+      "id": "honduras",
+      "iso_alpha2": "HN",
+      "name_en": "Honduras",
+      "name_fa": "هندوراس",
+      "region": "north_america",
+      "default_timezone": "America/Tegucigalpa",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "tegucigalpa"
+    },
+    {
+      "id": "hong_kong",
+      "iso_alpha2": "HK",
+      "name_en": "Hong Kong S.A.R.",
+      "name_fa": "هنگ‌کنگ",
+      "region": "east_asia",
+      "default_timezone": "Asia/Hong_Kong",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "hong_kong"
+    },
+    {
+      "id": "hungary",
+      "iso_alpha2": "HU",
+      "name_en": "Hungary",
+      "name_fa": "مجارستان",
+      "region": "europe",
+      "default_timezone": "Europe/Budapest",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "budapest"
+    },
+    {
+      "id": "iceland",
+      "iso_alpha2": "IS",
+      "name_en": "Iceland",
+      "name_fa": "ایسلند",
+      "region": "europe",
+      "default_timezone": "Atlantic/Reykjavik",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "reykjavik"
+    },
+    {
+      "id": "india",
+      "iso_alpha2": "IN",
+      "name_en": "India",
+      "name_fa": "هند",
+      "region": "south_asia",
+      "default_timezone": "Asia/Kolkata",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "delhi"
+    },
+    {
+      "id": "indonesia",
+      "iso_alpha2": "ID",
+      "name_en": "Indonesia",
+      "name_fa": "اندونزی",
+      "region": "east_asia",
+      "default_timezone": "Asia/Jakarta",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "singapore",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "jakarta"
+    },
+    {
+      "id": "iran",
+      "iso_alpha2": "IR",
+      "name_en": "Iran",
+      "name_fa": "ایران",
+      "region": "middle_east",
+      "default_timezone": "Asia/Tehran",
+      "week_start": "saturday",
+      "weekend_days": [
+        "friday"
+      ],
+      "default_language": "persian",
+      "languages": [
+        "persian",
+        "english"
+      ],
+      "prayer_method": "tehran",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "tehran"
+    },
+    {
+      "id": "iraq",
+      "iso_alpha2": "IQ",
+      "name_en": "Iraq",
+      "name_fa": "عراق",
+      "region": "middle_east",
+      "default_timezone": "Asia/Baghdad",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "baghdad"
+    },
+    {
+      "id": "ireland",
+      "iso_alpha2": "IE",
+      "name_en": "Ireland",
+      "name_fa": "ایرلند",
+      "region": "europe",
+      "default_timezone": "Europe/Dublin",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "dublin"
+    },
+    {
+      "id": "israel",
+      "iso_alpha2": "IL",
+      "name_en": "Israel",
+      "name_fa": "اسرائیل",
+      "region": "middle_east",
+      "default_timezone": "Asia/Jerusalem",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "jerusalem"
+    },
+    {
+      "id": "italy",
+      "iso_alpha2": "IT",
+      "name_en": "Italy",
+      "name_fa": "ایتالیا",
+      "region": "europe",
+      "default_timezone": "Europe/Rome",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "rome"
+    },
+    {
+      "id": "ivory_coast",
+      "iso_alpha2": "CI",
+      "name_en": "Ivory Coast",
+      "name_fa": "ساحل عاج",
+      "region": "africa",
+      "default_timezone": "Africa/Abidjan",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "yamoussoukro"
+    },
+    {
+      "id": "jamaica",
+      "iso_alpha2": "JM",
+      "name_en": "Jamaica",
+      "name_fa": "جامائیکا",
+      "region": "north_america",
+      "default_timezone": "America/Jamaica",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kingston"
+    },
+    {
+      "id": "japan",
+      "iso_alpha2": "JP",
+      "name_en": "Japan",
+      "name_fa": "ژاپن",
+      "region": "east_asia",
+      "default_timezone": "Asia/Tokyo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "tokyo"
+    },
+    {
+      "id": "jersey",
+      "iso_alpha2": "JE",
+      "name_en": "Jersey",
+      "name_fa": "جرزی",
+      "region": "europe",
+      "default_timezone": "Europe/Jersey",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "saint_helier"
+    },
+    {
+      "id": "jordan",
+      "iso_alpha2": "JO",
+      "name_en": "Jordan",
+      "name_fa": "اردن",
+      "region": "middle_east",
+      "default_timezone": "Asia/Amman",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "amman"
+    },
+    {
+      "id": "kazakhstan",
+      "iso_alpha2": "KZ",
+      "name_en": "Kazakhstan",
+      "name_fa": "قزاقستان",
+      "region": "russia_central_asia",
+      "default_timezone": "Asia/Almaty",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "almaty"
+    },
+    {
+      "id": "kenya",
+      "iso_alpha2": "KE",
+      "name_en": "Kenya",
+      "name_fa": "کنیا",
+      "region": "africa",
+      "default_timezone": "Africa/Nairobi",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "nairobi"
+    },
+    {
+      "id": "kiribati",
+      "iso_alpha2": "KI",
+      "name_en": "Kiribati",
+      "name_fa": "کیریباتی",
+      "region": "oceania",
+      "default_timezone": "Pacific/Enderbury",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "tarawa"
+    },
+    {
+      "id": "kosovo",
+      "iso_alpha2": "XK",
+      "name_en": "Kosovo",
+      "name_fa": "Kosovo",
+      "region": "europe",
+      "default_timezone": "Europe/Belgrade",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "pristina"
+    },
+    {
+      "id": "kuwait",
+      "iso_alpha2": "KW",
+      "name_en": "Kuwait",
+      "name_fa": "کویت",
+      "region": "middle_east",
+      "default_timezone": "Asia/Kuwait",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "umm_al_qura",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kuwait_city"
+    },
+    {
+      "id": "kyrgyzstan",
+      "iso_alpha2": "KG",
+      "name_en": "Kyrgyzstan",
+      "name_fa": "قرقیزستان",
+      "region": "russia_central_asia",
+      "default_timezone": "Asia/Bishkek",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "bishkek"
+    },
+    {
+      "id": "laos",
+      "iso_alpha2": "LA",
+      "name_en": "Laos",
+      "name_fa": "لائوس",
+      "region": "east_asia",
+      "default_timezone": "Asia/Vientiane",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "vientiane"
+    },
+    {
+      "id": "latvia",
+      "iso_alpha2": "LV",
+      "name_en": "Latvia",
+      "name_fa": "لتونی",
+      "region": "europe",
+      "default_timezone": "Europe/Riga",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "riga"
+    },
+    {
+      "id": "lebanon",
+      "iso_alpha2": "LB",
+      "name_en": "Lebanon",
+      "name_fa": "لبنان",
+      "region": "middle_east",
+      "default_timezone": "Asia/Beirut",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "beirut"
+    },
+    {
+      "id": "lesotho",
+      "iso_alpha2": "LS",
+      "name_en": "Lesotho",
+      "name_fa": "لسوتو",
+      "region": "africa",
+      "default_timezone": "Africa/Maseru",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "maseru"
+    },
+    {
+      "id": "liberia",
+      "iso_alpha2": "LR",
+      "name_en": "Liberia",
+      "name_fa": "لیبریا",
+      "region": "africa",
+      "default_timezone": "Africa/Monrovia",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "monrovia"
+    },
+    {
+      "id": "libya",
+      "iso_alpha2": "LY",
+      "name_en": "Libya",
+      "name_fa": "لیبی",
+      "region": "africa",
+      "default_timezone": "Africa/Tripoli",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "tripolis"
+    },
+    {
+      "id": "liechtenstein",
+      "iso_alpha2": "LI",
+      "name_en": "Liechtenstein",
+      "name_fa": "لیختن‌اشتاین",
+      "region": "europe",
+      "default_timezone": "Europe/Vaduz",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "vaduz"
+    },
+    {
+      "id": "lithuania",
+      "iso_alpha2": "LT",
+      "name_en": "Lithuania",
+      "name_fa": "لیتوانی",
+      "region": "europe",
+      "default_timezone": "Europe/Vilnius",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "vilnius"
+    },
+    {
+      "id": "luxembourg",
+      "iso_alpha2": "LU",
+      "name_en": "Luxembourg",
+      "name_fa": "لوکزامبورگ",
+      "region": "europe",
+      "default_timezone": "Europe/Luxembourg",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "luxembourg"
+    },
+    {
+      "id": "macau_s_a_r",
+      "iso_alpha2": "MO",
+      "name_en": "Macau S.A.R.",
+      "name_fa": "مکائو",
+      "region": "east_asia",
+      "default_timezone": "Asia/Macau",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "macao"
+    },
+    {
+      "id": "madagascar",
+      "iso_alpha2": "MG",
+      "name_en": "Madagascar",
+      "name_fa": "ماداگاسکار",
+      "region": "africa",
+      "default_timezone": "Indian/Antananarivo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "antananarivo"
+    },
+    {
+      "id": "malawi",
+      "iso_alpha2": "MW",
+      "name_en": "Malawi",
+      "name_fa": "مالاوی",
+      "region": "africa",
+      "default_timezone": "Africa/Blantyre",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "lilongwe"
+    },
+    {
+      "id": "malaysia",
+      "iso_alpha2": "MY",
+      "name_en": "Malaysia",
+      "name_fa": "مالزی",
+      "region": "east_asia",
+      "default_timezone": "Asia/Kuala_Lumpur",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "singapore",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kuala_lumpur"
+    },
+    {
+      "id": "maldives",
+      "iso_alpha2": "MV",
+      "name_en": "Maldives",
+      "name_fa": "مالدیو",
+      "region": "south_asia",
+      "default_timezone": "Indian/Maldives",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "male"
+    },
+    {
+      "id": "mali",
+      "iso_alpha2": "ML",
+      "name_en": "Mali",
+      "name_fa": "مالی",
+      "region": "africa",
+      "default_timezone": "Africa/Bamako",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bamako"
+    },
+    {
+      "id": "malta",
+      "iso_alpha2": "MT",
+      "name_en": "Malta",
+      "name_fa": "مالت",
+      "region": "europe",
+      "default_timezone": "Europe/Malta",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "valletta"
+    },
+    {
+      "id": "man_isle_of",
+      "iso_alpha2": "IM",
+      "name_en": "Man (Isle of)",
+      "name_fa": "جزیره من",
+      "region": "europe",
+      "default_timezone": "Europe/Isle_of_Man",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "douglas_isle_of_man"
+    },
+    {
+      "id": "marshall_islands",
+      "iso_alpha2": "MH",
+      "name_en": "Marshall Islands",
+      "name_fa": "جزایر مارشال",
+      "region": "oceania",
+      "default_timezone": "Pacific/Kwajalein",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "majuro"
+    },
+    {
+      "id": "martinique",
+      "iso_alpha2": "MQ",
+      "name_en": "Martinique",
+      "name_fa": "مونتسرات",
+      "region": "north_america",
+      "default_timezone": "America/Martinique",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "fort_de_france"
+    },
+    {
+      "id": "mauritania",
+      "iso_alpha2": "MR",
+      "name_en": "Mauritania",
+      "name_fa": "موریتانی",
+      "region": "africa",
+      "default_timezone": "Africa/Nouakchott",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "nouakchott"
+    },
+    {
+      "id": "mauritius",
+      "iso_alpha2": "MU",
+      "name_en": "Mauritius",
+      "name_fa": "موریس",
+      "region": "africa",
+      "default_timezone": "Indian/Mauritius",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "port_louis"
+    },
+    {
+      "id": "mayotte",
+      "iso_alpha2": "YT",
+      "name_en": "Mayotte",
+      "name_fa": "مایوت",
+      "region": "africa",
+      "default_timezone": "Indian/Mayotte",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "mamoudzou"
+    },
+    {
+      "id": "mexico",
+      "iso_alpha2": "MX",
+      "name_en": "Mexico",
+      "name_fa": "مکزیک",
+      "region": "north_america",
+      "default_timezone": "America/Bahia_Banderas",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "ciudad_de_mexico"
+    },
+    {
+      "id": "micronesia",
+      "iso_alpha2": "FM",
+      "name_en": "Micronesia",
+      "name_fa": "ایالات فدرال میکرونزی",
+      "region": "oceania",
+      "default_timezone": "Pacific/Chuuk",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "palikir"
+    },
+    {
+      "id": "moldova",
+      "iso_alpha2": "MD",
+      "name_en": "Moldova",
+      "name_fa": "مولداوی",
+      "region": "europe",
+      "default_timezone": "Europe/Chisinau",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "chisinau"
+    },
+    {
+      "id": "monaco",
+      "iso_alpha2": "MC",
+      "name_en": "Monaco",
+      "name_fa": "موناکو",
+      "region": "europe",
+      "default_timezone": "Europe/Monaco",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "monaco"
+    },
+    {
+      "id": "mongolia",
+      "iso_alpha2": "MN",
+      "name_en": "Mongolia",
+      "name_fa": "مغولستان",
+      "region": "east_asia",
+      "default_timezone": "Asia/Choibalsan",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "ulan_bator"
+    },
+    {
+      "id": "montenegro",
+      "iso_alpha2": "ME",
+      "name_en": "Montenegro",
+      "name_fa": "مونته‌نگرو",
+      "region": "europe",
+      "default_timezone": "Europe/Podgorica",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "podgorica"
+    },
+    {
+      "id": "montserrat",
+      "iso_alpha2": "MS",
+      "name_en": "Montserrat",
+      "name_fa": "مایوت",
+      "region": "north_america",
+      "default_timezone": "America/Montserrat",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "plymouth"
+    },
+    {
+      "id": "morocco",
+      "iso_alpha2": "MA",
+      "name_en": "Morocco",
+      "name_fa": "مراکش",
+      "region": "africa",
+      "default_timezone": "Africa/Casablanca",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "rabat"
+    },
+    {
+      "id": "mozambique",
+      "iso_alpha2": "MZ",
+      "name_en": "Mozambique",
+      "name_fa": "موزامبیک",
+      "region": "africa",
+      "default_timezone": "Africa/Maputo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "maputo"
+    },
+    {
+      "id": "myanmar",
+      "iso_alpha2": "MM",
+      "name_en": "Myanmar",
+      "name_fa": "میانمار",
+      "region": "east_asia",
+      "default_timezone": "Asia/Yangon",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "nay_pyi_taw"
+    },
+    {
+      "id": "namibia",
+      "iso_alpha2": "NA",
+      "name_en": "Namibia",
+      "name_fa": "نامیبیا",
+      "region": "africa",
+      "default_timezone": "Africa/Windhoek",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "windhoek"
+    },
+    {
+      "id": "nauru",
+      "iso_alpha2": "NR",
+      "name_en": "Nauru",
+      "name_fa": "نائورو",
+      "region": "oceania",
+      "default_timezone": "Pacific/Nauru",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "yaren"
+    },
+    {
+      "id": "nepal",
+      "iso_alpha2": "NP",
+      "name_en": "Nepal",
+      "name_fa": "نپال",
+      "region": "south_asia",
+      "default_timezone": "Asia/Kathmandu",
+      "week_start": "sunday",
+      "weekend_days": [
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kathmandu"
+    },
+    {
+      "id": "netherlands",
+      "iso_alpha2": "NL",
+      "name_en": "Netherlands",
+      "name_fa": "پادشاهی هلند",
+      "region": "europe",
+      "default_timezone": "Europe/Amsterdam",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "amsterdam"
+    },
+    {
+      "id": "new_caledonia",
+      "iso_alpha2": "NC",
+      "name_en": "New Caledonia",
+      "name_fa": "کالدونیای جدید",
+      "region": "oceania",
+      "default_timezone": "Pacific/Noumea",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "noumea"
+    },
+    {
+      "id": "new_zealand",
+      "iso_alpha2": "NZ",
+      "name_en": "New Zealand",
+      "name_fa": "نیوزیلند",
+      "region": "oceania",
+      "default_timezone": "Pacific/Auckland",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "wellington"
+    },
+    {
+      "id": "nicaragua",
+      "iso_alpha2": "NI",
+      "name_en": "Nicaragua",
+      "name_fa": "نیکاراگوئه",
+      "region": "north_america",
+      "default_timezone": "America/Managua",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "managua"
+    },
+    {
+      "id": "niger",
+      "iso_alpha2": "NE",
+      "name_en": "Niger",
+      "name_fa": "نیجر",
+      "region": "africa",
+      "default_timezone": "Africa/Niamey",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "niamey"
+    },
+    {
+      "id": "nigeria",
+      "iso_alpha2": "NG",
+      "name_en": "Nigeria",
+      "name_fa": "نیجریه",
+      "region": "africa",
+      "default_timezone": "Africa/Lagos",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "abuja"
+    },
+    {
+      "id": "niue",
+      "iso_alpha2": "NU",
+      "name_en": "Niue",
+      "name_fa": "نیووی",
+      "region": "oceania",
+      "default_timezone": "Pacific/Niue",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "alofi"
+    },
+    {
+      "id": "norfolk_island",
+      "iso_alpha2": "NF",
+      "name_en": "Norfolk Island",
+      "name_fa": "جزیره نورفک",
+      "region": "oceania",
+      "default_timezone": "Pacific/Norfolk",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kingston"
+    },
+    {
+      "id": "north_korea",
+      "iso_alpha2": "KP",
+      "name_en": "North Korea",
+      "name_fa": "کره جنوبی",
+      "region": "east_asia",
+      "default_timezone": "Asia/Pyongyang",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "pyongyang"
+    },
+    {
+      "id": "north_macedonia",
+      "iso_alpha2": "MK",
+      "name_en": "North Macedonia",
+      "name_fa": "ﻢﻗﺩﻮﻨﯿﻫ ﺶﻣﺎﻠﯾ",
+      "region": "europe",
+      "default_timezone": "Europe/Skopje",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "skopje"
+    },
+    {
+      "id": "northern_mariana_islands",
+      "iso_alpha2": "MP",
+      "name_en": "Northern Mariana Islands",
+      "name_fa": "جزایر ماریانای شمالی",
+      "region": "oceania",
+      "default_timezone": "Pacific/Saipan",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "saipan"
+    },
+    {
+      "id": "norway",
+      "iso_alpha2": "NO",
+      "name_en": "Norway",
+      "name_fa": "نروژ",
+      "region": "europe",
+      "default_timezone": "Europe/Oslo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "oslo"
+    },
+    {
+      "id": "oman",
+      "iso_alpha2": "OM",
+      "name_en": "Oman",
+      "name_fa": "عمان",
+      "region": "middle_east",
+      "default_timezone": "Asia/Muscat",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "muscat"
+    },
+    {
+      "id": "pakistan",
+      "iso_alpha2": "PK",
+      "name_en": "Pakistan",
+      "name_fa": "پاکستان",
+      "region": "south_asia",
+      "default_timezone": "Asia/Karachi",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "karachi",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "islamabad"
+    },
+    {
+      "id": "palau",
+      "iso_alpha2": "PW",
+      "name_en": "Palau",
+      "name_fa": "پالائو",
+      "region": "oceania",
+      "default_timezone": "Pacific/Palau",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "melekeok"
+    },
+    {
+      "id": "palestine",
+      "iso_alpha2": "PS",
+      "name_en": "Palestinian Territory Occupied",
+      "name_fa": "فلسطین",
+      "region": "middle_east",
+      "default_timezone": "Asia/Gaza",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "east_jerusalem"
+    },
+    {
+      "id": "panama",
+      "iso_alpha2": "PA",
+      "name_en": "Panama",
+      "name_fa": "پاناما",
+      "region": "north_america",
+      "default_timezone": "America/Panama",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "panama_city"
+    },
+    {
+      "id": "papua_new_guinea",
+      "iso_alpha2": "PG",
+      "name_en": "Papua New Guinea",
+      "name_fa": "پاپوآ گینه نو",
+      "region": "oceania",
+      "default_timezone": "Pacific/Bougainville",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "port_moresby"
+    },
+    {
+      "id": "paraguay",
+      "iso_alpha2": "PY",
+      "name_en": "Paraguay",
+      "name_fa": "پاراگوئه",
+      "region": "latin_america",
+      "default_timezone": "America/Asuncion",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "asuncion"
+    },
+    {
+      "id": "peru",
+      "iso_alpha2": "PE",
+      "name_en": "Peru",
+      "name_fa": "پرو",
+      "region": "latin_america",
+      "default_timezone": "America/Lima",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "lima"
+    },
+    {
+      "id": "philippines",
+      "iso_alpha2": "PH",
+      "name_en": "Philippines",
+      "name_fa": "جزایر الندفیلیپین",
+      "region": "east_asia",
+      "default_timezone": "Asia/Manila",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "manila"
+    },
+    {
+      "id": "poland",
+      "iso_alpha2": "PL",
+      "name_en": "Poland",
+      "name_fa": "لهستان",
+      "region": "europe",
+      "default_timezone": "Europe/Warsaw",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "warsaw"
+    },
+    {
+      "id": "portugal",
+      "iso_alpha2": "PT",
+      "name_en": "Portugal",
+      "name_fa": "پرتغال",
+      "region": "europe",
+      "default_timezone": "Atlantic/Azores",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "lisbon"
+    },
+    {
+      "id": "puerto_rico",
+      "iso_alpha2": "PR",
+      "name_en": "Puerto Rico",
+      "name_fa": "پورتو ریکو",
+      "region": "north_america",
+      "default_timezone": "America/Puerto_Rico",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "san_juan"
+    },
+    {
+      "id": "qatar",
+      "iso_alpha2": "QA",
+      "name_en": "Qatar",
+      "name_fa": "قطر",
+      "region": "middle_east",
+      "default_timezone": "Asia/Qatar",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "umm_al_qura",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "doha"
+    },
+    {
+      "id": "reunion",
+      "iso_alpha2": "RE",
+      "name_en": "Reunion",
+      "name_fa": "رئونیون",
+      "region": "africa",
+      "default_timezone": "Indian/Reunion",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "saint_denis"
+    },
+    {
+      "id": "romania",
+      "iso_alpha2": "RO",
+      "name_en": "Romania",
+      "name_fa": "رومانی",
+      "region": "europe",
+      "default_timezone": "Europe/Bucharest",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bucharest"
+    },
+    {
+      "id": "russia",
+      "iso_alpha2": "RU",
+      "name_en": "Russia",
+      "name_fa": "روسیه",
+      "region": "europe",
+      "default_timezone": "Europe/Moscow",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "moscow"
+    },
+    {
+      "id": "rwanda",
+      "iso_alpha2": "RW",
+      "name_en": "Rwanda",
+      "name_fa": "رواندا",
+      "region": "africa",
+      "default_timezone": "Africa/Kigali",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kigali"
+    },
+    {
+      "id": "saint_helena",
+      "iso_alpha2": "SH",
+      "name_en": "Saint Helena",
+      "name_fa": "سنت هلنا، اسنشن و تریستان دا کونا",
+      "region": "africa",
+      "default_timezone": "Atlantic/St_Helena",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "jamestown"
+    },
+    {
+      "id": "saint_kitts_nevis",
+      "iso_alpha2": "KN",
+      "name_en": "Saint Kitts and Nevis",
+      "name_fa": "سنت کیتس و نویس",
+      "region": "north_america",
+      "default_timezone": "America/St_Kitts",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "basseterre"
+    },
+    {
+      "id": "saint_lucia",
+      "iso_alpha2": "LC",
+      "name_en": "Saint Lucia",
+      "name_fa": "سنت لوسیا",
+      "region": "north_america",
+      "default_timezone": "America/St_Lucia",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "castries"
+    },
+    {
+      "id": "saint_pierre_and_miquelon",
+      "iso_alpha2": "PM",
+      "name_en": "Saint Pierre and Miquelon",
+      "name_fa": "سن پیر و میکلن",
+      "region": "north_america",
+      "default_timezone": "America/Miquelon",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "saint_pierre"
+    },
+    {
+      "id": "saint_vincent_grenadines",
+      "iso_alpha2": "VC",
+      "name_en": "Saint Vincent and the Grenadines",
+      "name_fa": "سنت وینسنت و گرنادین‌ها",
+      "region": "north_america",
+      "default_timezone": "America/St_Vincent",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kingstown"
+    },
+    {
+      "id": "saint_barthelemy",
+      "iso_alpha2": "BL",
+      "name_en": "Saint-Barthelemy",
+      "name_fa": "سن-بارتلمی",
+      "region": "north_america",
+      "default_timezone": "America/St_Barthelemy",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "gustavia"
+    },
+    {
+      "id": "saint_martin_french_part",
+      "iso_alpha2": "MF",
+      "name_en": "Saint-Martin (French part)",
+      "name_fa": "سینت مارتن",
+      "region": "north_america",
+      "default_timezone": "America/Marigot",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "marigot"
+    },
+    {
+      "id": "samoa",
+      "iso_alpha2": "WS",
+      "name_en": "Samoa",
+      "name_fa": "ساموآ",
+      "region": "oceania",
+      "default_timezone": "Pacific/Apia",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "apia"
+    },
+    {
+      "id": "san_marino",
+      "iso_alpha2": "SM",
+      "name_en": "San Marino",
+      "name_fa": "سان مارینو",
+      "region": "europe",
+      "default_timezone": "Europe/San_Marino",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "san_marino"
+    },
+    {
+      "id": "sao_tome_principe",
+      "iso_alpha2": "ST",
+      "name_en": "Sao Tome and Principe",
+      "name_fa": "کواترو دو فرویرو",
+      "region": "africa",
+      "default_timezone": "Africa/Sao_Tome",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "sao_tome"
+    },
+    {
+      "id": "saudi_arabia",
+      "iso_alpha2": "SA",
+      "name_en": "Saudi Arabia",
+      "name_fa": "عربستان سعودی",
+      "region": "middle_east",
+      "default_timezone": "Asia/Riyadh",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "umm_al_qura",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "riyadh"
+    },
+    {
+      "id": "senegal",
+      "iso_alpha2": "SN",
+      "name_en": "Senegal",
+      "name_fa": "سنگال",
+      "region": "africa",
+      "default_timezone": "Africa/Dakar",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "dakar"
+    },
+    {
+      "id": "serbia",
+      "iso_alpha2": "RS",
+      "name_en": "Serbia",
+      "name_fa": "صربستان",
+      "region": "europe",
+      "default_timezone": "Europe/Belgrade",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "belgrade"
+    },
+    {
+      "id": "seychelles",
+      "iso_alpha2": "SC",
+      "name_en": "Seychelles",
+      "name_fa": "سیشل",
+      "region": "africa",
+      "default_timezone": "Indian/Mahe",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "victoria"
+    },
+    {
+      "id": "sierra_leone",
+      "iso_alpha2": "SL",
+      "name_en": "Sierra Leone",
+      "name_fa": "سیرالئون",
+      "region": "africa",
+      "default_timezone": "Africa/Freetown",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "freetown"
+    },
+    {
+      "id": "singapore",
+      "iso_alpha2": "SG",
+      "name_en": "Singapore",
+      "name_fa": "سنگاپور",
+      "region": "east_asia",
+      "default_timezone": "Asia/Singapore",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "singapur"
+    },
+    {
+      "id": "sint_maarten_dutch_part",
+      "iso_alpha2": "SX",
+      "name_en": "Sint Maarten (Dutch part)",
+      "name_fa": "سینت مارتن",
+      "region": "north_america",
+      "default_timezone": "America/Anguilla",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "philipsburg"
+    },
+    {
+      "id": "slovakia",
+      "iso_alpha2": "SK",
+      "name_en": "Slovakia",
+      "name_fa": "اسلواکی",
+      "region": "europe",
+      "default_timezone": "Europe/Bratislava",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bratislava"
+    },
+    {
+      "id": "slovenia",
+      "iso_alpha2": "SI",
+      "name_en": "Slovenia",
+      "name_fa": "اسلوونی",
+      "region": "europe",
+      "default_timezone": "Europe/Ljubljana",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "ljubljana"
+    },
+    {
+      "id": "solomon_islands",
+      "iso_alpha2": "SB",
+      "name_en": "Solomon Islands",
+      "name_fa": "جزایر سلیمان",
+      "region": "oceania",
+      "default_timezone": "Pacific/Guadalcanal",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "honiara"
+    },
+    {
+      "id": "somalia",
+      "iso_alpha2": "SO",
+      "name_en": "Somalia",
+      "name_fa": "سومالی",
+      "region": "africa",
+      "default_timezone": "Africa/Mogadishu",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "mogadishu"
+    },
+    {
+      "id": "south_africa",
+      "iso_alpha2": "ZA",
+      "name_en": "South Africa",
+      "name_fa": "آفریقای جنوبی",
+      "region": "africa",
+      "default_timezone": "Africa/Johannesburg",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "pretoria"
+    },
+    {
+      "id": "south_korea",
+      "iso_alpha2": "KR",
+      "name_en": "South Korea",
+      "name_fa": "کره شمالی",
+      "region": "east_asia",
+      "default_timezone": "Asia/Seoul",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "seoul"
+    },
+    {
+      "id": "south_sudan",
+      "iso_alpha2": "SS",
+      "name_en": "South Sudan",
+      "name_fa": "سودان جنوبی",
+      "region": "africa",
+      "default_timezone": "Africa/Juba",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "juba"
+    },
+    {
+      "id": "spain",
+      "iso_alpha2": "ES",
+      "name_en": "Spain",
+      "name_fa": "اسپانیا",
+      "region": "europe",
+      "default_timezone": "Europe/Madrid",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "madrid"
+    },
+    {
+      "id": "sri_lanka",
+      "iso_alpha2": "LK",
+      "name_en": "Sri Lanka",
+      "name_fa": "سری‌لانکا",
+      "region": "south_asia",
+      "default_timezone": "Asia/Colombo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "colombo"
+    },
+    {
+      "id": "sudan",
+      "iso_alpha2": "SD",
+      "name_en": "Sudan",
+      "name_fa": "سودان",
+      "region": "africa",
+      "default_timezone": "Africa/Khartoum",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "khartoum"
+    },
+    {
+      "id": "suriname",
+      "iso_alpha2": "SR",
+      "name_en": "Suriname",
+      "name_fa": "سورینام",
+      "region": "latin_america",
+      "default_timezone": "America/Paramaribo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "paramaribo"
+    },
+    {
+      "id": "sweden",
+      "iso_alpha2": "SE",
+      "name_en": "Sweden",
+      "name_fa": "سوئد",
+      "region": "europe",
+      "default_timezone": "Europe/Stockholm",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "stockholm"
+    },
+    {
+      "id": "switzerland",
+      "iso_alpha2": "CH",
+      "name_en": "Switzerland",
+      "name_fa": "سوئیس",
+      "region": "europe",
+      "default_timezone": "Europe/Zurich",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "zurich"
+    },
+    {
+      "id": "syria",
+      "iso_alpha2": "SY",
+      "name_en": "Syria",
+      "name_fa": "سوریه",
+      "region": "middle_east",
+      "default_timezone": "Asia/Damascus",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "damascus"
+    },
+    {
+      "id": "taiwan",
+      "iso_alpha2": "TW",
+      "name_en": "Taiwan",
+      "name_fa": "تایوان",
+      "region": "east_asia",
+      "default_timezone": "Asia/Taipei",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "taipei"
+    },
+    {
+      "id": "tajikistan",
+      "iso_alpha2": "TJ",
+      "name_en": "Tajikistan",
+      "name_fa": "تاجیکستان",
+      "region": "russia_central_asia",
+      "default_timezone": "Asia/Dushanbe",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "tajik",
+      "languages": [
+        "tajik",
+        "english"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "dushanbe"
+    },
+    {
+      "id": "tanzania",
+      "iso_alpha2": "TZ",
+      "name_en": "Tanzania",
+      "name_fa": "تانزانیا",
+      "region": "africa",
+      "default_timezone": "Africa/Dar_es_Salaam",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "dodoma"
+    },
+    {
+      "id": "thailand",
+      "iso_alpha2": "TH",
+      "name_en": "Thailand",
+      "name_fa": "تایلند",
+      "region": "east_asia",
+      "default_timezone": "Asia/Bangkok",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "bangkok"
+    },
+    {
+      "id": "the_bahamas",
+      "iso_alpha2": "BS",
+      "name_en": "The Bahamas",
+      "name_fa": "باهاما",
+      "region": "north_america",
+      "default_timezone": "America/Nassau",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "nassau"
+    },
+    {
+      "id": "the_gambia",
+      "iso_alpha2": "GM",
+      "name_en": "The Gambia",
+      "name_fa": "گامبیا",
+      "region": "africa",
+      "default_timezone": "Africa/Banjul",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "banjul"
+    },
+    {
+      "id": "timor_leste",
+      "iso_alpha2": "TL",
+      "name_en": "Timor-Leste",
+      "name_fa": "تیمور شرقی",
+      "region": "east_asia",
+      "default_timezone": "Asia/Dili",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "dili"
+    },
+    {
+      "id": "togo",
+      "iso_alpha2": "TG",
+      "name_en": "Togo",
+      "name_fa": "توگو",
+      "region": "africa",
+      "default_timezone": "Africa/Lome",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "lome"
+    },
+    {
+      "id": "tonga",
+      "iso_alpha2": "TO",
+      "name_en": "Tonga",
+      "name_fa": "تونگا",
+      "region": "oceania",
+      "default_timezone": "Pacific/Tongatapu",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "nuku_alofa"
+    },
+    {
+      "id": "trinidad_tobago",
+      "iso_alpha2": "TT",
+      "name_en": "Trinidad and Tobago",
+      "name_fa": "ترینیداد و توباگو",
+      "region": "north_america",
+      "default_timezone": "America/Port_of_Spain",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "port_of_spain"
+    },
+    {
+      "id": "tunisia",
+      "iso_alpha2": "TN",
+      "name_en": "Tunisia",
+      "name_fa": "تونس",
+      "region": "africa",
+      "default_timezone": "Africa/Tunis",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "tunis"
+    },
+    {
+      "id": "turkey",
+      "iso_alpha2": "TR",
+      "name_en": "Turkey",
+      "name_fa": "ترکیه",
+      "region": "middle_east",
+      "default_timezone": "Europe/Istanbul",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "turkey",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "ankara"
+    },
+    {
+      "id": "turkmenistan",
+      "iso_alpha2": "TM",
+      "name_en": "Turkmenistan",
+      "name_fa": "ترکمنستان",
+      "region": "russia_central_asia",
+      "default_timezone": "Asia/Ashgabat",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "ashgabat"
+    },
+    {
+      "id": "turks_and_caicos_islands",
+      "iso_alpha2": "TC",
+      "name_en": "Turks and Caicos Islands",
+      "name_fa": "جزایر تورکس و کایکوس",
+      "region": "north_america",
+      "default_timezone": "America/Grand_Turk",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "cockburn_town"
+    },
+    {
+      "id": "tuvalu",
+      "iso_alpha2": "TV",
+      "name_en": "Tuvalu",
+      "name_fa": "تووالو",
+      "region": "oceania",
+      "default_timezone": "Pacific/Funafuti",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "funafuti"
+    },
+    {
+      "id": "uganda",
+      "iso_alpha2": "UG",
+      "name_en": "Uganda",
+      "name_fa": "اوگاندا",
+      "region": "africa",
+      "default_timezone": "Africa/Kampala",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kampala"
+    },
+    {
+      "id": "ukraine",
+      "iso_alpha2": "UA",
+      "name_en": "Ukraine",
+      "name_fa": "وکراین",
+      "region": "europe",
+      "default_timezone": "Europe/Kyiv",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "kyiv"
+    },
+    {
+      "id": "uae",
+      "iso_alpha2": "AE",
+      "name_en": "United Arab Emirates",
+      "name_fa": "امارات متحده عربی",
+      "region": "middle_east",
+      "default_timezone": "Asia/Dubai",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "dubai",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "abu_dhabi"
+    },
+    {
+      "id": "uk",
+      "iso_alpha2": "GB",
+      "name_en": "United Kingdom",
+      "name_fa": "بریتانیای کبیر و ایرلند شمالی",
+      "region": "europe",
+      "default_timezone": "Europe/London",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "london"
+    },
+    {
+      "id": "usa",
+      "iso_alpha2": "US",
+      "name_en": "United States",
+      "name_fa": "ایالات متحده آمریکا",
+      "region": "north_america",
+      "default_timezone": "America/New_York",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "isna",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "new_york"
+    },
+    {
+      "id": "uruguay",
+      "iso_alpha2": "UY",
+      "name_en": "Uruguay",
+      "name_fa": "اروگوئه",
+      "region": "latin_america",
+      "default_timezone": "America/Montevideo",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "montevideo"
+    },
+    {
+      "id": "uzbekistan",
+      "iso_alpha2": "UZ",
+      "name_en": "Uzbekistan",
+      "name_fa": "ازبکستان",
+      "region": "russia_central_asia",
+      "default_timezone": "Asia/Tashkent",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "hanafi",
+      "capital_city_id": "tashkent"
+    },
+    {
+      "id": "vanuatu",
+      "iso_alpha2": "VU",
+      "name_en": "Vanuatu",
+      "name_fa": "وانواتو",
+      "region": "oceania",
+      "default_timezone": "Pacific/Efate",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "port_vila"
+    },
+    {
+      "id": "vatican_city_state_holy_see",
+      "iso_alpha2": "VA",
+      "name_en": "Vatican City State (Holy See)",
+      "name_fa": "سریر مقدس",
+      "region": "europe",
+      "default_timezone": "Europe/Vatican",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "vatican_city"
+    },
+    {
+      "id": "venezuela",
+      "iso_alpha2": "VE",
+      "name_en": "Venezuela",
+      "name_fa": "ونزوئلا",
+      "region": "latin_america",
+      "default_timezone": "America/Caracas",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "caracas"
+    },
+    {
+      "id": "vietnam",
+      "iso_alpha2": "VN",
+      "name_en": "Vietnam",
+      "name_fa": "ویتنام",
+      "region": "east_asia",
+      "default_timezone": "Asia/Ho_Chi_Minh",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "hanoi"
+    },
+    {
+      "id": "british_virgin_islands",
+      "iso_alpha2": "VG",
+      "name_en": "Virgin Islands (British)",
+      "name_fa": "جزایر ویرجین بریتانیا",
+      "region": "north_america",
+      "default_timezone": "America/Tortola",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "road_town"
+    },
+    {
+      "id": "us_virgin_islands",
+      "iso_alpha2": "VI",
+      "name_en": "Virgin Islands (US)",
+      "name_fa": "جزایر ویرجین آمریکا",
+      "region": "north_america",
+      "default_timezone": "America/St_Thomas",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "charlotte_amalie"
+    },
+    {
+      "id": "wallis_and_futuna_islands",
+      "iso_alpha2": "WF",
+      "name_en": "Wallis and Futuna Islands",
+      "name_fa": "والیس و فوتونا",
+      "region": "oceania",
+      "default_timezone": "Pacific/Wallis",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "mata_utu"
+    },
+    {
+      "id": "western_sahara",
+      "iso_alpha2": "EH",
+      "name_en": "Western Sahara",
+      "name_fa": "جمهوری دموکراتیک عربی صحرا",
+      "region": "africa",
+      "default_timezone": "Africa/El_Aaiun",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "el_aaiun"
+    },
+    {
+      "id": "yemen",
+      "iso_alpha2": "YE",
+      "name_en": "Yemen",
+      "name_fa": "یمن",
+      "region": "middle_east",
+      "default_timezone": "Asia/Aden",
+      "week_start": "sunday",
+      "weekend_days": [
+        "friday",
+        "saturday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "sanaa"
+    },
+    {
+      "id": "zambia",
+      "iso_alpha2": "ZM",
+      "name_en": "Zambia",
+      "name_fa": "زامبیا",
+      "region": "africa",
+      "default_timezone": "Africa/Lusaka",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "lusaka"
+    },
+    {
+      "id": "zimbabwe",
+      "iso_alpha2": "ZW",
+      "name_en": "Zimbabwe",
+      "name_fa": "زیمباوه",
+      "region": "africa",
+      "default_timezone": "Africa/Harare",
+      "week_start": "monday",
+      "weekend_days": [
+        "saturday",
+        "sunday"
+      ],
+      "default_language": "english",
+      "languages": [
+        "english",
+        "persian"
+      ],
+      "prayer_method": "mwl",
+      "prayer_madhab": "shafi",
+      "capital_city_id": "harare"
+    }
+  ]
+}

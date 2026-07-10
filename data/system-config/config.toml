@@ -7,7 +7,7 @@
 #
 # Copy to edit system defaults:
 #   sudo cp /usr/share/boloot-calendar/config.toml.example /etc/boloot-calendar/config.toml
-#   sudo systemctl reload boloot-calendard.service
+#   sudo systemctl restart boloot-calendard.service
 #
 # Per-user settings override this file and are stored at:
 #   ~/.config/boloot-calendar/config.toml

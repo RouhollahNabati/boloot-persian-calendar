@@ -1,0 +1,154 @@
+{
+  "cities": [
+    {
+      "id": "asuncion",
+      "name": "Asunción",
+      "name_fa": "پاراگوئه",
+      "latitude": -25.2637,
+      "longitude": -57.5759,
+      "timezone": "America/Asuncion",
+      "country": "paraguay",
+      "region": "latin_america"
+    },
+    {
+      "id": "bogota",
+      "name": "Bogotá",
+      "name_fa": "کلمبیا",
+      "latitude": 4.711,
+      "longitude": -74.0721,
+      "timezone": "America/Bogota",
+      "country": "colombia",
+      "region": "latin_america"
+    },
+    {
+      "id": "brasilia",
+      "name": "Brasilia",
+      "name_fa": "برازília",
+      "latitude": -15.7939,
+      "longitude": -47.8828,
+      "timezone": "America/Sao_Paulo",
+      "country": "brazil",
+      "region": "latin_america"
+    },
+    {
+      "id": "buenos_aires",
+      "name": "Buenos Aires",
+      "name_fa": "آرژانتین",
+      "latitude": -34.6037,
+      "longitude": -58.3816,
+      "timezone": "America/Argentina/Buenos_Aires",
+      "country": "argentina",
+      "region": "latin_america"
+    },
+    {
+      "id": "caracas",
+      "name": "Caracas",
+      "name_fa": "ونزوئلا",
+      "latitude": 10.4806,
+      "longitude": -66.9036,
+      "timezone": "America/Caracas",
+      "country": "venezuela",
+      "region": "latin_america"
+    },
+    {
+      "id": "cayenne",
+      "name": "Cayenne",
+      "name_fa": "گویان فرانسه",
+      "latitude": 4.0,
+      "longitude": -53.0,
+      "timezone": "America/Cayenne",
+      "country": "french_guiana",
+      "region": "latin_america"
+    },
+    {
+      "id": "georgetown",
+      "name": "Georgetown",
+      "name_fa": "گویان",
+      "latitude": 6.8013,
+      "longitude": -58.1551,
+      "timezone": "America/Guyana",
+      "country": "guyana",
+      "region": "latin_america"
+    },
+    {
+      "id": "lima",
+      "name": "Lima",
+      "name_fa": "پرو",
+      "latitude": -12.0464,
+      "longitude": -77.0428,
+      "timezone": "America/Lima",
+      "country": "peru",
+      "region": "latin_america"
+    },
+    {
+      "id": "montevideo",
+      "name": "Montevideo",
+      "name_fa": "اروگوئه",
+      "latitude": -34.9011,
+      "longitude": -56.1645,
+      "timezone": "America/Montevideo",
+      "country": "uruguay",
+      "region": "latin_america"
+    },
+    {
+      "id": "paramaribo",
+      "name": "Paramaribo",
+      "name_fa": "سورینام",
+      "latitude": 5.852,
+      "longitude": -55.2038,
+      "timezone": "America/Paramaribo",
+      "country": "suriname",
+      "region": "latin_america"
+    },
+    {
+      "id": "quito",
+      "name": "Quito",
+      "name_fa": "اکوادور",
+      "latitude": -0.1807,
+      "longitude": -78.4678,
+      "timezone": "America/Guayaquil",
+      "country": "ecuador",
+      "region": "latin_america"
+    },
+    {
+      "id": "santiago",
+      "name": "Santiago",
+      "name_fa": "شیلی",
+      "latitude": -33.4489,
+      "longitude": -70.6693,
+      "timezone": "America/Punta_Arenas",
+      "country": "chile",
+      "region": "latin_america"
+    },
+    {
+      "id": "sao_paulo",
+      "name": "Sao Paulo",
+      "name_fa": "سائو پائولو",
+      "latitude": -23.5505,
+      "longitude": -46.6333,
+      "timezone": "America/Sao_Paulo",
+      "country": "brazil",
+      "region": "latin_america"
+    },
+    {
+      "id": "stanley",
+      "name": "Stanley",
+      "name_fa": "جزایر فالکلند",
+      "latitude": -51.75,
+      "longitude": -59.0,
+      "timezone": "Atlantic/Stanley",
+      "country": "falkland_islands",
+      "region": "latin_america"
+    },
+    {
+      "id": "sucre",
+      "name": "Sucre",
+      "name_fa": "بولیوی",
+      "latitude": -16.4897,
+      "longitude": -68.1193,
+      "timezone": "America/La_Paz",
+      "country": "bolivia",
+      "region": "latin_america"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "cities": [
+    {
+      "id": "colombo",
+      "name": "Colombo",
+      "name_fa": "سری‌لانکا",
+      "latitude": 6.9271,
+      "longitude": 79.8612,
+      "timezone": "Asia/Colombo",
+      "country": "sri_lanka",
+      "region": "south_asia"
+    },
+    {
+      "id": "delhi",
+      "name": "Delhi",
+      "name_fa": "دهلی",
+      "latitude": 28.7041,
+      "longitude": 77.1025,
+      "timezone": "Asia/Kolkata",
+      "country": "india",
+      "region": "south_asia"
+    },
+    {
+      "id": "dhaka",
+      "name": "Dhaka",
+      "name_fa": "بنگلادش",
+      "latitude": 23.8103,
+      "longitude": 90.4125,
+      "timezone": "Asia/Dhaka",
+      "country": "bangladesh",
+      "region": "south_asia"
+    },
+    {
+      "id": "islamabad",
+      "name": "Islamabad",
+      "name_fa": "اسلام‌آباد",
+      "latitude": 33.6844,
+      "longitude": 73.0479,
+      "timezone": "Asia/Karachi",
+      "country": "pakistan",
+      "region": "south_asia"
+    },
+    {
+      "id": "karachi_pk",
+      "name": "Karachi",
+      "name_fa": "کراچی (پاکستان)",
+      "latitude": 24.8607,
+      "longitude": 67.0011,
+      "timezone": "Asia/Karachi",
+      "country": "pakistan",
+      "region": "south_asia"
+    },
+    {
+      "id": "kathmandu",
+      "name": "Kathmandu",
+      "name_fa": "نپال",
+      "latitude": 27.7172,
+      "longitude": 85.324,
+      "timezone": "Asia/Kathmandu",
+      "country": "nepal",
+      "region": "south_asia"
+    },
+    {
+      "id": "lahore",
+      "name": "Lahore",
+      "name_fa": "لاهور",
+      "latitude": 31.5204,
+      "longitude": 74.3587,
+      "timezone": "Asia/Karachi",
+      "country": "pakistan",
+      "region": "south_asia"
+    },
+    {
+      "id": "male",
+      "name": "Male",
+      "name_fa": "مالدیو",
+      "latitude": 4.1755,
+      "longitude": 73.5093,
+      "timezone": "Indian/Maldives",
+      "country": "maldives",
+      "region": "south_asia"
+    },
+    {
+      "id": "mumbai",
+      "name": "Mumbai",
+      "name_fa": "بمبئی",
+      "latitude": 19.076,
+      "longitude": 72.8777,
+      "timezone": "Asia/Kolkata",
+      "country": "india",
+      "region": "south_asia"
+    },
+    {
+      "id": "thimphu",
+      "name": "Thimphu",
+      "name_fa": "بوتان",
+      "latitude": 27.4728,
+      "longitude": 89.639,
+      "timezone": "Asia/Thimphu",
+      "country": "bhutan",
+      "region": "south_asia"
+    }
+  ]
+}

@@ -1,9 +1,8 @@
 use anyhow::{Context, Result};
 use boloot_cal_core::{
-    BolootConfig, BolootService, CountryProfile, APP_NAME, DONATE_BTC, DONATE_USDT_TRC20,
-    WEBSITE, WEBSITE_LABEL,
+    install_salah_panic_hook, local_today, BolootConfig, BolootService, CountryProfile, APP_NAME,
+    DONATE_BTC, DONATE_USDT_TRC20, WEBSITE, WEBSITE_LABEL,
 };
-use chrono::Local;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
@@ -54,9 +53,12 @@ enum Commands {
     },
     /// Detect system locale (country, language, numerals)
     DetectLocale,
+    /// Stop adhan playback via D-Bus
+    StopAdhan,
 }
 
 fn main() -> Result<()> {
+    install_salah_panic_hook();
     let cli = Cli::parse();
 
     if let Commands::Import { path } = &cli.command {
@@ -94,7 +96,7 @@ fn main() -> Result<()> {
                 chrono::NaiveDate::parse_from_str(&date, "%Y-%m-%d")
                     .with_context(|| format!("invalid date: {date}"))?
             } else {
-                Local::now().date_naive()
+                local_today()
             };
             let schedule = service.prayer_for(day)?;
             println!("شهر: {}", schedule.times.city);
@@ -142,9 +144,34 @@ fn main() -> Result<()> {
             let detected = boloot_cal_core::detect_from_env();
             println!("{}", serde_json::to_string_pretty(&detected)?);
         }
+        Commands::StopAdhan => {
+            let stopped = stop_adhan_via_dbus()?;
+            if stopped {
+                println!("adhan stopped");
+            } else {
+                println!("no adhan playing");
+            }
+        }
     }
 
     Ok(())
+}
+
+fn stop_adhan_via_dbus() -> Result<bool> {
+    let connection = zbus::blocking::Connection::system().context("connect to system bus")?;
+    let reply: bool = connection
+        .call_method(
+            Some("org.boloot.Calendar"),
+            "/org/boloot/Calendar",
+            Some("org.boloot.Calendar"),
+            "StopAdhan",
+            &(),
+        )
+        .context("StopAdhan D-Bus call")?
+        .body()
+        .deserialize()
+        .context("decode StopAdhan reply")?;
+    Ok(reply)
 }
 
 fn import_settings(path: &str) -> Result<()> {
@@ -160,7 +187,7 @@ fn import_settings(path: &str) -> Result<()> {
 
 fn apply_system_locale(config: &BolootConfig) -> Result<()> {
     let locale = boloot_cal_core::LocaleProfile::resolve(
-        config.calendar.country,
+        config.calendar.country.clone(),
         config.calendar.language,
     );
     let profile = format!(
@@ -170,7 +197,7 @@ export BOLOOT_CALENDAR_PROFILE="{profile}"
 export BOLOOT_CALENDAR_TIMEZONE="{tz}"
 "#,
         locale = locale.locale_code,
-        profile = profile_name(config.calendar.country),
+        profile = profile_name(&config.calendar.country),
         tz = config.calendar.timezone,
     );
 
@@ -211,10 +238,6 @@ fn resolve_apply_system_helper() -> std::path::PathBuf {
     std::path::PathBuf::from("/usr/libexec/boloot-calendar-apply-system")
 }
 
-fn profile_name(country: CountryProfile) -> &'static str {
-    match country {
-        CountryProfile::Iran => "iran",
-        CountryProfile::Afghanistan => "afghanistan",
-        CountryProfile::Tajikistan => "tajikistan",
-    }
+fn profile_name(country: &CountryProfile) -> &str {
+    country.as_str()
 }
